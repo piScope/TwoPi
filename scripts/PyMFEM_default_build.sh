@@ -16,12 +16,12 @@ export MFEMSER=${TwoPiRoot}/mfem-git/ser
 export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_ser
 export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
-export METISINC=$TWOPIINC
-export METISLIB=$TWOPILIB
+export METIS5INC=$TWOPIINC
+export METIS5LIB=$TWOPILIB
 
 #MPI
-export MPICHINCDIR=/usr/local/include
-export MPICHLNKDIR=/usr/local/lib
+export MPICHINC=/usr/local/include
+export MPICHLNK=/usr/local/lib
 
 #Boost
 export BOOSTINCDIR=/usr/local/include

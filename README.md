@@ -2,9 +2,10 @@
 
 
  usage
-
+ 
  export TwoPiRoot=/home/xxxx/twopi
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
+ export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
 
  ./scripts/buildcomponent.sh mfem clone

@@ -2,12 +2,12 @@
 
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/mfem-git
-TWOPILIB=${TWOPI}/lib
-TWOPIINC=${TWOPI}/include
+TWOPILIB=${TwoPiRoot}/lib
+TWOPIINC=${TwoPiRoot}/include
 
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
-MPICXX=$(command -v mpicxx)
+MPICXX=$(command -v mpiicxx)
 cd $REPO
 
 echo "############# configuring mfem parallel"
@@ -25,3 +25,4 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 -DBUILD_SHARED_LIBS=1                 \
 -lHYPRE -lmetis" -DCMAKE_EXE_LINKER_FLAGS="-L$TWOPILIB -lHYPRE -lmetis"
 
 $MAKE
+$MAKE install

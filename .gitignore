@@ -5,8 +5,7 @@
 #*
 .#*
 *~
-Makefile.local
-setup_local.py
+scripts/.nfs*
 build
 dist
 test/*

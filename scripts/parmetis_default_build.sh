@@ -10,7 +10,6 @@ source script
 
 cd ${SRCDIR}/parmetis-4.0.3
 
-
 $MAKE config shared=1 prefix=$TwoPiRoot cc=$MPICC cxx=$MPICXX
 $MAKE
 $MAKE install

@@ -20,12 +20,12 @@ export METISINC=$TWOPIINC
 export METISLIB=$TWOPILIB
 
 #MPI
-export MPICHINCDIR=/usr/local/include
-export MPICHLNKDIR=/usr/local/lib
+export MPICHINCDIR=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/include
+export MPICHLNKDIR=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/include
 
 #Boost
-export BOOSTINCDIR=/usr/local/include
-export BOOSTLIBDIR=/usr/local/lib
+export BOOSTINCDIR=/cm/shared/engaging/boost/1.56.0/include
+export BOOSTLIBDIR=/cm/shared/engaging/boost/1.56.0/lib
 
 
 $MAKE ser

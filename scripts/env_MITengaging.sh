@@ -1,0 +1,2 @@
+MPICC=mpiicc
+MPICXX=mpiicpc

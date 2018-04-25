@@ -8,4 +8,4 @@ PYTHON=$(command -v python)
 cd $REPO
 
 $PYTHON setup.py build
-$PYTHON setup.py install
+$PYTHON setup.py install --prefix=${TwoPiRoot}

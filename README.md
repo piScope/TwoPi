@@ -47,6 +47,8 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh PetraM_Geom build 
 
 
+## Plan
 
+add update command
 
 

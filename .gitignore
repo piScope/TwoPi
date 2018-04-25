@@ -1,0 +1,14 @@
+*.pyc
+*.so
+*.o
+*.a
+#*
+.#*
+*~
+Makefile.local
+setup_local.py
+build
+dist
+test/*
+#test/*.py
+*.egg-info

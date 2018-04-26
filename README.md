@@ -17,14 +17,14 @@ PetraM (Base, RF, Geom, MUMPS)
 ## Usage
 
 # A user has to define the following three variables.
-'''
+```
  export TwoPiRoot=/home/xxxx/twopi
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
  export PATH=$TwoPiRoot/bin:$PATH
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
-'''
+```
 # build everything...
-'''
+```
  ./scripts/buildcomponent.sh SWIG clone
  ./scripts/buildcomponent.sh SWIG build
 
@@ -53,9 +53,9 @@ PetraM (Base, RF, Geom, MUMPS)
 
  ./scripts/buildcomponent.sh PetraM_Geom clone
  ./scripts/buildcomponent.sh PetraM_Geom build 
-'''
+```
 
-## Plan
+## ToDo
 
 add update command
 

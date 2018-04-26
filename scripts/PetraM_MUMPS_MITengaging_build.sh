@@ -25,5 +25,6 @@ export MPICHLNKDIR="/home/software/intel/2017-01/compilers_and_libraries_2017.1.
 
 export MKL="-mkl=cluster"
 
-python setup.py build
-python setup.py install --prefix=${TwoPiRoot}
+$(MAKE)
+$(MAKE) install
+

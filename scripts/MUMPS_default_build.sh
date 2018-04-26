@@ -18,7 +18,6 @@ cd ${REPO}
 
 $MAKE all
 $MAKE
-$MAKE install
 
 
 

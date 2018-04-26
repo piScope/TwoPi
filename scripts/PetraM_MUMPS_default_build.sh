@@ -15,8 +15,8 @@ export MUMPS=${TwoPiRoot}/src/MUMPS_5.1.2/
 export PORD=${TwoPiRoot}/src/MUMPS_5.1.2/
 
 #MPI
-export MPICHINCDIR=/usr/local/include
-export MPICHLNKDIR=/usr/local/lib
+export MPICHINCDIR="/usr/local/include"
+export MPICHLNKDIR="/usr/local/lib"
 
 python setup.py build
 python setup.py install --prefix=${TwoPiRoot}

@@ -52,7 +52,14 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh PetraM_RF build 
 
  ./scripts/buildcomponent.sh PetraM_Geom clone
- ./scripts/buildcomponent.sh PetraM_Geom build 
+ ./scripts/buildcomponent.sh PetraM_Geom build
+
+ ./scripts/buildcomponent.sh PetraM_Driver clone
+ ./scripts/buildcomponent.sh PetraM_Driver build 
+
+ ./scripts/buildcomponent.sh PetraM_MUMPS clone
+ ./scripts/buildcomponent.sh PetraM_MUMPS build 
+
 ```
 
 ## ToDo

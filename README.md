@@ -17,6 +17,7 @@ PetraM (Base, RF, Geom, MUMPS)
 
  export TwoPiRoot=/home/xxxx/twopi
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
+ export PATH=$TwoPiRoot/bin:$PATH
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
 #

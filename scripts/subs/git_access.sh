@@ -1,4 +1,4 @@
-function clone_or_pull() {
+function git_clone_or_pull() {
     GITREPO=$1
     REPO=$2    
     SRCDIR=$3
@@ -7,12 +7,12 @@ function clone_or_pull() {
     GIT=$(command -v git)
     
     mkdir -p $SRCDIR
+    cd $SRCDIR
     if [ ! -d $REPO ]; then
-        cd $SRCDIR
         $GIT clone $GITREPO $REPO    
         cd $SRCDIR/$REPO
     else
-        cd $SRCDIR/$REPO	
+        cd $REPO	
         $GIT pull origin master
     fi
 }

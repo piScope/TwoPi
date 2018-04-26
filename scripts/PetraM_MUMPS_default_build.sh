@@ -8,6 +8,7 @@ TWOPIINC=${TwoPiRoot}/include
 
 MAKE=$(command -v make)
 cd $REPO
+cp setup_templates/setup_default.py setup.py
 touch Makefile.local
 
 export USRLOCAL=${TwoPiRoot}
@@ -18,5 +19,5 @@ export PORD=${TwoPiRoot}/src/MUMPS_5.1.2/
 export MPICHINCDIR="/usr/local/include"
 export MPICHLNKDIR="/usr/local/lib"
 
-$(MAKE)
-$(MAKE) install
+$MAKE
+$MAKE install

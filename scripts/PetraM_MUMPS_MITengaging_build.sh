@@ -26,6 +26,6 @@ export MPICHLNKDIR="/home/software/intel/2017-01/compilers_and_libraries_2017.1.
 
 export MKL="-mkl=cluster"
 
-$(MAKE)
-$(MAKE) install
+$MAKE
+$MAKE install
 

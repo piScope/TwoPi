@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/PetraM_MUMPS
+REPO=${SRCDIR}/PetraM_Driver
 
 TWOPILIB=${TwoPiRoot}/lib
 TWOPIINC=${TwoPiRoot}/include

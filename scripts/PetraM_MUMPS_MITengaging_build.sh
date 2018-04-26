@@ -19,7 +19,10 @@ export MPIFL=mpiifort
 export USRLOCAL=${TwoPiRoot}
 export MUMPS=${TwoPiRoot}/src/MUMPS_5.1.2/
 export PORD=${TwoPiRoot}/src/MUMPS_5.1.2/
-
+export SCALAPACK=""
+export LAPACK=""
+export BLAS=""
+export SCOTCH=""
 #MPI
 export MPICHINCDIR="/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/include"
 export MPICHLNKDIR="/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/lib"

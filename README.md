@@ -5,8 +5,11 @@ toolsets.
 
 ## Supported Libraries
 
+swig 3.0.12
 hypre 2.11.2
 metis 5.1.0
+parmetis 4.0.3
+MUMPS 5.1.2
 mfem
 PyMFEM (serial/parallel)
 PetraM (Base, RF, Geom, MUMPS)
@@ -14,13 +17,17 @@ PetraM (Base, RF, Geom, MUMPS)
 ## Usage
 
 # A user has to define the following three variables.
-
+'''
  export TwoPiRoot=/home/xxxx/twopi
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
  export PATH=$TwoPiRoot/bin:$PATH
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
+'''
+# build everything...
+'''
+ ./scripts/buildcomponent.sh SWIG clone
+ ./scripts/buildcomponent.sh SWIG build
 
-#
  ./scripts/buildcomponent.sh mfem clone
  ./scripts/buildcomponent.sh mfems build
 
@@ -46,7 +53,7 @@ PetraM (Base, RF, Geom, MUMPS)
 
  ./scripts/buildcomponent.sh PetraM_Geom clone
  ./scripts/buildcomponent.sh PetraM_Geom build 
-
+'''
 
 ## Plan
 

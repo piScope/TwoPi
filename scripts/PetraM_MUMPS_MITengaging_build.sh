@@ -15,6 +15,11 @@ export MPICC=mpiicc
 export MPICXX=mpiicpc
 export MPIFC=mpiifort
 export MPIFL=mpiifort
+export CXX=mpiifort
+export LDFLAGS+="-lstdc++"
+#note : linker must be fortran since MUMPS need fortran FILE I/O.
+#       linkflag must have -pthread, -shared for pytho shared library
+#       -lstdc++ is necessary since the wrapper is c++
 
 export USRLOCAL=${TwoPiRoot}
 export MUMPS=${TwoPiRoot}/src/MUMPS_5.1.2/

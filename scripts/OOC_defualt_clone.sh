@@ -2,7 +2,6 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/PyMFEM
 
 MYPATH=$(realpath "$0")
 echo $MYPATH

@@ -6,7 +6,7 @@ REPO=${SRCDIR}/opencascade-7.2.0
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 
-cp $REPO
+cd $REPO
 mkdir -p cmbuild
 cd cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}

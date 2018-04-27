@@ -19,14 +19,15 @@ fi
 
 script=$(dirname "$0")/$1_${TwoPiDevice}_$2.sh
 SPATH=$(dirname "$0")
+
 COMPONENT=$1
-OPRATION=$2
+OPERATION=$2
 
 shift
 shift
 
 if [ ! -f $script ]; then
-   script=$SPATH/$COMPONENT_default_$OPERATION.sh
+   script=${SPATH}/${COMPONENT}_default_${OPERATION}.sh
 fi
 
 $script  $*

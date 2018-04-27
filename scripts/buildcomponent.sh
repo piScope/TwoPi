@@ -18,9 +18,15 @@ if [ $? == 0 ]; then
 fi
 
 script=$(dirname "$0")/$1_${TwoPiDevice}_$2.sh
+SPATH=$(dirname "$0")
+COMPONENT=$1
+OPRATION=$2
+
+shift
+shift
 
 if [ ! -f $script ]; then
-   script=$(dirname "$0")/$1_default_$2.sh
+   script=$SPATH/$COMPONENT_default_$OPERATION.sh
 fi
 
-$script
+$script  $*

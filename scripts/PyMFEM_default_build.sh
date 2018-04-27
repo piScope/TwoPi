@@ -1,5 +1,27 @@
 #!/bin/sh
 
+DO_SERIAL=false
+DO_PARALLEL=false
+DO_DEFAULT=true
+
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -s|--serial)
+    DO_SERIAL=true
+    DO_DEFAULT=false
+    shift # past argument    
+    ;;
+    -p|--parallel)
+    DO_PARALLELE=true
+    DO_DEFAULT=false
+    shift # past argument
+    ;;
+esac
+done
+
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PyMFEM
 
@@ -27,7 +49,10 @@ export MPICHLNK=/usr/local/lib
 export BOOSTINCDIR=/usr/local/include
 export BOOSTLIBDIR=/usr/local/lib
 
-
-$MAKE ser
-$MAKE par
+if $DO_SERIAL || $DO_DEFAULT ;then
+    $MAKE ser
+fi
+if $DO_PARALLEL || $DO_DEFAULT ;then
+    $MAKE par
+fi
 $MAKE pyinstall PREFIX=${TwoPiRoot}

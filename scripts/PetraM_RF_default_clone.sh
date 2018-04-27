@@ -7,6 +7,6 @@ REPO="PetraM_RF"
 SC=$(dirname "$0")/subs/git_access.sh
 source $SC
 
-git_clone_or_pull "git@github.com:piScope/PetraM_RF.git" "PetraM_RF" $SRCDIR
+git_clone_or_pull "git@github.com:piScope/PetraM_RF.git" $REPO $SRCDIR
 
 

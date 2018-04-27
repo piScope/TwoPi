@@ -1,6 +1,6 @@
 ## TwoPi
 
-TwoPi is a repository to collect instrall scripts to build the piScope/PetraM
+TwoPi is a repository to collect install scripts to build the piScope/PetraM
 toolsets.
 
 ## Supported Libraries
@@ -9,6 +9,8 @@ swig 3.0.12
 hypre 2.11.2
 metis 5.1.0
 parmetis 4.0.3
+OpenCascade 7.2
+gmsh 3.0.6
 MUMPS 5.1.2
 mfem
 PyMFEM (serial/parallel)
@@ -28,6 +30,13 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh SWIG clone
  ./scripts/buildcomponent.sh SWIG build
 
+ # this step needs to download OOC-7.2 manually from the developer web site.
+ ./scripts/buildcomponent.sh OOC clone
+ ./scripts/buildcomponent.sh OOC build
+ 
+ ./scripts/buildcomponent.sh gmsh clone
+ ./scripts/buildcomponent.sh gmsh build
+
  ./scripts/buildcomponent.sh mfem clone
  ./scripts/buildcomponent.sh mfems build
 
@@ -36,6 +45,12 @@ PetraM (Base, RF, Geom, MUMPS)
 
  ./scripts/buildcomponent.sh metis clone
  ./scripts/buildcomponent.sh metis build
+ 
+ ./scripts/buildcomponent.sh parmetis clone
+ ./scripts/buildcomponent.sh parmetis build
+
+ ./scripts/buildcomponent.sh mumps clone
+ ./scripts/buildcomponent.sh mumps build
 
  ./scripts/buildcomponent.sh mfemp build
 
@@ -65,5 +80,6 @@ PetraM (Base, RF, Geom, MUMPS)
 ## ToDo
 
 add update command
+add dependency check?
 
 

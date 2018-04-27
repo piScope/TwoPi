@@ -2,11 +2,10 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/PetraM_Geom
+REPO="PetraM_Geom"
 
-mkdir -p $SRCDIR
-if [ ! -f $REPO ]; then
-   cd $SRCDIR
-   $GIT clone git@github.com:piScope/PetraM_Geom.git $REPO    
-   cd $REPO
-fi
+SC=$(dirname "$0")/subs/git_access.sh
+source $SC
+
+git_clone_or_pull "git@github.com:piScope/PetraM_Geom.git" $REPO $SRCDIR
+

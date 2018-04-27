@@ -3,7 +3,7 @@
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
-
+BOOST_ROOT=/usr/local
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -19,6 +19,10 @@ case $key in
     DO_DEFAULT=false
     shift # past argument
     ;;
+    --boost-root)
+    BOOST_ROOT=$2
+    shift # past argument
+    shift # past param
 esac
 done
 
@@ -46,8 +50,8 @@ export MPICHINC=/usr/local/include
 export MPICHLNK=/usr/local/lib
 
 #Boost
-export BOOSTINCDIR=/usr/local/include
-export BOOSTLIBDIR=/usr/local/lib
+export BOOSTINC=${BOOST_ROOT}/include
+export BOOSTLIB=${BOOST_ROOT}/lib
 
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser
@@ -55,4 +59,7 @@ fi
 if $DO_PARALLEL || $DO_DEFAULT ;then
     $MAKE par
 fi
+
+mkdir -p ${TwoPiRoot}/lib/python2.7/site-packages
+
 $MAKE pyinstall PREFIX=${TwoPiRoot}

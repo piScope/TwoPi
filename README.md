@@ -56,6 +56,10 @@ PetraM (Base, RF, Geom, MUMPS)
 
  ./scripts/buildcomponent.sh PyMFEM clone
  ./scripts/buildcomponent.sh PyMFEM build 
+   option : ./scripts/buildcomponent.sh PyMFEM build -s -p --boost-root /home/user
+            -s build serial only
+            -p build parallel only
+            --boost-root set default boost directory
 
  ./scripts/buildcomponent.sh PetraM_Base clone
  ./scripts/buildcomponent.sh PetraM_Base build 

@@ -24,10 +24,13 @@ export MPICHINC=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/
 export MPICHLNK=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/lib
 
 #Boost
-export BOOSTINCDIR=/cm/shared/engaging/boost/1.56.0/include
-export BOOSTLIBDIR=/cm/shared/engaging/boost/1.56.0/lib
+export BOOSTINC=/cm/shared/engaging/boost/1.56.0/include
+export BOOSTLIB=/cm/shared/engaging/boost/1.56.0/lib
 
 
 $MAKE ser
 $MAKE par
+
+mkdir -p ${TwoPiRoot}/lib/python2.7/site-packages
+
 $MAKE pyinstall PREFIX=${TwoPiRoot}

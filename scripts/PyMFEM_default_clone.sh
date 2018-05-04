@@ -2,11 +2,9 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/PyMFEM
+REPO="PyMFEM"
 
-mkdir -p $SRCDIR
-if [ ! -f $REPO ]; then
-   cd $SRCDIR
-   $GIT clone https://github.com/sshiraiwa/PyMFEM.git $REPO
-   cd $REPO
-fi
+SC=$(dirname "$0")/subs/git_access.sh
+source $SC
+
+git_clone_or_pull "https://github.com/sshiraiwa/PyMFEM.git" $REPO $SRCDIR

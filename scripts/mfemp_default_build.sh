@@ -7,7 +7,10 @@ TWOPIINC=${TwoPiRoot}/include
 
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
-MPICXX=$(command -v mpiicxx)
+
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
+
 cd $REPO
 
 echo "############# configuring mfem parallel"
@@ -26,3 +29,4 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 -DBUILD_SHARED_LIBS=1                 \
 
 $MAKE
 $MAKE install
+

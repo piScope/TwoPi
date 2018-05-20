@@ -49,8 +49,9 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh parmetis clone
  ./scripts/buildcomponent.sh parmetis build
 
- ./scripts/buildcomponent.sh mumps clone
- ./scripts/buildcomponent.sh mumps build
+ # installing MUMPS requires to provide Makefile.inc (See MUMPS installation manual)
+ ./scripts/buildcomponent.sh MUMPS clone
+ ./scripts/buildcomponent.sh MUMPS build
 
  ./scripts/buildcomponent.sh mfemp build
 
@@ -63,9 +64,6 @@ PetraM (Base, RF, Geom, MUMPS)
 
  ./scripts/buildcomponent.sh PetraM_Base clone
  ./scripts/buildcomponent.sh PetraM_Base build 
-
- ./scripts/buildcomponent.sh PetraM_RF clone
- ./scripts/buildcomponent.sh PetraM_RF build 
 
  ./scripts/buildcomponent.sh PetraM_RF clone
  ./scripts/buildcomponent.sh PetraM_RF build 

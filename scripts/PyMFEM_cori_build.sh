@@ -6,7 +6,9 @@ source $SCRIPT
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
-BOOST_ROOT=/usr/local
+BOOST_ROOT=/usr/common/software/boost/1.63/gnu/haswell
+MPI_ROOT=/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -26,6 +28,12 @@ case $key in
     BOOST_ROOT=$2
     shift # past argument
     shift # past param
+    ;;
+    --mpi-root)
+    MPI_ROOT=$2
+    shift # past argument
+    shift # past param
+
 esac
 done
 
@@ -49,8 +57,8 @@ export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
 #MPI
-export MPICHINC=/usr/local/include
-export MPICHLNK=/usr/local/lib
+export MPICHINC=${MPI_ROOT}/include
+export MPICHLNK=${MPI_ROOT}/lib
 
 #Boost
 export BOOSTINC=${BOOST_ROOT}/include

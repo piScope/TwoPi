@@ -12,10 +12,26 @@ check_env ()
     fi
     return 1
 }
+
+_usage() {
+    echo 'buildcomponent.sh -d <component> <action>'
+    exit 1
+}   
 check_env
 if [ $? == 0 ]; then
    exit
 fi
+
+while getopts "d" opts
+do 
+   case $opts in
+       d) DEVMODE=1
+	  shift
+         ;;
+       h) _usage;;
+         :|\?) _usage;;
+   esac
+done
 
 script=$(dirname "$0")/$1_${TwoPiDevice}_$2.sh
 SPATH=$(dirname "$0")

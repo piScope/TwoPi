@@ -24,6 +24,13 @@ PetraM (Base, RF, Geom, MUMPS)
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
  export PATH=$TwoPiRoot/bin:$PATH
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
+
+ Below is note for developer...
+ If these variables are set, these variable are used when -d option is
+ used
+
+ export TwoPiRootDev=/home/xxxx/twopi_dev
+ export TwoPiGitDev=git@github.mit.edu:shiraiwa (default is git@github.com:piScope)
 ```
 # build everything...
 ```

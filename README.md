@@ -20,17 +20,15 @@ PetraM (Base, RF, Geom, MUMPS)
 
 # A user has to define the following three variables.
 ```
- export TwoPiRoot=/home/xxxx/twopi
+
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
- export PATH=$TwoPiRoot/bin:$PATH
+ export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
+ export TwoPiRoot=/home/xxxx/twopi       # install location
+
+ # add bin and python path
+ export PATH=$TwoPiRoot/bin:$PATH        
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
- Below is note for developer...
- If these variables are set, these variable are used when -d option is
- used
-
- export TwoPiRootDev=/home/xxxx/twopi_dev
- export TwoPiGitDev=git@github.mit.edu:shiraiwa (default is git@github.com:piScope)
 ```
 # build everything...
 ```

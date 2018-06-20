@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo "This script is obsolte, use mfems or mfemp as package name to build"
+echo "serial an parallel MFEM separately"
+exit
+
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/mfem-git
 TWOPILIB=${TWOPI}/lib

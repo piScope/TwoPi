@@ -1,5 +1,8 @@
 #!/bin/sh
 
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
+
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/mfem-git
 TWOPILIB=${TWOPI}/lib
@@ -20,6 +23,6 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 -DBUILD_SHARED_LIBS=1 \
 -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/mfem-git/ser -DMFEM_ENABLE_EXAMPLES=1 \
 -DMFEM_USE_EXCEPTIONS=1
 
-$MAKE
+$MAKE $MAKEOPT
 $MAKE install
 

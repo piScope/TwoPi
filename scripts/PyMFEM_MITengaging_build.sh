@@ -1,4 +1,29 @@
 #!/bin/sh
+DO_SERIAL=false
+DO_PARALLEL=false
+DO_DEFAULT=true
+BOOST_ROOT=/usr/local
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -s|--serial)
+    DO_SERIAL=true
+    DO_DEFAULT=false
+    shift # past argument    
+    ;;
+    -p|--parallel)
+    DO_PARALLELE=true
+    DO_DEFAULT=false
+    shift # past argument
+    ;;
+    --boost-root)
+    BOOST_ROOT=$2
+    shift # past argument
+    shift # past param
+esac
+done
 
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PyMFEM
@@ -28,8 +53,14 @@ export BOOSTINC=/cm/shared/engaging/boost/1.56.0/include
 export BOOSTLIB=/cm/shared/engaging/boost/1.56.0/lib
 
 
-$MAKE ser
-$MAKE par
+if $DO_SERIAL || $DO_DEFAULT ;then
+    $MAKE sercxx
+    $MAKE ser
+fi
+if $DO_PARALLEL || $DO_DEFAULT ;then
+    $MAKE parcxx
+    $MAKE par
+fi
 
 mkdir -p ${TwoPiRoot}/lib/python2.7/site-packages
 

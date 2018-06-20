@@ -42,6 +42,7 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh gmsh clone
  ./scripts/buildcomponent.sh gmsh build
 
+ # this step currenly uses mfem 3.4 (0715efbaf95990a4e76380ac69337096b1cd347d)
  ./scripts/buildcomponent.sh mfem clone
  ./scripts/buildcomponent.sh mfems build
 
@@ -55,6 +56,7 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh parmetis build
 
  # installing MUMPS requires to provide Makefile.inc (See MUMPS installation manual)
+ # Makefile.inc must be provided as extra/MUMPS/MUMPS_<device>_PAR_Makefile.inc
  ./scripts/buildcomponent.sh MUMPS clone
  ./scripts/buildcomponent.sh MUMPS build
 

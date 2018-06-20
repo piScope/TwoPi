@@ -17,15 +17,18 @@ _usage() {
     echo 'buildcomponent.sh -d <component> <action>'
     exit 1
 }   
+
 check_env
 if [ $? == 0 ]; then
    exit
 fi
+mkdir -p ${TwoPiRoot}
 
 while getopts "d" opts
 do 
    case $opts in
        d) DEVMODE=1
+          export TwoPiDevMode="1"
 	  shift
          ;;
        h) _usage;;

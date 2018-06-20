@@ -2,3 +2,4 @@
 
 MPICC=mpicc
 MPICXX=mpicxx
+MAKEOPT=""

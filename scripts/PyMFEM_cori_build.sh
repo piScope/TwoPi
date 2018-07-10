@@ -46,7 +46,8 @@ TWOPIINC=${TwoPiRoot}/include
 MAKE=$(command -v make)
 cd $REPO
 touch Makefile.local
-
+export CXX_SER=icpc
+export CC_SER=icc
 export MFEM=${TwoPiRoot}/mfem-git/par
 export MFEMBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_par
 export MFEMSER=${TwoPiRoot}/mfem-git/ser

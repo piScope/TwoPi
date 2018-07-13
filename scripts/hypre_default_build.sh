@@ -24,3 +24,7 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 -DHYPRE_INSTALL_PREFIX=${TwoPiRoot} -DHYPRE
 $MAKE verbose=1
 $MAKE install
 
+if [ "${TwoPiDevice}" == "brew" ]; then
+   install_name_tool -id ${TwoPiRoot}/lib/libHYPRE.dylib ${TwoPiRoot}/lib/libHYPRE.dylib
+fi
+

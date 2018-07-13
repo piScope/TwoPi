@@ -7,6 +7,7 @@ DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
 BOOST_ROOT=/usr/local
+MPI_ROOT=/usr/local
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -24,6 +25,10 @@ case $key in
     ;;
     --boost-root)
     BOOST_ROOT=$2
+    shift # past argument
+    shift # past param
+    --mpi-root)
+    MPI_ROOT=$2
     shift # past argument
     shift # past param
 esac
@@ -49,8 +54,8 @@ export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
 #MPI
-export MPICHINC=/usr/local/include
-export MPICHLNK=/usr/local/lib
+export MPICHINC=${MPI_ROOT}/include
+export MPICHLNK=${MPI_ROOT}/lib
 
 #Boost
 export BOOSTINC=${BOOST_ROOT}/include

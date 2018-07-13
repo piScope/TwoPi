@@ -1,6 +1,5 @@
 #!/bin/sh
 
-GIT=$(command -v git)
 REPO="PetraM_Base"
 SRCDIR=${TwoPiRoot}/src
 SC=$(dirname "$0")/subs/git_access.sh

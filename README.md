@@ -21,7 +21,7 @@ PetraM (Base, RF, Geom, MUMPS)
 # A user has to define the following three variables.
 ```
 
- export TwoPiDevice=linux (DockerDebian, MITengaging, cori, highSierra...)
+ export TwoPiDevice=linux (DockerDebian, MITengaging, cori, brew, highSierra...)
  export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
  export TwoPiRoot=/home/xxxx/twopi       # install location
 

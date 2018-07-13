@@ -13,5 +13,9 @@ $MAKE config shared=1 prefix=$TwoPiRoot
 $MAKE $MAKEOPT
 $MAKE install
 
+if [ "${TwoPiDevice}" == "brew" ]; then
+   install_name_tool -id ${TwoPiRoot}/lib/libmetis.dylib ${TwoPiRoot}/lib/libmetis.dylib
+fi
+
 
 

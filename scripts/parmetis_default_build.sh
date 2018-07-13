@@ -17,5 +17,8 @@ $MAKE config shared=1 prefix=$TwoPiRoot cc=$MPICC cxx=$MPICXX
 $MAKE $MAKEOPT
 $MAKE install
 
+if [ "${TwoPiDevice}" == "brew" ]; then
+   install_name_tool -id ${TwoPiRoot}/lib/libparmetis.dylib ${TwoPiRoot}/lib/libparmetis.dylib
+fi
 
 

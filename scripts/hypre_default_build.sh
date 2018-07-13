@@ -6,8 +6,12 @@ REPO=${SRCDIR}/mfem-git
 HYPREDIR=${SRCDIR}/hypre-2.11.2
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
-MPICXX=$(command -v mpicxx)
-MPICC=$(command -v mpicc)
+
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
+
+export CXX=${MPICXX}
+export CC=${MPICC}
 
 mkdir -p ${HYPREDIR}/src/cmbuild
 cd ${HYPREDIR}/src/cmbuild

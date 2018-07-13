@@ -11,9 +11,9 @@ GIT=$(command -v git)
 REPO="mfem-git"
 SRCDIR=${TwoPiRoot}/src
 
-SC=$(dirname "$0")/subs/git_access.sh
-
 DO_LATEST=false
+
+# defualt SHA (v3.4)
 SHA=0715efbaf95990a4e76380ac69337096b1cd347d
 BRANCH=master
 
@@ -33,11 +33,13 @@ case $key in
     ;;
     --sha)
     SHA=$2
+    DO_LATEST=false
     shift # past argument
     shift # past param
 esac
 done
 
+SC=$(dirname "$0")/subs/git_access.sh
 source $SC
 
 git_clone_or_pull "https://github.com/mfem/mfem.git" $REPO $SRCDIR

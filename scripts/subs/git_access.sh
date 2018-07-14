@@ -5,7 +5,13 @@ function git_clone_or_pull() {
 
 
     GIT=$(command -v git)
-    
+    BRANCH=$($GIT rev-parse --abbrev-ref HEAD)
+    echo ${BRANCH}
+    # if it is detached head, road master (mfem repo could be in this case)
+    if [ "$BRANCH" == "HEAD" ]; then
+       BRANCH="master"
+    fi
+
     mkdir -p $SRCDIR
     cd $SRCDIR
     if [ ! -d $REPO ]; then
@@ -13,6 +19,7 @@ function git_clone_or_pull() {
         cd $SRCDIR/$REPO
     else
         cd $REPO	
-        $GIT pull origin master
+        echo "pulling branch = "${BRANCH}
+        $GIT pull origin ${BRANCH}
     fi
 }

@@ -151,9 +151,9 @@ LIBOTHERS = -lpthread
 CDEFS = -DAdd_
 
 #COMPILER OPTIONS
-OPTF    = -O -I/usr/local/include/libomp -L/usr/local/lib/ -fopenmp -fPIC -DBLR_MT
+OPTF    = -O -I/usr/local/include -L/usr/local/lib/ -fopenmp -fPIC -DBLR_MT
 OPTC    = -O -fPIC -I.
-OPTL    = -O -I/usr/local/include/libomp -L/usr/local/lib/ -fopenmp
+OPTL    = -O -I/usr/local/include -L/usr/local/lib/ -fopenmp
 
 # CHOOSE BETWEEN USING THE SEQUENTIAL OR THE PARALLEL VERSION.
 

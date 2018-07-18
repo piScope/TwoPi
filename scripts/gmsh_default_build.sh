@@ -11,7 +11,11 @@ source $SCRIPT
 
 mkdir -p $REPO/cmbuild
 cd $REPO/cmbuild
-$CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} -DCMAKE_INSTALL_RPATH=${TwoPiRoot} -DENABLE_BUILD_DYNAMIC=1
+$CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
+          -DCMAKE_INSTALL_RPATH=${TwoPiRoot}  \
+          -DENABLE_BUILD_DYNAMIC=1            \
+          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib
+
 $MAKE $MAKEOPT
 $MAKE install
 

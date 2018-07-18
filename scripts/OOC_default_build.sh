@@ -13,6 +13,7 @@ cd $REPO
 mkdir -p cmbui
 ld
 cd cmbuild
-$CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}
+$CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
+          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib
 $MAKE $MAKEOPT
 $MAKE install

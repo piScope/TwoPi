@@ -57,8 +57,8 @@ LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
-LMETISDIR = $(TwoPi)/lib
-IMETIS    = -I$(TwoPi)/include
+LMETISDIR = $(TwoPiRoot)/lib
+IMETIS    = -I$(TwoPiRoot)/include
 
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only

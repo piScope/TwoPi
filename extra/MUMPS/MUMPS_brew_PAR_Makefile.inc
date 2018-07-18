@@ -116,10 +116,10 @@ LAPACK = -llapack
 
 # SCALAP should define the SCALAPACK and  BLACS libraries.
 #SCALAP  = -lscalapack -lblacs
-SCALAP  = -L/opt/local/lib -lscalapack 
+SCALAP  = -L/usr/local/lib -lscalapack 
 
 # INCLUDE DIRECTORY FOR MPI
-INCPAR  = -I/opt/local/include/mpich-mp
+INCPAR  = -I/usr/local/include/
 
 # LIBRARIES USED BY THE PARALLEL VERSION OF MUMPS: $(SCALAP) and MPI
 LIBPAR  = $(SCALAP) $(LAPACK) -L/usr/lib -lmpi
@@ -151,9 +151,9 @@ LIBOTHERS = -lpthread
 CDEFS = -DAdd_
 
 #COMPILER OPTIONS
-OPTF    = -O -I/opt/local/include/libomp -L/opt/local/lib/libomp -fopenmp -fPIC -DBLR_MT
+OPTF    = -O -I/usr/local/include/libomp -L/usr/local/lib/ -fopenmp -fPIC -DBLR_MT
 OPTC    = -O -fPIC -I.
-OPTL    = -O -I/opt/local/include/libomp -L/opt/local/lib/libomp -fopenmp
+OPTL    = -O -I/usr/local/include/libomp -L/usr/local/lib/ -fopenmp
 
 # CHOOSE BETWEEN USING THE SEQUENTIAL OR THE PARALLEL VERSION.
 

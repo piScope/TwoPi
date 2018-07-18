@@ -18,4 +18,3 @@ $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
 
 $MAKE $MAKEOPT
 $MAKE install
-

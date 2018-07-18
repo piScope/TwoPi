@@ -11,7 +11,6 @@ source $SCRIPT
 
 cd $REPO
 mkdir -p cmbuild
-ld
 cd cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}
 $MAKE $MAKEOPT

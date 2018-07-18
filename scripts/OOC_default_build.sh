@@ -10,8 +10,7 @@ SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
 cd $REPO
-mkdir -p cmbui
-ld
+mkdir -p cmbuild
 cd cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
           -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib

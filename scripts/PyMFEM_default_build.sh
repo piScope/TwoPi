@@ -27,10 +27,32 @@ case $key in
     BOOST_ROOT=$2
     shift # past argument
     shift # past param
+    ;;
+    --boost-lib)
+    BOOST_LIB=$2
+    shift # past argument
+    shift # past param
+    ;;
+    --boost-inc)
+    BOOST_INC=$2
+    shift # past argument
+    shift # past param
+    ;;
     --mpi-root)
     MPI_ROOT=$2
     shift # past argument
     shift # past param
+    ;;
+    --mpi-lib)
+    MPI_LIB=$2
+    shift # past argument
+    shift # past param
+    ;;
+    --mpi-inc)
+    MPI_INC=$2
+    shift # past argument
+    shift # past param
+    ;;
 esac
 done
 
@@ -54,12 +76,28 @@ export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
 #MPI
-export MPICHINC=${MPI_ROOT}/include
-export MPICHLNK=${MPI_ROOT}/lib
+if [ -z ${MPI_INC+x} ];then
+   export MPICHINC=${MPI_ROOT}/include
+else
+   export MPICHINC=${MPI_INC}
+fi
+if [ -z ${MPI_LIB+x} ];then
+   export MPICHLNK=${MPI_ROOT}/lib
+else
+   export MPICHLNK=${MPI_LIB}
+fi
 
 #Boost
-export BOOSTINC=${BOOST_ROOT}/include
-export BOOSTLIB=${BOOST_ROOT}/lib
+if [ -z ${BOOST_INC+x} ];then
+   export BOOSTINC=${BOOST_ROOT}/include
+else
+   export BOOSTINC=${BOOST_INC}
+fi
+if [ -z ${BOOST_LIB+x} ];then
+   export BOOSTLIB=${BOOST_ROOT}/lib
+else
+   export BOOSTLIB=${BOOST_LIB}
+fi
 
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser

@@ -5,7 +5,7 @@ MYPATH=$(realpath "$0")
 MPILOCDIR=$(dirname "$MYPATH")/../extra/MPI
 MPILOCFILE=$(dirname "$MYPATH")/../extra/MPI/mpi_h_loc.txt
 
-if [ ! -f $MAKEINC ]; then
+if [ ! -f $MPILOCFILE ]; then
     cd $MPILOCDIR
     cmake .
 fi

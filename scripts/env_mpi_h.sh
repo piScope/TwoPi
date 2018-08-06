@@ -10,7 +10,7 @@ if [ ! -f $MPILOCFILE ]; then
     cmake .
 fi
 
-MPI_INCLUDE_PATH=$(cat mpi_h_loc.txt)
+MPI_INCLUDE_PATH=$(cat ${MPILOCFILE})
 
 
 

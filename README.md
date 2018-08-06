@@ -84,6 +84,8 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh PetraM_MUMPS clone
  ./scripts/buildcomponent.sh PetraM_MUMPS build 
 
+ ./scripts/buildcomponent.sh scotch clone
+
 ```
 
 ## ToDo

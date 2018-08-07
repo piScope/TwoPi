@@ -8,7 +8,7 @@
 # mpicc -shared -o libptscotch.dylib -L./ -Wl,-all_load -lptscotch  -Wl,-noall_load -lptscotcherr -lscotch
 # mpicc -shared -o libptscotchparmetis.dylib -L./ -Wl,-all_load -lptscotchparmetis  -Wl,-noall_load -lptscotch -lptscotcherr -lscotch
 
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 2.8.10)
 
 
 
@@ -16,6 +16,8 @@ project(SCOTCH)
 
 find_package(ZLIB REQUIRED)
 find_package(MPI  REQUIRED)
+
+message("MPI_C_LINK_FLAGS " ${MPI_C_LINK_FLAGS})
 
 if (APPLE)
     set(SHARED_SC_COMPILE_FLAGS "-fPIC ")

@@ -6,11 +6,11 @@ MAKE		= make
 AR		= ar
 ARFLAGS		= -ruv
 CAT		= cat
-CCS		= gcc
-CCP		= mpicc
-CCD		= gcc
+#CCS		= ignore this
+#CCP		= ignore this
+#CCD		= ignore this
 CFLAGS		= -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64
-CLIBFLAGS	=
+CLIBFLAGS	= -fPIC
 LDFLAGS		= -lz -lm -lrt -pthread
 CP		= cp
 LEX		= flex -Pscotchyy -olex.yy.c

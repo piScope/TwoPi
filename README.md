@@ -84,7 +84,12 @@ PetraM (Base, RF, Geom, MUMPS)
  ./scripts/buildcomponent.sh PetraM_MUMPS clone
  ./scripts/buildcomponent.sh PetraM_MUMPS build 
 
+ # scotch installation 
+ ##  regular build to generate *.a + 
+ ##  cmake build to convert *a to *.so/*.dylib
  ./scripts/buildcomponent.sh scotch clone
+ ./scripts/buildcomponent.sh scotch build
+
 
 ```
 

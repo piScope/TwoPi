@@ -1,4 +1,5 @@
 # This CMakeLists.txt is to find MPI.h
+# This file is called from env_mpi.sh
 cmake_minimum_required(VERSION 2.8.10)
 
 project(MPI_HEADER)

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source $(dirname "$MYPATH")/env_common.sh
+
 CC=cc
 CXX=c++
 FC=gfortran

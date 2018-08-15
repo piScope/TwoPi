@@ -1,0 +1,2 @@
+#!/bin/sh
+MUMPS_REPO=MUMPS_5.1.2

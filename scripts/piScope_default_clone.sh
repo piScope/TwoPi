@@ -2,7 +2,7 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO="piScope"
+REPO=${piScope_REPO}
 
 DO_LATEST=true
 BRANCH=master

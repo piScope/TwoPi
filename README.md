@@ -23,7 +23,7 @@ PetraM (Base, RF, Geom, MUMPS)
 
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, brew, highSierra...)
  export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
- export TwoPiRoot=/home/xxxx/twopi       # install location
+ export TwoPiRoot=/usr/local/twopi       # install location
 
  # add bin and python path
  export PATH=$TwoPiRoot/bin:$PATH        

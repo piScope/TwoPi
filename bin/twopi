@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#  twopi user frontend script
+#  
+#  usage: 
+#     clone: twopi clone PetraM_MUMPS...
+#     build: twopi build PetraM_MUMPS...
+#
+
+MODE="$1"
+COMPONENT="$2"
+MYPATH=$(realpath "$0")
+BUILDCOMPONENT=$(dirname "$MYPATH")/../scripts/buildcomponent.sh 
+
+
+
+if [ "$MODE" = "clone" ]; then
+    EXTRA="${@:3}"
+    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+
+    echo "Executing: "$A
+    eval $A
+fi
+if [ "$MODE" = "build" ]; then
+    EXTRA="${@:3}"
+    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+
+    echo "Executing: "$A
+    eval $A
+fi

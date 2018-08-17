@@ -3,9 +3,21 @@
 #  twopi user frontend script
 #  
 #  usage: 
-#     clone: twopi clone PetraM_MUMPS...
-#     build: twopi build PetraM_MUMPS...
+#     clone: clone (or pull) source
+#         twopi clone <component> <optional_arguments>
 #
+#     build: build component from source. Typically it calls either
+#            make, cmake, or python setup.py 
+#         twopi build <component> <optional_arguments>
+#
+#     clean: delete files used to install a component
+#         default action will delete build files, such as calling
+#         rm -rf * in cmake build directory
+#         -all will delete the entire source directory
+#
+#         twopi build <component>
+#         twopi build <component> -all
+#   
 
 MODE="$1"
 COMPONENT="$2"
@@ -22,6 +34,13 @@ if [ "$MODE" = "clone" ]; then
     eval $A
 fi
 if [ "$MODE" = "build" ]; then
+    EXTRA="${@:3}"
+    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+
+    echo "Executing: "$A
+    eval $A
+fi
+if [ "$MODE" = "clean" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 

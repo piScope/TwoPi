@@ -11,6 +11,8 @@ metis 5.1.0
 parmetis 4.0.3
 OpenCascade 7.2
 gmsh 3.0.6
+strumpack 2.2.0
+scotch 6.0.4
 MUMPS 5.1.2
 mfem
 PyMFEM (serial/parallel)

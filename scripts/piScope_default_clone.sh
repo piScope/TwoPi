@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# load env
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
+
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 REPO=${piScope_REPO}

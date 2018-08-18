@@ -16,10 +16,4 @@ MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_PAR_Makefile.in
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
-$MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
-          OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG}
-
-$MAKE
-
-
-
+make clean

@@ -66,7 +66,7 @@ IMETIS    = -I$(TwoPiRoot)/include
 # variable below); for both parallel and sequential analysis choose the second 
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
-LMETIS    = -L$(LMETISDIR) -lmetis
+LMETIS    = -L$(LMETISDIR) -lmetis -lparmetis
 #LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
@@ -74,7 +74,7 @@ LMETIS    = -L$(LMETISDIR) -lmetis
 # If you want to use Metis 4.X or an older version, you should use -Dmetis4 instead of -Dmetis
 # or in addition with -Dparmetis (if you are using parmetis 3.X or older).
 #ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-ORDERINGSF  =  -Dmetis -Dpord
+ORDERINGSF  =  -Dmetis -Dpord -Dparmetis
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)
@@ -97,11 +97,11 @@ OUTF    = -o
 # RM : remove files
 RM      = /bin/rm -f
 # CC : C compiler
-CC      = mpicc
+CC      = ${MPICC}
 # FC : Fortran 90 compiler
-FC      = mpif90
+FC      = ${MPIFC}
 # FL : Fortran linker
-FL      = mpif90
+FL      = ${MPIFC}
 # AR : Archive object in a library
 #      keep a space at the end if options have to be separated from lib name
 AR      = ar vrl 
@@ -151,9 +151,9 @@ LIBOTHERS = -lpthread
 CDEFS = -DAdd_
 
 #COMPILER OPTIONS
-OPTF    = -O -I/usr/local/include -L/usr/local/lib/ -fopenmp -fPIC -DBLR_MT
-OPTC    = -O -fPIC -I.
-OPTL    = -O -I/usr/local/include -L/usr/local/lib/ -fopenmp
+OPTF    = -O -I/usr/local/include -L/usr/local/lib/ ${OMPFCFLAG} -fPIC -DBLR_MT
+OPTC    = -O -fPIC ${OMPCCFLAG} -I.
+OPTL    = -O -I/usr/local/include -L/usr/local/lib/ ${OMPLINKFLAG}
 
 # CHOOSE BETWEEN USING THE SEQUENTIAL OR THE PARALLEL VERSION.
 

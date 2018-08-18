@@ -22,6 +22,7 @@ pip install mpi4py
 REPO=${piScope_REPO}
 
 LINK=${TwoPiRoot}/bin/piscope
+mkdir -p ${TwoPiRoot}/bin
 rm -f -- ${LINK}
 ln -s  ${TwoPiRoot}/src/${REPO}/bin/piscope.sh  ${LINK}
 

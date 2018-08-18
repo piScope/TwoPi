@@ -75,30 +75,51 @@ export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
+### 
+source $(dirname "$0")/subs/find_boost.sh
+source $(dirname "$0")/subs/find_mpi.sh
 #MPI
 if [ -z ${MPI_INC+x} ];then
-   export MPICHINC=${MPI_ROOT}/include
+    if [ -z ${MPI_ROOT+x} ];then
+	export MPICHINC=${MPI_INCLUDE_PATH}
+    else
+	export MPICHINC=${MPI_ROOT}/include
+    fi
 else
    export MPICHINC=${MPI_INC}
 fi
 if [ -z ${MPI_LIB+x} ];then
-   export MPICHLNK=${MPI_ROOT}/lib
+   if [ -z ${MPI_ROOT+x} ];then
+       export MPICHLNK=${MPI_LIBRARY_PATH}
+   else
+       export MPICHLNK=${MPI_ROOT}/lib
+   fi
 else
    export MPICHLNK=${MPI_LIB}
 fi
 
 #Boost
 if [ -z ${BOOST_INC+x} ];then
-   export BOOSTINC=${BOOST_ROOT}/include
+   if [ -z ${BOOST_ROOT+x} ];then
+       export BOOSTINC=${BOOST_INCLUDE_PATH}
+   else
+       export BOOSTINC=${BOOST_ROOT}/include
+   fi
 else
    export BOOSTINC=${BOOST_INC}
 fi
 if [ -z ${BOOST_LIB+x} ];then
-   export BOOSTLIB=${BOOST_ROOT}/lib
+    if [ -z ${BOOST_ROOT+x} ];then
+       export BOOSTLIB=${BOOST_LIBRARY_PATH}
+    else
+	export BOOSTLIB=${BOOST_ROOT}/lib
+    fi
 else
    export BOOSTLIB=${BOOST_LIB}
 fi
 
+export CC=${CC}
+export CXX=${CXX}
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser
 fi

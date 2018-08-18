@@ -56,6 +56,18 @@ component (dependency):
    mfem (metis, hypre):
         mfems install serial
         mfemp install parallel
+	
+        optional argments:
+           -s: build PyMFEM serial (mfem.ser)
+	   -p: build PyMFEM parallel (mfem.par)
+
+           By default, twopi will use Boost and MPI include/link
+	   path found by CMAKE. Following argument can be used
+	   to overwrite these paths
+   	      -boost_root, -boost_inc, -boost_lib,
+	      -mpi_root, -mpi_inc, -mpi_lib
+
+
    PyMFEM:
 
    PetraM_Base:

@@ -1,11 +1,11 @@
-## TwoPi
+# TwoPi
 
 TwoPi is a repository to collect install scripts to build the piScope/PetraM
 toolsets.
 
-## Configuration
+# Configuration
 
-# Enviromental Variables
+## Enviromental Variables
 Following variables are used in TwoPi internally 
 ```
  export TwoPiDevice=linux (DockerDebian, MITengaging, cori, brew, highSierra...)
@@ -19,12 +19,12 @@ To use piScope/PetraM, one needs to edit PATH and PYTHONPATH.
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
 ```
-# Install packages
+## Install packages
 
 bin/twopi is the front-end command.
 
-  bin/twopi <action> <component> <optional argments>
-
+```
+bin/twopi <action> <component> <optional argments>
 
 action:
    clone : download source file or perform git pull
@@ -62,4 +62,4 @@ component (dependency):
    PetraM_RF:
    PetraM_Geom:
    PetraM_Driver:         
-   
+```   

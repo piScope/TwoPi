@@ -40,12 +40,16 @@ RUN cmake .. -DCMAKE_INSTALL_PREFIX=${TWOPI} \
     && make \ 
     && make install
 
+# delete this files to shrink image size 
+RUN rm -rf /usr/local/twopi/src/opencascade-7.2.0 \
+    && rm -rf /usr/local/twopi/src/opencascade-7.2.0 \
+    && rm /usr/local/twopi/src/gmsh-3.0.6-source.tgz    
 
 #RUN export LD_LIBRARY_PATH=${HOME}twopi/lib:$LD_LIBRARY_PATH
+USER user
+RUN echo "export PATH=${TWOPI}bin:$PATH" >> /home/user/.bashrc 
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'
-ENV  PATH ${TWOPI}/bin:$PATH
-RUN echo "export PATH=${TWOPI}/bin:$PATH" >> ~/.bashrc 
 USER root
 ENV APP "xterm"

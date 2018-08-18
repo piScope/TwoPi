@@ -1,0 +1,51 @@
+FROM thewtex/opengl:latest
+MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
+
+# base package
+# installes...
+#    GMESH
+#    opencascade
+#    Scalapack, Open-MPI
+#    OpenMP
+
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  mesa-utils
+RUN sudo apt-get install -y libfreetype6-dev tcl-dev tk-dev \
+      libxt-dev libfreeimage-dev libtbb-dev libgl2ps-dev libgl1-mesa-dev\
+      libglu1-mesa-dev libxt-dev libxmu-dev libxi-dev mercurial emacs \
+      libscalapack-openmpi1 libscalapack-mpi-dev libgomp1 icewm libfltk1.3 \
+      libfltk1.3-dev gfortran
+
+RUN mkdir -p /usr/local/twopi/src
+RUN chmod a+w /usr/local/twopi/
+RUN chmod a+w /usr/local/twopi/src
+WORKDIR /usr/local/twopi/src
+ENV TWOPI /usr/local/twopi/
+
+COPY opencascade-7.2.0.tar.gz .
+RUN tar -zxvf opencascade-7.2.0.tar.gz && mkdir opencascade-7.2.0/cmbuild
+WORKDIR $TWOPI/src/opencascade-7.2.0/cmbuild
+RUN cmake .. -DCMAKE_INSTALL_PREFIX=$TWOPI \
+    && make -j 4 && make install
+
+#add gmesh
+WORKDIR /usr/local/twopi/src
+RUN wget http://gmsh.info/src/gmsh-3.0.6-source.tgz \
+    && tar xfz gmsh-3.0.6-source.tgz
+RUN mkdir ${TWOPI}/src/gmsh-3.0.6-source/cmbuild
+WORKDIR ${TWOPI}/src/gmsh-3.0.6-source/cmbuild
+RUN cmake .. -DCMAKE_INSTALL_PREFIX=${TWOPI} \
+             -DCMAKE_INSTALL_RPATH=${TWOPI}/lib \
+    && make \ 
+    && make install
+
+
+#RUN export LD_LIBRARY_PATH=${HOME}twopi/lib:$LD_LIBRARY_PATH
+
+#must be root on exit because parent container will run supervisor 
+#to start openbox window manager as non-root 'user'
+ENV  PATH ${TWOPI}/bin:$PATH
+RUN echo "export PATH=${TWOPI}/bin:$PATH" >> ~/.bashrc 
+USER root
+ENV APP "xterm"

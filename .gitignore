@@ -16,3 +16,6 @@ externals/*
 !externals/README.txt
 extra/MPI/*
 extra/MPI/CMakeLists.txt
+docker/*
+!docker/Dockerfile.base
+!docker/Dockerfile.twopi

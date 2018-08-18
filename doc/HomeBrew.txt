@@ -1,0 +1,23 @@
+Installguide for HomeBrew.
+
+Homebew provides OpenCascade7.2, gmsh, OpenMPI
+
+(Step1) Install HomeBrew
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+(Step2) Install Formulae
+
+  brew install open-mpi
+  brew install make
+  brew install coreutils --with-gmp
+  brew install gmsh --with-opencascade --with-fltk 
+  brew install wget
+  (this installs bunch of dependency including python2.7, open cascade 7.2, fltk,,,)
+  (this took 20 min..on 2016 iMac)
+
+(Step3) Install nominal set of packages
+  bin/nominal_package_install
+
+(Step4-optional) Install addional pacakges usinb bin/twopi
+  

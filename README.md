@@ -1,20 +1,20 @@
 # TwoPi
-
-TwoPi is a repository to collect install scripts to build the piScope/PetraM
-toolsets.
-
+TwoPi (stands from (p)iScope/(P)etra-M) is a simple package installer
+for piScope/Petra-M. It is essentially the collection of install scripts
+to configure various libraries in a coherent way to run Petra-M simulation.
 
 ## Usage
 ### Enviromental Variables
 Following variables are used in TwoPi internally 
 ```
- export TwoPiDevice=linux (DockerDebian, MITengaging, cori, brew, highSierra...)
+ export TwoPiDevice=linux #DockerDebian, MITengaging, cori, brew,,,)
  export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
  export TwoPiRoot=/usr/local/twopi       # install location
 ```
 To use piScope/PetraM, one needs to edit PATH and PYTHONPATH.
 ```
  # add bin and python path
+ export PetraM=$TwoPiRoot
  export PATH=$TwoPiRoot/bin:$PATH        
  export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
@@ -31,7 +31,8 @@ action:
    build : build a component from source
    clean : clean working directory
            (typically, make clean or rm -rf cmbuild is called)
-
+   install: do above three together
+   
 component (dependency):
    SWIG :
    	install swig 3.0.12

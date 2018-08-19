@@ -1,0 +1,33 @@
+FROM twopi/base:latest
+MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
+
+		       
+WORKDIR /home/user
+ENV HOME /home/user
+ENV PetraM $HOME/twopi
+ENV TwoPiRoot $HOME/twopi
+ENV TwoPiDevice db7
+USER user
+RUN mkdir -p $TwoPiRoot/src
+WORKDIR $TwoPiRoot/src/
+RUN mkdir -p $TwoPiRoot/src
+RUN git clone https://github.com/piScope/TwoPi.git
+
+RUN $TWOPI install  piScope
+#RUN $TWOPI install  hypre
+#RUN $TWOPI install  metis
+#RUN $TWOPI install  parmetis
+#RUN $TWOPI install  MUMPS
+#RUN $TWOPI install  mfems
+#RUN $TWOPI install  mfemp
+#RUN $TWOPI install  PyMFEM
+#RUN $TWOPI install  PetraM_Base
+#RUN $TWOPI install  PetraM_RF
+#RUN $TWOPI install  PetraM_Geom
+#RUN $TWOPI install  PetraM_Driver
+#RUN $TWOPI install  PetraM_MUMPS
+
+#must be root on exit because parent container will run supervisor 
+#to start openbox window manager as non-root 'user'
+USER root
+ENV APP "xterm"

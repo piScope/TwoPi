@@ -18,6 +18,7 @@ export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
 export TwoPiRoot=${BASEDIR}             # install location
 
 # add bin and python path
+export PetraM=$TwoPiRoot
 export PATH=$TwoPiRoot/bin:$PATH        
 export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
 
@@ -25,4 +26,4 @@ mkdir -p ${BASEDIR}/src
 cd ${BASEDIR}/src
 git clone https://github.com/piScope/TwoPi.git
 cd ${BASEDIR}/TwoPi
-bin/nominal_package_install
+bin/nominal_install.sh

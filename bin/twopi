@@ -52,7 +52,7 @@ if [ "$MODE" = "install" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" clone"
     eval $A
-    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+    A=$BUILDCOMPONENT" "$COMPONENT" build "$EXTRA
     eval $A
     A=$BUILDCOMPONENT" "$COMPONENT" clean"
     eval $A

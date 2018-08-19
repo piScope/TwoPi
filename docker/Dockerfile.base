@@ -59,10 +59,6 @@ RUN sudo pip install scipy matplotlib Pillow  hgapi \
                      PyOpenGL netCDF4 PyPDF2 pdfrw h5py mpi4py
 RUN sudo pip install meshio==1.8.17 voropy==0.5.0
 
-#RUN export LD_LIBRARY_PATH=${HOME}twopi/lib:$LD_LIBRARY_PATH
-USER user
-RUN echo "export PATH=${TWOPI}bin:$PATH" >> /home/user/.bashrc 
-
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'
 USER root

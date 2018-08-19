@@ -50,10 +50,10 @@ if [ "$MODE" = "clean" ]; then
 fi
 if [ "$MODE" = "install" ]; then
     EXTRA="${@:3}"
-    A=$BUILDCOMPONENT" "$COMPONENT" clone
+    A=$BUILDCOMPONENT" "$COMPONENT" clone"
     eval $A
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
     eval $A
-    A=$BUILDCOMPONENT" "$COMPONENT" clean 
+    A=$BUILDCOMPONENT" "$COMPONENT" clean"
     eval $A
 fi

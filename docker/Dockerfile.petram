@@ -1,18 +1,21 @@
 FROM twopi/base:latest
 MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
 
-		       
+USER user
 WORKDIR /home/user
 ENV HOME /home/user
 ENV PetraM $HOME/twopi
 ENV TwoPiRoot $HOME/twopi
 ENV TwoPiDevice db8
-USER user
 RUN mkdir -p $TwoPiRoot/src
 WORKDIR $TwoPiRoot/src/
 RUN mkdir -p $TwoPiRoot/src
 RUN git clone https://github.com/piScope/TwoPi.git
-RUN echo $TwoPiRoot
+
+# Overwrite TWOPI to twopi installer command
+ENV TWOPI $TwoPiRoot/src/TwoPi/bin/twopi
+
+
 RUN $TWOPI install  piScope
 #RUN $TWOPI install  hypre
 #RUN $TWOPI install  metis

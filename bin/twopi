@@ -17,7 +17,8 @@
 #
 #         twopi build <component>
 #         twopi build <component> -all
-#   
+#
+#     install: do clone -> build (with options) -> clean
 
 MODE="$1"
 COMPONENT="$2"
@@ -45,5 +46,14 @@ if [ "$MODE" = "clean" ]; then
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
     echo "Executing: "$A
+    eval $A
+fi
+if [ "$MODE" = "install" ]; then
+    EXTRA="${@:3}"
+    A=$BUILDCOMPONENT" "$COMPONENT" clone
+    eval $A
+    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+    eval $A
+    A=$BUILDCOMPONENT" "$COMPONENT" clean 
     eval $A
 fi

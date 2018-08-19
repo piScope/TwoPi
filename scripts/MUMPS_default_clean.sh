@@ -12,8 +12,5 @@ source $SCRIPT
 MYPATH=$(realpath "$0")
 echo $MYPATH
 
-MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_PAR_Makefile.inc
-cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
-
 make clean

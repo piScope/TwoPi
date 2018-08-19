@@ -1,19 +1,32 @@
 #!/bin/sh
+export PATH=/usr/local/opt/llvm/bin:$PATH
 
-CC=gcc-8
-CXX=g++-8
+#CC=/usr/local/opt/llvm/bin/clang
+#CXX=/usr/local/opt/llvm/bin/clang++
+CC=clang
+CXX=clang++
 FC=gfortran
 MPICC=mpicc
 MPICXX=mpic++
 MPIFC=mpif90
 MPIFL=mpif90
 MAKEOPT="-j 4"
-OMPFLAG="-fopenmp"  # -fopenmp (gcc/clang) -qopenmp (intel)
-OMPFLAG=-fopenmp
-OMPLINKFLAG=-fopenmp
-OMPCXXFLAG=-fopenmp
-OMPCCFLAG=-fopenmp
-OMPFCFLAG=-fopenmp
+# No OpenMP : Apple compiler does not support -fopenmp
+#             There is a way to turn-on but it involves
+#             playing with multiple compiler flags.
+OMPFLAG=
+OMPLINKFLAG=
+OMPCXXFLAG=
+OMPCCFLAG=
+OMPFCFLAG=
+# if you want to use OpenMP with LLVM 
+#OMPFLAG="-fopenmp"  # -fopenmp (gcc/clang) -qopenmp (intel)
+#OMPFLAG=-fopenmp=libomp
+#OMPLINKFLAG=-fopenmp
+#OMPCXXFLAG=-fopenmp=libomp
+#OMPCCFLAG=-fopenmp=libomp
+#OMPFCFLAG=-fopenmp
+#export PATH=/usr/local/opt/llvm/bin:$PATH
 
 echo "$0" $0
 MYPATH=$(realpath "$0")

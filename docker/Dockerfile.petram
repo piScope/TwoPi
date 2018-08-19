@@ -13,7 +13,7 @@ WORKDIR $TwoPiRoot/src/
 RUN mkdir -p $TwoPiRoot/src
 RUN git clone https://github.com/piScope/TwoPi.git
 RUN echo $TwoPiRoot
-#RUN $TWOPI install  piScope
+RUN $TWOPI install  piScope
 #RUN $TWOPI install  hypre
 #RUN $TWOPI install  metis
 #RUN $TWOPI install  parmetis

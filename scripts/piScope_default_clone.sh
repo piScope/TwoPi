@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # load env
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh

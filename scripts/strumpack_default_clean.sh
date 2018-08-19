@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 

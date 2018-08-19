@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 REPO="PetraM_TH"
 SRCDIR=${TwoPiRoot}/src

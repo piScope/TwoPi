@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # We use INTEL compiler. $CC, $CXX, $FC are already set by module
 CC=$CC

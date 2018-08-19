@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MYPATH=$(realpath "$0")
 

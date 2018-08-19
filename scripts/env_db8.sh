@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CC=cc
 CXX=c++
 FC=gfortran

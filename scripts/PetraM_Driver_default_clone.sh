@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 REPO="PetraM_Driver"
 SRCDIR=${TwoPiRoot}/src

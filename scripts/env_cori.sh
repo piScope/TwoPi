@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MPICC=cc
 MPICXX=CC

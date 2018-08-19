@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PetraM_RF

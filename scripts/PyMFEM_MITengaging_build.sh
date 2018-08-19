@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true

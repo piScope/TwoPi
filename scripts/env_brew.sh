@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export PATH=/usr/local/opt/llvm/bin:$PATH
 
 #CC=/usr/local/opt/llvm/bin/clang

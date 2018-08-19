@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # default action is to get mfem-3.4 
 #

@@ -1,5 +1,5 @@
 FROM twopi/base:latest
-MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
+MAINTAINER S. Shiraiwa <shiraiwa@psfc.mit.edu> and John C. Wright <jcwright@mit.edu>
 
 USER user
 WORKDIR /home/user
@@ -27,24 +27,23 @@ RUN echo $PWD . DO NOT CLOSE THE XTERM
 
 RUN $TWOPI install  metis
 RUN $TWOPI install  parmetis
-RUN $TWOPI install  MUMPS
+RUN $TWOPI install-noclean  MUMPS
 
 RUN $TWOPI install  hypre
-RUN $TWOPI install  mfems
-RUN $TWOPI install  mfemp
+RUN $TWOPI install-noclean  mfems
+RUN $TWOPI install-noclean  mfemp
+RUN $TWOPI install  glvis
 
 RUN $TWOPI install  PyMFEM
-#RUN echo "chec"
-#WORKDIR $TwoPiRoot/src/TwoPi
-#RUN git pull origin master
+RUN $TWOPI install  piScope
 
-#
+# This section will be added after making PetraM Modules public
 #RUN $TWOPI install  PetraM_Base
 #RUN $TWOPI install  PetraM_RF
 #RUN $TWOPI install  PetraM_Geom
 #RUN $TWOPI install  PetraM_Driver
 #RUN $TWOPI install  PetraM_MUMPS
-#RUN $TWOPI install  piScope
+#
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'

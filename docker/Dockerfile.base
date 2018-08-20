@@ -1,5 +1,5 @@
 FROM thewtex/opengl:latest
-MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
+MAINTAINER S. Shiraiwa <shiraiwa@psfc.mit.edu> and John C. Wright <jcwright@mit.edu>
 
 # base package
 # installes...

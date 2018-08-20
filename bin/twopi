@@ -57,3 +57,10 @@ if [ "$MODE" = "install" ]; then
     A=$BUILDCOMPONENT" "$COMPONENT" clean"
     eval $A
 fi
+if [ "$MODE" = "install-noclean" ]; then
+    EXTRA="${@:3}"
+    A=$BUILDCOMPONENT" "$COMPONENT" clone"
+    eval $A
+    A=$BUILDCOMPONENT" "$COMPONENT" build "$EXTRA
+    eval $A
+fi

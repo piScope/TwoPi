@@ -7,6 +7,7 @@ ENV HOME /home/user
 ENV PetraM $HOME/twopi
 ENV TwoPiRoot $HOME/twopi
 ENV TwoPiDevice db8
+
 RUN mkdir -p $TwoPiRoot/src
 WORKDIR $TwoPiRoot/src/
 RUN mkdir -p $TwoPiRoot/src
@@ -15,19 +16,28 @@ RUN git clone https://github.com/piScope/TwoPi.git
 # Overwrite TWOPI to twopi installer command
 ENV TWOPI $TwoPiRoot/src/TwoPi/bin/twopi
 
+#start out in work directory, need to cd because it doesn't exist until container is launched
+RUN echo "cd work" >> ~/.bashrc
+RUN echo "cp -r ~/ssh_mount ~/.ssh" >> ~/.bashrc
+RUN echo "chmod 700 ~/.ssh && chmod 600 ~/.ssh/*" >> ~/.bashrc
+RUN echo "export PATH=$HOME/twopi/bin:$PATH" >> ~/.bashrc
+RUN echo $PWD . DO NOT CLOSE THE XTERM
+
 RUN $TWOPI install  piScope
-#RUN $TWOPI install  hypre
-#RUN $TWOPI install  metis
-#RUN $TWOPI install  parmetis
-#RUN $TWOPI install  MUMPS
-#RUN $TWOPI install  mfems
-#RUN $TWOPI install  mfemp
-#RUN $TWOPI install  PyMFEM
-#RUN $TWOPI install  PetraM_Base
-#RUN $TWOPI install  PetraM_RF
-#RUN $TWOPI install  PetraM_Geom
-#RUN $TWOPI install  PetraM_Driver
-#RUN $TWOPI install  PetraM_MUMPS
+RUN $TWOPI install  hypre
+RUN $TWOPI install  metis
+RUN $TWOPI install  parmetis
+RUN git pull origin master
+RUN $TWOPI install  MUMPS
+RUN $TWOPI install  mfems
+RUN $TWOPI install  mfemp
+RUN $TWOPI install  PyMFEM
+RUN $TWOPI install  PetraM_Base
+RUN $TWOPI install  PetraM_RF
+RUN $TWOPI install  PetraM_Geom
+RUN $TWOPI install  PetraM_Driver
+RUN $TWOPI install  PetraM_MUMPS
+
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'

@@ -25,11 +25,11 @@ RUN echo "export PATH=$HOME/twopi/bin:$PATH" >> ~/.bashrc
 RUN echo "export PYTHONPATH=$HOME/twopi/lib/python2.7/site-packages:$PYTHONPATH" >> ~/.bashrc
 RUN echo $PWD . DO NOT CLOSE THE XTERM
 
-#RUN $TWOPI install  MUMPS
+RUN $TWOPI install  metis
+RUN $TWOPI install  parmetis
+RUN $TWOPI install  MUMPS
+RUN $TWOPI install  hypre
 #RUN $TWOPI install  piScope
-#RUN $TWOPI install  hypre
-#RUN $TWOPI install  metis
-#RUN $TWOPI install  parmetis
 #RUN echo "chec"
 #WORKDIR $TwoPiRoot/src/TwoPi
 #RUN git pull origin master

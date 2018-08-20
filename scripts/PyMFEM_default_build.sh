@@ -6,8 +6,7 @@ source $SCRIPT
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
-BOOST_ROOT=/usr/local
-MPI_ROOT=/usr/local
+
 while [[ $# -gt 0 ]]
 do
 key="$1"

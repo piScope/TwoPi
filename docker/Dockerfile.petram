@@ -29,21 +29,22 @@ RUN $TWOPI install  metis
 RUN $TWOPI install  parmetis
 RUN $TWOPI install  MUMPS
 
-#RUN $TWOPI install  hypre
-#RUN $TWOPI install  piScope
+RUN $TWOPI install  hypre
+RUN $TWOPI install  mfems
+RUN $TWOPI install  mfemp
+
+RUN $TWOPI install  PyMFEM
 #RUN echo "chec"
 #WORKDIR $TwoPiRoot/src/TwoPi
 #RUN git pull origin master
 
-#RUN $TWOPI install  mfems
-#RUN $TWOPI install  mfemp
-#RUN $TWOPI install  PyMFEM
+#
 #RUN $TWOPI install  PetraM_Base
 #RUN $TWOPI install  PetraM_RF
 #RUN $TWOPI install  PetraM_Geom
 #RUN $TWOPI install  PetraM_Driver
 #RUN $TWOPI install  PetraM_MUMPS
-
+#RUN $TWOPI install  piScope
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'

@@ -13,6 +13,14 @@ OMPCXXFLAG=-fopenmp
 OMPCCFLAG=-fopenmp
 OMPFCFLAG=-fopenmp
 
+# if you want to specify this directly instead of having CMAKE to find...
+MPI_INCLUDE_PATH=/usr/lib/openmpi/include
+MPI_LIBRARY_PATH=/usr/lib/openmpi/lib
+
+# if you want to specify Boost instead of having CMAKE to find...
+#BOOST_INCLUDE_PATH=/usr/local/inclue
+#BOOST_LIBRARY_PATH=/usr/local/lib
+
 MYPATH=$(realpath "$0")
 source $(dirname "$MYPATH")/env_common.sh
 #echo $MPI_INCLUDE_PATH

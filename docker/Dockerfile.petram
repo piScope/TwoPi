@@ -27,6 +27,7 @@ RUN $TWOPI install  piScope
 RUN $TWOPI install  hypre
 RUN $TWOPI install  metis
 RUN $TWOPI install  parmetis
+WORKDIR $TwoPiRoot/src/TwoPi
 RUN git pull origin master
 RUN $TWOPI install  MUMPS
 RUN $TWOPI install  mfems

@@ -28,7 +28,8 @@ RUN echo $PWD . DO NOT CLOSE THE XTERM
 RUN $TWOPI install  metis
 RUN $TWOPI install  parmetis
 RUN $TWOPI install  MUMPS
-RUN $TWOPI install  hypre
+
+#RUN $TWOPI install  hypre
 #RUN $TWOPI install  piScope
 #RUN echo "chec"
 #WORKDIR $TwoPiRoot/src/TwoPi

@@ -1,10 +1,9 @@
 #!/bin/bash
 
-MYPATH=$(realpath "$0")
-
-MPILOCDIR=$(dirname "$MYPATH")/../extra/MPI
-MPILOCFILE1=$(dirname "$MYPATH")/../extra/MPI/mpi_h_loc.txt
-MPILOCFILE2=$(dirname "$MYPATH")/../extra/MPI/mpi_lib_loc.txt
+MYPATH=$(realpath $BASH_SOURCE)
+MPILOCDIR=$(dirname "$MYPATH")/../../extra/MPI
+MPILOCFILE1=$(dirname "$MYPATH")/../../extra/MPI/mpi_h_loc.txt
+MPILOCFILE2=$(dirname "$MYPATH")/../../extra/MPI/mpi_lib_loc.txt
 
 #if [ ! -f $MPILOCFILE ]; then
 DD=$PWD

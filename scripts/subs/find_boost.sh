@@ -1,10 +1,10 @@
 #!/bin/bash
 
-MYPATH=$(realpath "$0")
+MYPATH=$(realpath $BASH_SOURCE)
 
-BOOSTLOCDIR=$(dirname "$MYPATH")/../extra/boost
-BOOSTLOCFILE1=$(dirname "$MYPATH")/../extra/boost/boost_h_loc.txt
-BOOSTLOCFILE2=$(dirname "$MYPATH")/../extra/boost/boost_lib_loc.txt
+BOOSTLOCDIR=$(dirname "$MYPATH")/../../extra/boost
+BOOSTLOCFILE1=$(dirname "$MYPATH")/../../extra/boost/boost_h_loc.txt
+BOOSTLOCFILE2=$(dirname "$MYPATH")/../../extra/boost/boost_lib_loc.txt
 
 DD=$PWD
 cd $BOOSTLOCDIR

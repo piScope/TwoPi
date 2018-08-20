@@ -18,6 +18,8 @@ extra/MPI/*
 !extra/MPI/CMakeLists.txt
 extra/boost/*
 !extra/boost/CMakeLists.txt
+extra/lapack/*
+!extra/lapack/CMakeLists.txt
 docker/*
 !docker/Dockerfile.base
 !docker/Dockerfile.petram

@@ -51,7 +51,8 @@ RUN apt-get install -y libhdf5-dev hdf5-tools  wget libnetcdf-dev nco \
                        libopenmpi-dev openmpi-bin python-dev \
                        libsdl1.2debian libnotify4 libgtk-3-0 \
                        libgtk-3-dev libgstreamer1.0-dev \
-                       libgstreamer-plugins-base1.0-dev
+                       libgstreamer-plugins-base1.0-dev \
+		       libboost-iostreams-dev
 RUN sudo pip install -U setuptools
 RUN sudo pip install -U pip
 RUN pip install -U -f  https://extras.wxpython.org/wxPython4/extras/linux/gtk3/debian-8 wxPython
@@ -61,6 +62,9 @@ RUN sudo pip install scipy matplotlib==2.1.0 Pillow  hgapi \
                      PyOpenGL netCDF4 PyPDF2 pdfrw h5py mpi4py
 RUN sudo pip install meshio==1.8.17 voropy==0.5.0
 
+# make a symlink to libsalapack-openmpi.so
+
+RUN ln -s /usr/lib/libscalapack-openmpi.so /usr/lib/libscalaapck.so
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'
 USER root

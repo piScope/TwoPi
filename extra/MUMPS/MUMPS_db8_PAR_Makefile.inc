@@ -119,10 +119,10 @@ LAPACK = -llapack
 SCALAP  = -L/usr/local/lib -lscalapack 
 
 # INCLUDE DIRECTORY FOR MPI
-INCPAR  = -I/usr/local/include/
+INCPAR  = -I$(MPI_INCLUDE_PATH)
 
 # LIBRARIES USED BY THE PARALLEL VERSION OF MUMPS: $(SCALAP) and MPI
-LIBPAR  = $(SCALAP) $(LAPACK) -L/usr/lib -lmpi
+LIBPAR  = $(SCALAP) $(LAPACK) -L$(MPI_LIBRARY_PATH) -lmpi
 
 # The parallel version is not concerned by the next two lines.
 # They are related to the sequential library provided by MUMPS,

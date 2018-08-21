@@ -1,0 +1,35 @@
+FROM twopi/base:latest
+MAINTAINER S. Shiraiwa <shiraiwa@psfc.mit.edu> and John C. Wright <jcwright@mit.edu>
+
+USER user
+WORKDIR /home/user
+ENV HOME /home/user
+ENV PetraM $HOME/twopi
+ENV TwoPiRoot $HOME/twopi
+ENV TwoPiDevice db8
+
+RUN mkdir -p $TwoPiRoot/src
+WORKDIR $TwoPiRoot/src/
+RUN mkdir -p $TwoPiRoot/src
+RUN git clone https://github.com/piScope/TwoPi.git
+
+# Overwrite TWOPI to twopi installer command
+ENV TWOPI $TwoPiRoot/src/TwoPi/bin/twopi
+ENV PYTHONPATH $HOME/twopi/lib/python2.7/site-packages
+
+RUN $TWOPI install  metis
+RUN $TWOPI install  parmetis
+RUN $TWOPI install-noclean  MUMPS
+
+RUN $TWOPI install  hypre
+RUN $TWOPI install-noclean  mfems
+RUN $TWOPI install-noclean  mfemp
+RUN $TWOPI install  glvis
+
+RUN $TWOPI install  PyMFEM
+RUN $TWOPI install  piScope
+
+#must be root on exit because parent container will run supervisor 
+#to start openbox window manager as non-root 'user'
+USER root
+ENV APP "xterm"

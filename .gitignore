@@ -23,6 +23,7 @@ extra/lapack/*
 docker/*
 !docker/Dockerfile.base
 !docker/Dockerfile.petram
+!docker/Dockerfile.pymfem
 !docker/waveguide_sample/
 docker/waveguide_sample/*
 !docker/waveguide_sample/model.py

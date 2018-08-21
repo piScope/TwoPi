@@ -1,33 +1,23 @@
-FROM twopi/base:latest
-MAINTAINER S. Shiraiwa <shiraiwa@psfc.mit.edu> and John C. Wright <jcwright@mit.edu>
+FROM twopi/pymfem:latest
+MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
 
 USER user
-WORKDIR /home/user
-ENV HOME /home/user
-ENV PetraM $HOME/twopi
-ENV TwoPiRoot $HOME/twopi
-ENV TwoPiDevice db8
 
-RUN mkdir -p $TwoPiRoot/src
+WORKDIR $TwoPiRoot/src/TwoPi
+RUN git pull origin master
+
+#
 WORKDIR $TwoPiRoot/src/
-RUN mkdir -p $TwoPiRoot/src
-RUN git clone https://github.com/piScope/TwoPi.git
-
-# Overwrite TWOPI to twopi installer command
-ENV TWOPI $TwoPiRoot/src/TwoPi/bin/twopi
-ENV PYTHONPATH $HOME/twopi/lib/python2.7/site-packages
-
-RUN $TWOPI install  metis
-RUN $TWOPI install  parmetis
-RUN $TWOPI install-noclean  MUMPS
-
-RUN $TWOPI install  hypre
-RUN $TWOPI install-noclean  mfems
-RUN $TWOPI install-noclean  mfemp
-RUN $TWOPI install  glvis
-
-RUN $TWOPI install  PyMFEM
-RUN $TWOPI install  piScope
+COPY --chown=user:user PetraM_Base $TwoPiRoot/src/PetraM_Base
+COPY --chown=user:user PetraM_RF $TwoPiRoot/src/PetraM_RF
+COPY --chown=user:user PetraM_Geom $TwoPiRoot/src/PetraM_Geom
+COPY --chown=user:user PetraM_Driver $TwoPiRoot/src/PetraM_Driver
+COPY --chown=user:user PetraM_MUMPS $TwoPiRoot/src/PetraM_MUMPS
+RUN $TWOPI build  PetraM_Base
+RUN $TWOPI build  PetraM_RF
+RUN $TWOPI build  PetraM_Geom
+RUN $TWOPI build  PetraM_Driver
+RUN $TWOPI build  PetraM_MUMPS
 
 # This section will be added after making PetraM Modules public
 #RUN $TWOPI install  PetraM_Base
@@ -39,5 +29,23 @@ RUN $TWOPI install  piScope
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'
+
+RUN mkdir -p /home/user/work/waveguide_sample
+COPY --chown=user:user  waveguide_sample/*.py  /home/user/waveguide_sample/
+COPY --chown=user:user  waveguide_sample/*.dat  /home/user/waveguide_sample/
+COPY --chown=user:user  waveguide_sample/*.msh  /home/user/waveguide_sample/
+
+#start out in work directory, need to cd because it doesn't exist until container is launched
+RUN touch /home/user/.bash_profile \
+  && mkdir -p /home/user/.ssh \
+  && echo "cd work" >> ~/.bash_profile \
+  && echo "cp -r ~/ssh_mount/* ~/.ssh/" >> ~/.bash_profile \
+  && echo "chmod 700 ~/.ssh && chmod 600 ~/.ssh/*" >> ~/.bash_profile \
+  && echo "export PATH=/home/user/twopi/bin:/usr/local/twopi/bin:$PATH" >> ~/.bash_profile\   
+  && echo "export PYTHONPATH=$HOME/twopi/lib/python2.7/site-epackages:$PYTHONPATH" >> ~/.bash_profile \
+  && echo "export LD_LIBRARY_PATH=$HOME/twopi/lib/:$LD_LIBRARY_PATH" >> ~/.bash_profile \
+  && echo "source ~/.bash_profile" >> .bashrc
+RUN echo $PWD . DO NOT CLOSE THE XTERM
+
 USER root
 ENV APP "xterm"

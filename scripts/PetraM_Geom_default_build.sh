@@ -4,6 +4,7 @@ SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PetraM_Geom
 
 MAKE=$(command -v make)
+GIT=$(command -v git)
 
 cd $REPO
 

@@ -23,3 +23,9 @@ extra/lapack/*
 docker/*
 !docker/Dockerfile.base
 !docker/Dockerfile.petram
+!docker/waveguide_sample/
+docker/waveguide_sample/*
+!docker/waveguide_sample/model.py
+!docker/waveguide_sample/global_ns.py
+!docker/waveguide_sample/global_ns.dat
+!docker/waveguide_sample/waveguide.msh

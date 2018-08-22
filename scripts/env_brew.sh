@@ -1,10 +1,10 @@
 #!/bin/bash
 export PATH=/usr/local/opt/llvm/bin:$PATH
 
-#CC=/usr/local/opt/llvm/bin/clang
-#CXX=/usr/local/opt/llvm/bin/clang++
-CC=clang
-CXX=clang++
+CC=/usr/local/opt/llvm/bin/clang
+CXX=/usr/local/opt/llvm/bin/clang++
+#CC=clang
+#CXX=clang++
 FC=gfortran
 MPICC=mpicc
 MPICXX=mpicxx

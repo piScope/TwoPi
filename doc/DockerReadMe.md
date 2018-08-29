@@ -1,6 +1,6 @@
 ## Instructions for launching piScope/Petra-M via a docker container.
 
-### 1) First install Docker for your platform. See http://docker.com
+### (1) Install Docker for your platform. See http://docker.com
 
     For windows 10 professional and enterprise users, install the
     community addition. This will require admin access. After
@@ -20,13 +20,13 @@
     Containers will also be accessed through the VirtualBox shared network
     rather than localhost, typically something like `http://192.168.99.100:6082/`
 
-### 2) Installing PetraM image. 
+### (2) Download/Install PetraM image. 
 
 ```
   > wget https://www-internal.psfc.mit.edu/~shiraiwa/petram_image/twopi_docker_image
   > docker load -i twopi_docker_image
 ```
-### 3) Run the image
+### (3) Run the image
 
   Set up a working directory in which to run piscope.
   This directory and its contents and subdirectories will be available 
@@ -73,32 +73,27 @@
   > docker build --no-cache -t twopi/pymfem -f Dockerfile.pymfem .
 ```
   to build from local PetraM
-  ```
+```
   > docker build --no-cache -t twopi/petram -f Dockerfile.petram-local .
 ```
   to build from GitHUB
-  ```
+```
   > docker build --no-cache -t twopi/petram -f Dockerfile.petram .
-  ```
-
+```
   Note : `twopi/base` requires opencascade tar file to be present from
     https://www.opencascade.com/content/latest-release
 
-    - Cleaning.
+- Cleaning
 
-After bulding from scratch, you can remove intermediate docker
-images with, but be aware this will remove cached steps from any
-other docker images you may be working on:
-
+   After bulding from scratch, you can remove intermediate docker
+   images with, but be aware this will remove cached steps from any
+   other docker images you may be working on:
+```
     docker system prune
-
-To check actual disk usage:
-
+```
+   To check actual disk usage:
+```
     docker system df
-    docker run -d --name piscope-instance -v $HOME/.ssh:/home/user/ssh_mount -v $PWD:/home/user/work -p 6080:6080 jcwright/piscope
-
- PetraM may be invoked in the same way with:
-
-    docker run -d --name petram-instance -v $HOME/.ssh:/home/user/ssh_mount -v $PWD:/home/user/work -p 6080:6080 jcwright/petram
-
+```    
+ 
  

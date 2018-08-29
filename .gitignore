@@ -25,6 +25,7 @@ docker/*
 !docker/Dockerfile.base
 !docker/Dockerfile.petram
 !docker/Dockerfile.pymfem
+!docker/README.md
 !docker/waveguide_sample/
 docker/waveguide_sample/*
 !docker/waveguide_sample/model.py

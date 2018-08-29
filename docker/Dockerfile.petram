@@ -1,4 +1,6 @@
 FROM twopi/pymfem:latest
+ARG build_from_git 1
+
 MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
 
 USER user
@@ -8,27 +10,11 @@ RUN git pull origin master
 
 #
 WORKDIR $TwoPiRoot/src/
-COPY --chown=user:user PetraM_Base $TwoPiRoot/src/PetraM_Base
-COPY --chown=user:user PetraM_RF $TwoPiRoot/src/PetraM_RF
-COPY --chown=user:user PetraM_Geom $TwoPiRoot/src/PetraM_Geom
-COPY --chown=user:user PetraM_Driver $TwoPiRoot/src/PetraM_Driver
-COPY --chown=user:user PetraM_MUMPS $TwoPiRoot/src/PetraM_MUMPS
-RUN $TWOPI build  PetraM_Base
-RUN $TWOPI build  PetraM_RF
-RUN $TWOPI build  PetraM_Geom
-RUN $TWOPI build  PetraM_Driver
-RUN $TWOPI build  PetraM_MUMPS
-
 # This section will be added after making PetraM Modules public
-#RUN $TWOPI install  PetraM_Base
-#RUN $TWOPI install  PetraM_RF
-#RUN $TWOPI install  PetraM_Geom
-#RUN $TWOPI install  PetraM_Driver
-#RUN $TWOPI install  PetraM_MUMPS
-#
-
-#must be root on exit because parent container will run supervisor 
-#to start openbox window manager as non-root 'user'
+RUN $TWOPI install  PetraM_Base
+RUN $TWOPI install  PetraM_RF
+RUN $TWOPI install  PetraM_Geom
+RUN $TWOPI install  PetraM_MUMPS
 
 RUN mkdir -p /home/user/work/waveguide_sample
 COPY --chown=user:user  waveguide_sample/*.py  /home/user/waveguide_sample/
@@ -46,6 +32,9 @@ RUN touch /home/user/.bash_profile \
   && echo "export LD_LIBRARY_PATH=$HOME/twopi/lib/:$LD_LIBRARY_PATH" >> ~/.bash_profile \
   && echo "source ~/.bash_profile" >> .bashrc
 RUN echo $PWD . DO NOT CLOSE THE XTERM
+
+#must be root on exit because parent container will run supervisor 
+#to start openbox window manager as non-root 'user'
 
 USER root
 ENV APP "xterm"

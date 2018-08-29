@@ -4,20 +4,25 @@ Homebew provides OpenCascade7.2, gmsh, OpenMPI
 
 (Step1) Install HomeBrew
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-(Step2) Install Formulae
+(Step2) Install dependency using brew and pip. Note doing the first brew will install
+python@2 and thus the followng pip will instlal modules under /usr/local
 
-  brew install open-mpi
-  brew install make
-  brew install coreutils --with-gmp
-  brew install gmsh --with-opencascade --with-fltk 
-  brew install wget
-  (this installs bunch of dependency including python2.7, open cascade 7.2, fltk,,,)
-  (this took 20 min..on 2016 iMac)
+   brew install open-mpi scalapack boost wget numpy scipy coreutils libomp
+   brew install gmsh --with-opencascade --with fltk
+    (this installs bunch of dependency including python2.7, open cascade 7.2, fltk,,,)
+    (this took 20 min..on 2016 iMac)
+   pip install meshio==1.8.17 voropy==0.5.0
+   pip install wxPython==4.0.3 matplotlib Pillow hgapi PyOpenGL netCDF4 PyPDF2 pdfrw h5py mpi4py
+   
+ 
+(Step3) Install nominal set of packages. We only support high-Sierra using bottle, but as of
+2018/08, the code builds on Sierra too (need --env=std)
 
-(Step3) Install nominal set of packages
-  bin/nominal_package_install
+   brew tap piScope/twopi
+   brew install piScope/twopi/twopi
+   brew link --overwrite twopi
 
-(Step4-optional) Install addional pacakges usinb bin/twopi
+
   

@@ -1,6 +1,6 @@
 # TwoPi
-TwoPi (stands from (p)iScope/(P)etra-M) is a simple package installer
-for piScope/Petra-M. It is essentially the collection of install scripts
+TwoPi (stands for (p)iScope/(P)etra-M) is a package installer
+for piScope/Petra-M. It is made from the collection of install scripts
 to configure various libraries in a coherent way to run Petra-M simulation.
 
 ## Usage

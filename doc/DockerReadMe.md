@@ -1,6 +1,6 @@
-Instructions for launching piscope and petram via a docker container.
+## Instructions for launching piScope/Petra-M via a docker container.
 
-- First install Docker for your platform. See http://docker.com
+### 1) First install Docker for your platform. See http://docker.com
 
     For windows 10 professional and enterprise users, install the
     community addition. This will require admin access. After
@@ -20,12 +20,13 @@ Instructions for launching piscope and petram via a docker container.
     Containers will also be accessed through the VirtualBox shared network
     rather than localhost, typically something like `http://192.168.99.100:6082/`
 
-- Installing PetraM image. 
+### 2) Installing PetraM image. 
 
+```
   > wget https://www-internal.psfc.mit.edu/~shiraiwa/petram_image/twopi_docker_image
   > docker load -i twopi_docker_image
-
-- Run the image
+```
+### 3) Run the image
 
   Set up a working directory in which to run piscope.
   This directory and its contents and subdirectories will be available 
@@ -41,7 +42,9 @@ Instructions for launching piscope and petram via a docker container.
   These scripts cleanup previous images and deploy a new one. They
   essentially boil down to running this single command:
 
+```
   > docker run -d --name test_instance -v $HOME/.ssh:/home/user/ssh_mount -v $PWD:/home/user/work -p 6080:6080 twopi/petram
+```
 
   Note different mount point for users ssh directory. This is to permit permission checking
   for some platforms such as Windows 10 Home which use VirtualBox with docker.
@@ -55,7 +58,7 @@ Instructions for launching piscope and petram via a docker container.
     but make sure to select a different local port (the first 6080).
 
 
-- Building from scratch
+### Appendix) Building from scratch
   This section is meant for a memo to make a docker image file for
   distribution. Since PetraM is continuously changing, we suggest
   to use the image distributed from the PSFC site
@@ -65,15 +68,18 @@ Instructions for launching piscope and petram via a docker container.
   building from local,
   Run
 
+```
   > docker build --no-cache -t twopi/base -f Dockerfile.base .
   > docker build --no-cache -t twopi/pymfem -f Dockerfile.pymfem .
-
+```
   to build from local PetraM
+  ```
   > docker build --no-cache -t twopi/petram -f Dockerfile.petram-local .
-
+```
   to build from GitHUB
+  ```
   > docker build --no-cache -t twopi/petram -f Dockerfile.petram .
-  
+  ```
 
   Note : `twopi/base` requires opencascade tar file to be present from
     https://www.opencascade.com/content/latest-release
@@ -89,10 +95,6 @@ other docker images you may be working on:
 To check actual disk usage:
 
     docker system df
-
-
-
-
     docker run -d --name piscope-instance -v $HOME/.ssh:/home/user/ssh_mount -v $PWD:/home/user/work -p 6080:6080 jcwright/piscope
 
  PetraM may be invoked in the same way with:

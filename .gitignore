@@ -23,8 +23,9 @@ extra/lapack/*
 !extra/lapack/CMakeLists.txt
 docker/*
 !docker/Dockerfile.base
-!docker/Dockerfile.petram
 !docker/Dockerfile.pymfem
+!docker/Dockerfile.petram
+!docker/Dockerfile.petram-local
 !docker/README.md
 !docker/waveguide_sample/
 docker/waveguide_sample/*

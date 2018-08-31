@@ -64,7 +64,7 @@ RUN sudo pip install meshio==1.8.17 voropy==0.5.0
 
 # make a symlink to lapack blas 
 RUN  ln -s /usr/lib/liblapack.so.3 /usr/lib/liblapack.so \
-     ln -s /usr/lib/libblas.so.3 /usr/lib/libblas.so
+  && ln -s /usr/lib/libblas.so.3 /usr/lib/libblas.so
    
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'

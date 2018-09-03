@@ -8,6 +8,7 @@ USER user
 WORKDIR $TwoPiRoot/src/TwoPi
 RUN git pull origin master
 
+RUN $TWOPI install piScope
 #
 WORKDIR $TwoPiRoot/src/
 # This section will be added after making PetraM Modules public

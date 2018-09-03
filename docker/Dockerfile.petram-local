@@ -11,6 +11,8 @@ RUN git pull origin master
 #
 WORKDIR $TwoPiRoot/src/
 
+RUN $TWOPI install piScope
+
 # This is to include a repoistory not available to public
 COPY --chown=user:user PetraM_Base $TwoPiRoot/src/PetraM_Base
 COPY --chown=user:user PetraM_RF $TwoPiRoot/src/PetraM_RF

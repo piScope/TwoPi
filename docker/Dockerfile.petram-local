@@ -1,6 +1,4 @@
 FROM twopi/pymfem:latest
-ARG build_from_git 1
-
 MAINTAINER John C. Wright <jcwright@mit.edu> and S. Shiraiwa <shiraiwa@psfc.mit.edu>
 
 USER user

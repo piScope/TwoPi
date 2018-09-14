@@ -24,6 +24,7 @@ COPY --chown=user:user  waveguide_sample/*.dat  /home/user/waveguide_sample/
 COPY --chown=user:user  waveguide_sample/*.msh  /home/user/waveguide_sample/
 
 #start out in work directory, need to cd because it doesn't exist until container is launched
+RUN rm -rf /home/user/.ssh
 RUN touch /home/user/.bash_profile \
   && mkdir -p /home/user/.ssh \
   && echo "cd work" >> ~/.bash_profile \

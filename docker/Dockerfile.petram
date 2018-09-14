@@ -6,6 +6,9 @@ USER user
 WORKDIR $TwoPiRoot/src/TwoPi
 RUN git pull origin master
 
+ENV TwoPiDevice default
+ENV TwoPiGit https://github.com/piScope
+
 RUN $TWOPI install piScope
 #
 WORKDIR $TwoPiRoot/src/

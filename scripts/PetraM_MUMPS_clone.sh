@@ -1,12 +1,10 @@
 #!/bin/bash
 
-GIT=$(command -v git)
+REPO="PetraM_MUMPS"
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/PetraM_MUMPS
+SC=$(dirname "$0")/subs/git_access.sh
+source $SC
 
-mkdir -p $SRCDIR
-if [ ! -f $REPO ]; then
-   cd $SRCDIR
-   $GIT clone https://github.com/piScope/PetraM_MUMPS.git $REPO
-   cd $REPO
-fi
+git_clone_or_pull "${TwoPiGit}/PetraM_MUMPS.git" $REPO $SRCDIR
+
+

@@ -6,5 +6,5 @@ MAKE=$(command -v make)
 
 cd $REPO
 
-rm -rf *
+rm -rf build/*
 

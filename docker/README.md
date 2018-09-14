@@ -95,5 +95,13 @@ To check actual disk usage:
 ```
     docker system df
 ```    
- 
+
+- Note for distribution
+  * save
+  docker save twopi/petram:latest | gzip -c > <imagename>.tar.gz
+
+  * load
+  gunziop <imagename>.tar.gz
+  docker load -i <imagename>.tar
+  
  

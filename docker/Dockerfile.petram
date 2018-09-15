@@ -38,7 +38,7 @@ RUN touch /home/user/.bash_profile \
   && touch /home/user/twopi/bin/piscope \
   && echo "#!/bin/bash" >> /home/user/twopi/bin/piscope \
   && echo "source ~/.bash_ssh" >> /home/user/twopi/bin/piscope \
-  && echo "/home/user/twopi/bin/piscope0" >> /home/user/twopi/bin/piscope \
+  && echo "/home/user/twopi/bin/piscope0 \"\$@\"" >> /home/user/twopi/bin/piscope \
   && chmod u+x /home/user/twopi/bin/piscope 
 #  && echo "source ~/.bash_profile" >> ~/.bashrc
 RUN echo $PWD . DO NOT CLOSE THE XTERM

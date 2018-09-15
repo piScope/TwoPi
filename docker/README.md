@@ -24,7 +24,8 @@ rather than localhost, typically something like `http://192.168.99.100:6082/`
 
 ```
   > wget https://www-internal.psfc.mit.edu/~shiraiwa/petram_image/docker/petram_latest.tar.gz 
-  > docker load -i twopi_docker_image
+  > gunzip petram_latest.tar.gz
+  > docker load -i petram_latest.tar
 ```
 ### (3) Run the image
 

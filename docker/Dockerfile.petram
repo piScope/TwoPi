@@ -26,18 +26,27 @@ COPY --chown=user:user  waveguide_sample/*.msh  /home/user/waveguide_sample/
 #start out in work directory, need to cd because it doesn't exist until container is launched
 RUN rm -rf /home/user/.ssh
 RUN touch /home/user/.bash_profile \
-  && mkdir -p /home/user/.ssh \
-  && echo "cd work" >> ~/.bash_profile \
-  && echo "cp -r ~/ssh_mount/* ~/.ssh/" >> ~/.bash_profile \
-  && echo "chmod 700 ~/.ssh && chmod 600 ~/.ssh/*" >> ~/.bash_profile \
   && echo "export PATH=/home/user/twopi/bin:/usr/local/twopi/bin:$PATH" >> ~/.bash_profile\   
   && echo "export PYTHONPATH=$HOME/twopi/lib/python2.7/site-epackages:$PYTHONPATH" >> ~/.bash_profile \
   && echo "export LD_LIBRARY_PATH=$HOME/twopi/lib/:$LD_LIBRARY_PATH" >> ~/.bash_profile \
-  && echo "source ~/.bash_profile" >> .bashrc
+  && touch /home/user/.bash_ssh \
+  && mkdir -p /home/user/.ssh \
+  && echo "cp -r -n ~/ssh_mount/* ~/.ssh/" >> ~/.bash_ssh \
+  && echo "chmod 700 ~/.ssh" >> ~/.bash_ssh \
+  && echo "chmod 600 ~/.ssh/*" >> ~/.bash_ssh \
+  && mv /home/user/twopi/bin/piscope /home/user/twopi/bin/piscope0 \
+  && touch /home/user/twopi/bin/piscope \
+  && echo "#!/bin/bash" >> /home/user/twopi/bin/piscope \
+  && echo "source ~/.bash_ssh" >> /home/user/twopi/bin/piscope \
+  && echo "/home/user/twopi/bin/piscope0" >> /home/user/twopi/bin/piscope \
+  && chmod u+x /home/user/twopi/bin/piscope 
+#  && echo "source ~/.bash_profile" >> ~/.bashrc
 RUN echo $PWD . DO NOT CLOSE THE XTERM
 
 #must be root on exit because parent container will run supervisor 
 #to start openbox window manager as non-root 'user'
-
 USER root
+
+# added to avoid too fast retries
+RUN echo "startretries=1" >> /etc/supervisor/conf.d/noVNC.conf
 ENV APP "xterm"

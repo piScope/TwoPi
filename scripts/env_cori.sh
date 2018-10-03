@@ -2,6 +2,8 @@
 
 MPICC=cc
 MPICXX=CC
+MPIFC=ftn
+MPIFL=ftn
 MAKEOPT="-j 8"
 OMPFLAG="-qopenmp"
 OMPLINKFLAG=-qopenmp

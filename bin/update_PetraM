@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#  PetraM update script
+#
+#  usage:
+#     update_PetraM 
+#     update_PetarM <module>    update modules
+#
+
+MYPATH=$(realpath "$0")
+BUILDCOMPONENT=$(dirname "$MYPATH")/../scripts/buildcomponent.sh 
+TWOPI=$(dirname "$MYPATH")/twopi
+
+if [ $# -eq 1 ]; then
+   COMPONENT=PetraM_"$1"
+else
+   COMPONENT=""
+fi
+
+ODIR=$PWD
+
+for d in "${TwoPiRoot}"/src/PetraM_*/; do
+    array=(${d//// })
+    NUM=${#array[@]}-1
+    MODULE="${array[$NUM]}" 
+
+    # skip if it is not targeted module
+    if [ "$COMPONENT" != "" ] && [ "$COMPONENT" != $MODULE ]; then
+       continue
+    fi
+
+    echo "working on "$MODULE
+
+    cd ${TwoPiRoot}/src/${MODULE}
+
+    SHA1="$(git log -1 --format="%H")"
+    $TWOPI clone $MODULE 
+    SHA2="$(git log -1 --format="%H")"
+    cd ${ODIR}
+
+    echo "Checking GIT SHA(before)" ${SHA1}
+    echo "Checking GIT SHA(after)" ${SHA2}
+    if [ "${SHA1}" != "${SHA2}" ]; then
+       $TWOPI build $MODULE 
+       $TWOPI clean $MODULE 
+    fi
+done
+
+
+
+

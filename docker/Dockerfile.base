@@ -13,7 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   mesa-utils
 RUN sudo apt-get install -y libfreetype6-dev tcl-dev tk-dev \
       libxt-dev libfreeimage-dev libtbb-dev libgl2ps-dev libgl1-mesa-dev\
-      libglu1-mesa-dev libxt-dev libxmu-dev libxi-dev mercurial emacs \
+      libglu1-mesa-dev  libxmu-dev libxi-dev mercurial emacs \
       libscalapack-openmpi1 libscalapack-mpi-dev libgomp1 icewm libfltk1.3 \
       libfltk1.3-dev gfortran
 

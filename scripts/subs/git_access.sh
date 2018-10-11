@@ -1,19 +1,21 @@
 function send_log() {
-   REPO=$1
-   H1="'Content-Type: application/json'"
-   ADDRESS="https://www-internal.psfc.mit.edu/~shiraiwa/petram_test/git_request.php"
+    REPO=$1
+    ACTION=$2   # install, clean
+    OPTS=$3
+    H1="'Content-Type: application/json'"
+    ADDRESS="https://www-internal.psfc.mit.edu/~shiraiwa/petram_test/git_request.php"
 
-   DATA="'{\"repo\" : \""${REPO}"\"}'"
-   #
-   # make a command like this...
-   # wget -S --header=$H1  --post-data="{\"repo\" : \"PetraM_RF\"}" $ADDRESS
-   #
-   # verbose version
-   #  COMMAND="wget -S --header=${H1}  --post-data=${DATA}  ${ADDRESS}"
-   # silent version
-   COMMAND="wget --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS} &> /dev/null"
-   #echo $COMMAND
-   eval $COMMAND
+    DATA="'{\"repo\" : \""${REPO}"\", \"action\" : \""${ACTION}"\", \"options\" : \""${OPTS}"\"}'"
+    #
+    # make a command like this...
+    # wget -S --header=$H1  --post-data="{\"repo\" : \"PetraM_RF\"}" $ADDRESS
+    #
+    # verbose version
+    #  COMMAND="wget -S --header=${H1}  --post-data=${DATA}  ${ADDRESS}"
+    # silent version
+    COMMAND="wget --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS} &> /dev/null"
+    #echo $COMMAND
+    eval $COMMAND
 }
 
 function git_clone_or_pull() {
@@ -26,7 +28,7 @@ function git_clone_or_pull() {
     mkdir -p $SRCDIR
     cd $SRCDIR
 
-    send_log $REPO
+#    send_log $REPO
     
     if [ ! -d $REPO ]; then
         $GIT clone $GITREPO $REPO    

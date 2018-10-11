@@ -2,6 +2,7 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
+mkdir -p $SRCDIR
 
 MYPATH=$(realpath "$0")
 echo $MYPATH

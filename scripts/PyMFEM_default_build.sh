@@ -122,6 +122,8 @@ export CXX=${CXX}
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser
 fi
+export CC=${MPICC}
+export CXX=${MPICXX}
 if $DO_PARALLEL || $DO_DEFAULT ;then
     $MAKE par
 fi

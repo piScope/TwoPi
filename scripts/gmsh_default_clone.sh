@@ -1,12 +1,14 @@
 #!/bin/bash
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 
 cd  $SRCDIR
-wget http://gmsh.info/src/gmsh-3.0.6-source.tgz
-tar xfz gmsh-3.0.6-source.tgz
-rm gmsh-3.0.6-source.tgz
+wget http://gmsh.info/src/${GMSH}-source.tgz
+tar xfz ${GMSH}-source.tgz
+rm ${GMSH}-source.tgz
 
 
 

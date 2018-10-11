@@ -22,6 +22,10 @@ check_env
 if [ $? == 0 ]; then
    exit
 fi
+
+SC=$(dirname "$0")/subs/git_access.sh
+source $SC
+
 mkdir -p ${TwoPiRoot}
 
 while getopts "d" opts
@@ -49,4 +53,7 @@ if [ ! -f $script ]; then
    script=${SPATH}/${COMPONENT}_default_${OPERATION}.sh
 fi
 
+if [ "${OPERATION}" = "build" ]; then
+   send_log ${COMPONENT} "build" "$*"
+fi    
 $script  $*

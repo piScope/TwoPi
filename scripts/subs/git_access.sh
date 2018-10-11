@@ -5,7 +5,7 @@ function send_log() {
     H1="'Content-Type: application/json'"
     ADDRESS="https://www-internal.psfc.mit.edu/~shiraiwa/petram_test/git_request.php"
 
-    DATA="'{\"repo\" : \""${REPO}"\", \"action\" : \""${ACTION}"\", \"options\" : \""${OPTS}"\"}'"
+    DATA="'{\"repo\" : \""${REPO}"\", \"action\" : \""${ACTION}"\", \"opts\" : \""${OPTS}"\"}'"
     #
     # make a command like this...
     # wget -S --header=$H1  --post-data="{\"repo\" : \"PetraM_RF\"}" $ADDRESS
@@ -14,6 +14,7 @@ function send_log() {
     #  COMMAND="wget -S --header=${H1}  --post-data=${DATA}  ${ADDRESS}"
     # silent version
     COMMAND="wget --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS} &> /dev/null"
+    echo "Note: sending build option info, if you don't want to send it, comment out line 19 in git_access.sh"
     #echo $COMMAND
     eval $COMMAND
 }

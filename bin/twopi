@@ -22,10 +22,7 @@
 
 MODE="$1"
 COMPONENT="$2"
-MYPATH=$(realpath "$0")
-BUILDCOMPONENT=$(dirname "$MYPATH")/../scripts/buildcomponent.sh 
-
-
+BUILDCOMPONENT=$(dirname "$BASH_SOURCE")/../scripts/buildcomponent.sh 
 
 if [ "$MODE" = "clone" ]; then
     EXTRA="${@:3}"

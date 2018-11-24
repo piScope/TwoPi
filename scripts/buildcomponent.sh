@@ -4,12 +4,14 @@ check_env ()
 {
     if [[ ! "${TwoPiRoot}" ]]; then
         echo "TwoPiRoot is not set"
-        return 0
+        exit 0
     fi
     if [[ ! "${TwoPiDevice}" ]]; then
         echo "TwoPiDevice is not set"
-        return 0
+        exit 0
     fi
+    echo "TwoPiRoot: "   ${TwoPiRoot}
+    echo "TwoPiDevice: " ${TwoPiDevice}
     return 1
 }
 
@@ -19,9 +21,6 @@ _usage() {
 }   
 
 check_env
-if [ $? == 0 ]; then
-   exit
-fi
 
 SC=$(dirname "$0")/subs/git_access.sh
 source $SC

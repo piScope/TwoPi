@@ -7,7 +7,7 @@
 #   ./script/buildcomponent.sh mfem clone -b test -l latest (# test branch latest)
 #   
 
-MYPATH=$(realpath "$0")
+MYPATH=$BASH_SOURCE
 source $(dirname "$MYPATH")/mfem_default_clone.sh
 
 

@@ -21,8 +21,7 @@ MPI_LIBRARY_PATH=/usr/lib/openmpi/lib
 #BOOST_INCLUDE_PATH=/usr/local/inclue
 #BOOST_LIBRARY_PATH=/usr/local/lib
 
-MYPATH=$(realpath "$0")
-source $(dirname "$MYPATH")/env_common.sh
+source $(dirname $BASH_SOURCE)/env_common.sh
 #echo $MPI_INCLUDE_PATH
 
 

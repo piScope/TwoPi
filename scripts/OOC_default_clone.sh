@@ -4,7 +4,7 @@ GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 mkdir -p $SRCDIR
 
-MYPATH=$(realpath "$0")
+MYPATH=$BASH_SOURCE
 echo $MYPATH
 
 OOCTGZ=$(dirname "$MYPATH")/../externals/opencascade-7.2.0.tar.gz

@@ -1,0 +1,22 @@
+#!/bin/bash
+#   
+#   Show status of PetraM modules
+#
+if [ $# -eq 1 ]; then
+  declare -a arr=($1)
+else
+  declare -a arr=("PetraM_Base" "PetraM_Geom" "PetraM_RF" "PetraM_MUMPS" "PetraM_Driver")
+fi
+
+OD=${PWD}
+for i in "${arr[@]}"
+do 
+if [ -d ${TwoPiRoot}/src/$i ]; then
+   echo "#### "${i}" ####"
+   cd ${TwoPiRoot}/src/$i
+   git status
+   git remote -v
+   echo " "
+fi
+done
+cd ${OD}

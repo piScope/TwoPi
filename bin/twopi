@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #  twopi user frontend script
 #  
 #  usage: 
@@ -28,21 +27,21 @@ if [ "$MODE" = "clone" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
-    echo "Executing: "$A
+    #echo "Executing: "$A
     eval $A
 fi
 if [ "$MODE" = "build" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
-    echo "Executing: "$A
+    #echo "Executing: "$A
     eval $A
 fi
 if [ "$MODE" = "clean" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
-    echo "Executing: "$A
+    #echo "Executing: "$A
     eval $A
 fi
 if [ "$MODE" = "install" ]; then
@@ -61,3 +60,10 @@ if [ "$MODE" = "install-noclean" ]; then
     A=$BUILDCOMPONENT" "$COMPONENT" build "$EXTRA
     eval $A
 fi
+if [ "$MODE" = "status" ]; then
+    COMPONENT="$2"
+    A=$(dirname "$BASH_SOURCE")/twopi-status
+    #echo "Executing: "$A $COMPONENT
+    eval $A $COMPONENT
+fi
+

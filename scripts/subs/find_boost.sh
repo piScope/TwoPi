@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z ${BOOST_INCLUDE_PATH+x} ]; then
-   MYPATH=$(realpath $BASH_SOURCE)
+   MYPATH=$BASH_SOURCE
 
    BOOSTLOCDIR=$(dirname "$MYPATH")/../../extra/boost
    BOOSTLOCFILE1=$(dirname "$MYPATH")/../../extra/boost/boost_h_loc.txt

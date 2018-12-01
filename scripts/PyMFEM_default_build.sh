@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+SCRIPT=$(dirname $BASH_SOURCE)/env_${TwoPiDevice}.sh
 source $SCRIPT
 
 DO_SERIAL=false
@@ -55,6 +55,12 @@ case $key in
 esac
 done
 
+### 
+# set MPI and Booost related variable (This should happen before cd below)
+source $(dirname $BASH_SOURCE)/subs/find_boost.sh
+source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
+###
+
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PyMFEM
 
@@ -74,9 +80,6 @@ export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
-### 
-source $(dirname "$0")/subs/find_boost.sh
-source $(dirname "$0")/subs/find_mpi.sh
 #MPI
 if [ -z ${MPI_INC+x} ];then
     if [ -z ${MPI_ROOT+x} ];then

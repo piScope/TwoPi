@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z ${LAPACK_INCLUDE_PATH+x} ]; then
-   MYPATH=$(realpath $BASH_SOURCE)
+   MYPATH=$BASH_SOURCE
 
    LAPACKLOCDIR=$(dirname "$MYPATH")/../../extra/lapack
    LOCFILE1=$(dirname "$MYPATH")/../../extra/lapack/lapack_link_flags.txt

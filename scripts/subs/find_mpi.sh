@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ -z ${MPI_INCLUDE_PATH+x} ]; then
-   MYPATH=$(realpath $BASH_SOURCE)
+   MYPATH=$BASH_SOURCE
    MPILOCDIR=$(dirname "$MYPATH")/../../extra/MPI
    MPILOCFILE1=$(dirname "$MYPATH")/../../extra/MPI/mpi_h_loc.txt
    MPILOCFILE2=$(dirname "$MYPATH")/../../extra/MPI/mpi_lib_loc.txt

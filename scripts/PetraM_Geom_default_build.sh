@@ -14,7 +14,7 @@ $MAKE
 $MAKE install
 
 ## install older version of pygmsh from my fork
-## this one need == 0.5.0, and meshio==1.8.17, partly because fastfunc
+## this one need voropy == 0.5.0, and meshio==1.8.17, partly because fastfunc
 ## fails on HomeBrew...
 
 cd $SRCDIR

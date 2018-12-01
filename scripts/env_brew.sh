@@ -29,5 +29,4 @@ OMPFCFLAG=
 #export PATH=/usr/local/opt/llvm/bin:$PATH
 
 echo "$0" $0
-MYPATH=$(realpath "$0")
-source $(dirname "$MYPATH")/env_common.sh
+source $(dirname $BASH_SOURCE)/env_common.sh

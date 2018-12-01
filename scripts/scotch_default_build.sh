@@ -9,7 +9,7 @@ MAKE=$(command -v make)
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-MYPATH=$(realpath "$0")
+MYPATH=$BASH_SOURCE
 echo $MYPATH
 
 MAKEINC=$(dirname "$MYPATH")/../extra/scotch/scotch_${TwoPiDevice}_Makefile.inc

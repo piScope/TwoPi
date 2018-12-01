@@ -13,7 +13,7 @@ source $SCRIPT
 source $(dirname "$0")/subs/find_mpi.sh
 #source $(dirname "$0")/subs/find_lapack.sh
 
-MYPATH=$(realpath "$0")
+MYPATH=$BASH_SOURCE
 echo $MYPATH
 
 MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_PAR_Makefile.inc

@@ -1,5 +1,5 @@
 #!/bin/bash
-CC=cc
+CC=gcc
 CXX=c++
 FC=gfortran
 MPICC=mpicc

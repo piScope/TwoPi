@@ -14,7 +14,8 @@ $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
           -DCMAKE_INSTALL_RPATH=${TwoPiRoot}  \
           -DENABLE_BUILD_DYNAMIC=1            \
 	  -DENABLE_OS_SPECIFIC_INSTALL=0      \
-          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib 
+          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib \
+          -DSOCKLEN_T_SIZE=True
 
 $MAKE $MAKEOPT
 $MAKE install

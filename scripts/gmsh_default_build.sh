@@ -20,4 +20,4 @@ $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
 $MAKE $MAKEOPT
 $MAKE install
 
-ln -s $TwoPiRoot/lib/gmsh.py gmsh.py
+ln -snf $TwoPiRoot/lib/gmsh.py gmsh.py

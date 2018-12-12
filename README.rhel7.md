@@ -133,3 +133,16 @@ bin/twopi install PetraM_Geom
 bin/twopi install PetraM_MUMPS
 bin/twopi install piScope
 ```
+
+## run petram
+
+```
+cd /fasttmp/cwsmith/projects/petram/twopi_default
+source ../setup.env
+source bin/activate
+piscope
+```
+
+In piscope type `petram()`
+
+

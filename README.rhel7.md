@@ -11,8 +11,8 @@ create `setup.env` with the following contents
 
 ```
 export TwoPiGit=https://github.com/piScope
-export TwoPiDevice=default
-export TwoPiRoot=/fasttmp/cwsmith/projects/petram/twopi_default
+export TwoPiDevice=scorecrhel7
+export TwoPiRoot=/fasttmp/cwsmith/projects/petram/twopi_scorecrhel7
 export LD_LIBRARY_PATH=$TwoPiRoot/lib:$LD_LIBRARY_PATH
 export PATH=$TwoPiRoot/bin:$PATH
 export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
@@ -31,7 +31,7 @@ module load netlib-scalapack/2.0.2-u3mo32o
 
 ``` 
 git clone git@github.com:piScope/TwoPi.git
-virtualenv --python=/usr/bin/python --system-site-packages --unzip-setup twopi_default
+virtualenv --python=/usr/bin/python --system-site-packages --unzip-setup twopi_scorecrhel7
 source setup.env
 pip install wxPython==4.0.3
 pip install mpi4py
@@ -137,7 +137,7 @@ bin/twopi install piScope
 ## run petram
 
 ```
-cd /fasttmp/cwsmith/projects/petram/twopi_default
+cd /fasttmp/cwsmith/projects/petram/twopi_scorecrhel7
 source ../setup.env
 source bin/activate
 piscope

@@ -34,19 +34,18 @@ git clone git@github.com:piScope/TwoPi.git
 virtualenv --python=/usr/bin/python --system-site-packages --unzip-setup twopi_scorecrhel7
 source setup.env
 pip install wxPython==4.0.3
-pip install mpi4py
-pip install PyPDF2
-# the following required packages were already installed in python
-# pip install Pillow
-# pip install scipy
-# pip install pdfrw
-# pip install h5py
-# pip install netCDF4
+python -m pip install -U mpi4py
+python -m pip install -U PyPDF2
+python -m pip install -U Pillow
+python -m pip install -U pdfrw
+python -m pip install -U h5py
+python -m pip install -U netCDF4
 python -m pip install -U pip
 python -m pip install -U matplotlib
 python -m pip install -U wxPython
 python -m pip install -U numpy
 python -m pip install -U pyopengl
+python -m pip install -U scipy  # requires version 1.1 or greater
 ```
 
 

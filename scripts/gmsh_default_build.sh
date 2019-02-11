@@ -25,8 +25,10 @@ $MAKE install
 cd $TwoPiRoot/lib/python2.7/site-packages
 if [ -f $TwoPiRoot/lib/gmsh.py ]; then
    ln -s $TwoPiRoot/lib/gmsh.py gmsh.py
+   ln -s $TwoPiRoot/lib/libgmsh.so libgmsh.so
 fi
 if [ -f $TwoPiRoot/lib64/gmsh.py ]; then
    ln -s $TwoPiRoot/lib64/gmsh.py gmsh.py
+   ln -s $TwoPiRoot/lib64/libgmsh.so libgmsh.so
 fi
 

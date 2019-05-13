@@ -23,6 +23,15 @@ $MAKE install
 
 # add link to gmsh.py. it seems like there is two possible locations
 cd $TwoPiRoot/lib/python2.7/site-packages
+if [ -L gmsh.py ] ; then
+    echo "removing previous link to gmsh.py"
+    rm gmsh.py
+fi
+if [ -e gmsh.py ]; then
+    echo "(error) gmsh.py already exits under site-packages"
+    exit 1
+fi
+
 if [ -f $TwoPiRoot/lib/gmsh.py ]; then
    ln -s $TwoPiRoot/lib/gmsh.py gmsh.py
    ln -s $TwoPiRoot/lib/libgmsh.so libgmsh.so

@@ -42,7 +42,6 @@ python -m pip install -U h5py
 python -m pip install -U netCDF4
 python -m pip install -U pip
 python -m pip install -U matplotlib
-python -m pip install -U wxPython
 python -m pip install -U numpy
 python -m pip install -U pyopengl
 python -m pip install -U scipy  # requires version 1.1 or greater

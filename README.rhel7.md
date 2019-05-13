@@ -62,17 +62,8 @@ the install directory.  I did not want to dip into the insanity so I set both
 `INSTALL_DIR` and `CMAKE_INSTALL_PREFIX`.  There are also `*_PREV` versions of
 these variables for some crazy reason.
 
-The call to `make` from the script hung.
-I manually ran `make -j4` from the `$TwoPiRoot/src/open*/cmbuild` directory
-after the script ran `cmake`.
-This did not hang.
-
 ```
 bin/twopi install OOC
-# Ctrl-C to kill the command once it starts to compile opencascade
-cd $TwoPiRoot/src/open*/cmbuild
-make VERBOSE=1 -j4
-make VERBOSE=1 -j4 install
 ```
 
 ## install gmsh

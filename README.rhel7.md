@@ -126,9 +126,8 @@ bin/twopi install piScope
 ## run petram
 
 ```
-cd /fasttmp/cwsmith/projects/petram/twopi_scorecrhel7
-source ../setup.env
-source bin/activate
+module load petram
+source $TwoPiRoot/bin/activate
 piscope
 ```
 

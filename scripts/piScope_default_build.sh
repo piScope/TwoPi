@@ -20,7 +20,7 @@ if ! (python -c "import scipy") ; then
 fi
 
 # import all modules
-pip install wxPython==4.0.3
+pip install wxPython
 pip install matplotlib
 pip install Pillow
 pip install hgapi

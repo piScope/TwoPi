@@ -2,7 +2,7 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/opencascade-7.2.0
+REPO=${SRCDIR}/opencascade-7.3.0
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 

@@ -51,18 +51,19 @@ RANLIB = ranlib
 # installed. It is set to the default install directory for Intel MKL. 
 #MKLROOT=/opt/intel/mkl/lib/intel64
 MKLROOT=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64
-LAPACK = -llapack
+LAPACK = 
 
-SCALAP = -L$(MKLROOT) -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64
-INCPAR = -I/usr/lib/openmpi/include
+SCALAP = -L/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64_lin/ -lmkl_rt
+INCPAR = -I/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/include
 LIBPAR = $(SCALAP) 
 
 INCSEQ = -I$(topdir)/libseq
 LIBSEQ  = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
 #LIBBLAS = -lblas
-LIBBLAS = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
-LIBOTHERS = -lpthread
+# This line controls somple executalbe build
+LIBBLAS = -L/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64_lin/ -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5
+LIBOTHERS = -lpthread -lm -ldl
 
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_

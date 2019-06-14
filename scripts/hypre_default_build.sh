@@ -3,7 +3,7 @@
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/mfem-git
-HYPREDIR=${SRCDIR}/hypre-2.11.2
+HYPREDIR=${SRCDIR}/hypre-2.16.0
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 

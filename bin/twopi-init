@@ -1,0 +1,76 @@
+#!/bin/bash
+#   
+#   twopi-init -e <python executable>
+#              -o <virtualenv call option>
+#              -n No VirtualEnv
+#              <name>  $TwoPiDevice 
+#              <path> $TwoPiRoot
+#
+
+_usage() {
+    echo 'twopi-init : initialize twopi directory'
+    echo '   usage : piscope [-s] [-r command] [-e exec] [file]'
+    echo '   -e : (optional) : python interpreter executable'
+    echo '   -o : (optional) : other virtual env option (default: --python=python2.7 --system-site-packages --unzip-setup)'
+    echo '   -n : (optional) : no virtualenv'
+    echo '   -h : (optional) : show help'
+    echo '   name  : name of $TwoPiDevice'
+    echo '   path  : the locatio of $TwoPiRoot'
+    exit 1
+}
+
+INTERPRETER=$(which python)
+CALL_VENV=1
+VENV_OPTION="--python=python2.7 --system-site-packages --unzip-setup"
+
+while getopts "e:o:dnh" opts
+do 
+   case $opts in
+      e) INTERPRETER=$OPTARG
+         ;;
+      o) VENV_OPTION=$OPTARG
+         ;;
+      n) CALL_VENV=0
+         ;;
+      h) _usage;;
+      :|\?) _usage;;
+   esac
+done
+shift $((OPTIND -1))
+
+if [ $# -ne 2 ]
+then
+   echo "Need to specify <name> and <path>"
+   echo "use twopi-init -h for usage"
+   exit 1
+fi
+
+TwoPiDevice=$1
+TwoPiRoot=$2
+
+### show configuration
+echo "Configuration : Python Interpreter   " $INTERPRETER
+if [ $CALL_VENV -eq 1 ]
+then
+   echo "                Using vertualenv      yes"
+   echo "                vertualenv options   " $VENV_OPTION
+else
+   echo "                Using vertualenv      no"
+fi
+echo "                Device Name          " $TwoPiDevice
+echo "                Location             " $TwoPiRoot
+
+
+if [ $CALL_VENV -eq 1 ]
+then
+   virtualenv -p $INTERPRETER $VENV_OPTION $TwoPiRoot
+   mkdir -p $TwoPiRoot/etc
+else
+   mkdir -p $TwoPiRoot
+   mkdir -p $TwoPiRoot/bin
+   mkdir -p $TwoPiRoot/etc   
+fi
+
+echo $TwoPiDevice > $TwoPiRoot/etc/devicename
+cp scripts/twopi_env.sh $TwoPiRoot/bin
+

@@ -27,6 +27,7 @@ bin/twopi is the front-end command.
 bin/twopi <action> <component> <optional argments>
 
 action:
+   init  : initialize twopi target root
    clone : download source file or perform git pull
    build : build a component from source
    clean : clean working directory

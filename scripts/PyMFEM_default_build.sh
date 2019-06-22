@@ -6,19 +6,28 @@ source $SCRIPT
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
+DO_SWIG=false
+DO_CLEAN_SWIG=false
 
 while [[ $# -gt 0 ]]
 do
 key="$1"
-
 case $key in
+    --clean-swig)
+    DO_CLEAN_SWIG=true
+    shift # past argument    
+    ;;
+    --run-swig)
+    DO_SWIG=true
+    shift # past argument    
+    ;;
     -s|--serial)
     DO_SERIAL=true
     DO_DEFAULT=false
     shift # past argument    
     ;;
     -p|--parallel)
-    DO_PARALLELE=true
+    DO_PARALLEL=true
     DO_DEFAULT=false
     shift # past argument
     ;;
@@ -52,6 +61,10 @@ case $key in
     shift # past argument
     shift # past param
     ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
 esac
 done
 
@@ -71,10 +84,10 @@ MAKE=$(command -v make)
 cd $REPO
 touch Makefile.local
 
-export MFEM=${TwoPiRoot}/mfem-git/par
-export MFEMBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_par
-export MFEMSER=${TwoPiRoot}/mfem-git/ser
-export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_ser
+export MFEM=${TwoPiRoot}/mfem/par
+export MFEMBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_par
+export MFEMSER=${TwoPiRoot}/mfem/ser
+export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_ser
 export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
@@ -120,8 +133,28 @@ else
    export BOOSTLIB=${BOOST_LIB}
 fi
 
+# if iostream-mt is avilable use it.
+if [ -f ${BOOSTLIB}/libboost_iostreams-mt.dylib ];then
+    export LIBBOOSTIOSTREAMS=boost_iostreams-mt
+fi
+if [ -f ${BOOSTLIB}/libboost_iostreams-mt.so ];then
+    export LIBBOOSTIOSTREAMS=boost_iostreams-mt
+fi
+
 export CC=${CC}
 export CXX=${CXX}
+export CXX11FLAG=$CXX11FLAG
+touch Makefile.local
+
+if $DO_CLEAN_SWIG ;then
+    $MAKE cleancxx
+    exit 0
+fi
+if $DO_SWIG ;then
+    $MAKE sercxx
+    $MAKE parcxx   
+    exit 0
+fi   
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser
 fi

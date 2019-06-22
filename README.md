@@ -62,6 +62,9 @@ component (dependency):
         optional argments:
            -s: build PyMFEM serial (mfem.ser)
 	   -p: build PyMFEM parallel (mfem.par)
+	   
+	   --clean-swig: delete all swig files (need to rerun --run-swig)
+	   --run-swig: generate wrapper codes
 
            By default, twopi will use Boost and MPI include/link
 	   path found by CMAKE. Following argument can be used
@@ -69,6 +72,7 @@ component (dependency):
    	      -boost_root, -boost_inc, -boost_lib,
 	      -mpi_root, -mpi_inc, -mpi_lib
 
+           
 
    PyMFEM:
 

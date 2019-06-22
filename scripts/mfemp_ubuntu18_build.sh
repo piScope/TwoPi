@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/mfem-git
+REPO=${SRCDIR}/mfem
 TWOPILIB=${TwoPiRoot}/lib
 TWOPIINC=${TwoPiRoot}/include
 
@@ -22,7 +22,7 @@ rm -rf $REPO/cmbuild_par/*
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
           -DBUILD_SHARED_LIBS=1                                \
           -DMFEM_ENABLE_EXAMPLES=1                             \
-          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/mfem-git/par     \
+          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/mfem/par         \
           -DHYPRE_DIR=$TWOPILIB                                \
 	  -DHYPRE_INCLUDE_DIRS=$TWOPIINC                       \
           -DMETIS_DIR=$TWOPILIB                                \
@@ -31,6 +31,7 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
 	  -DMFEM_USE_METIS_5=1                                 \
 	  -DMFEM_ENABLE_EXAMPLES=1                             \
           -DCMAKE_CXX_COMPILER=$MPICXX                         \
+          -DCMAKE_CXX_FLAGS=$CXX11FLAG                         \	  
 	  -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-no-as-needed -L$TWOPILIB -lHYPRE -lmetis" \
 	  -DCMAKE_EXE_LINKER_FLAGS="-Wl,-no-as-needed -L$TWOPILIB -lHYPRE -lmetis"
 

@@ -4,7 +4,7 @@ SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/mfem-git
+REPO=${SRCDIR}/mfem
 TWOPILIB=${TWOPI}/lib
 TWOPIINC=${TWOPI}/include
 

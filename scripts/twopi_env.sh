@@ -57,5 +57,5 @@ export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 export PetraM=$TwoPiRoot
 export TwoPiGit=git@github.com:piScope
 
-export PS1="\[("${TWOPIVER}")\\h:\\W\] \\u$ "
+export PS1="("${TWOPIVER}")\\h:\\W \\u$ "
 

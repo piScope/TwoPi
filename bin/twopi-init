@@ -21,7 +21,7 @@ _usage() {
 
 INTERPRETER=$(which python)
 CALL_VENV=1
-VENV_OPTION="--python=python2.7 --system-site-packages --unzip-setup"
+VENV_OPTION="--system-site-packages --unzip-setup"
 
 while getopts "e:o:dnh" opts
 do 
@@ -63,7 +63,8 @@ echo "                Location             " $TwoPiRoot
 
 if [ $CALL_VENV -eq 1 ]
 then
-   virtualenv -p $INTERPRETER $VENV_OPTION $TwoPiRoot
+   IOPT="--python="$INTERPRETER
+   virtualenv $IOPT  $VENV_OPTION $TwoPiRoot
    mkdir -p $TwoPiRoot/etc
 else
    mkdir -p $TwoPiRoot

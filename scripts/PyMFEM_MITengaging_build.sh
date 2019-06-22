@@ -35,10 +35,10 @@ MAKE=$(command -v make)
 cd $REPO
 touch Makefile.local
 
-export MFEM=${TwoPiRoot}/mfem-git/par
-export MFEMBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_par
-export MFEMSER=${TwoPiRoot}/mfem-git/ser
-export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_ser
+export MFEM=${TwoPiRoot}/mfem/par
+export MFEMBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_par
+export MFEMSER=${TwoPiRoot}/mfem/ser
+export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_ser
 export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC

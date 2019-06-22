@@ -21,7 +21,7 @@ rm -rf $REPO/cmbuild/*
 
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 \
 -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
--DMFEM_DIR=${TwoPiRoot}/src/mfem-git/cmbuild_ser
+-DMFEM_DIR=${TwoPiRoot}/src/mfem/cmbuild_ser
 
 $MAKE $MAKEOPT
 $MAKE install

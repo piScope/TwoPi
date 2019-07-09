@@ -19,9 +19,9 @@ cd cmbuild
 LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)
 echo ${LAPACKFLAG}
 
-export CC=${MPICC}
-export CXX=${MPICXX}
-export FC=${MPIFC}
+export CC=${CC}
+export CXX=${CXX}
+export FC=${FC}
 
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
@@ -32,7 +32,8 @@ cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \
          -DOpenMP_LINK_FLAG=${OMPLINKFLAG} \
          -DCMAKE_Fortran_COMPILER=${MPIFC}  \
-         -DCMAKE_CXX_COMPILER=${MPICXX}     \
+         -DCMAKE_CXX_COMPILER=${MPICXX} \
 	 -DCMAKE_C_COMPILER=${MPICC}
+
 make VERBOSE=1
 make install

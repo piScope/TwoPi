@@ -62,6 +62,4 @@ if $DO_PARALLEL || $DO_DEFAULT ;then
     $MAKE par
 fi
 
-mkdir -p ${TwoPiRoot}/lib/python2.7/site-packages
-
 $MAKE pyinstall PREFIX=${TwoPiRoot}

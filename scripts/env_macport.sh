@@ -1,6 +1,6 @@
 #!/bin/bash
-CC=cc
-CXX=c++
+CC=gcc
+CXX=g++
 FC=gfortran
 MPICC=mpicc
 MPICXX=mpicxx

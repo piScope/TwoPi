@@ -11,11 +11,10 @@ function send_log() {
     # wget -S --header=$H1  --post-data="{\"repo\" : \"PetraM_RF\"}" $ADDRESS
     #
     # verbose version
-    #  COMMAND="wget -S --header=${H1}  --post-data=${DATA}  ${ADDRESS}"
+    #COMMAND="wget --timeout=10 --tries=2 --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS}"
     # silent version
-    COMMAND="wget --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS} &> /dev/null"
+    COMMAND="wget --timeout=10 --tries=2 --spider --header=${H1}  --post-data=${DATA}  ${ADDRESS} &> /dev/null"
     echo "Note: sending build option info, if you don't want to send it, comment out line 19 in git_access.sh"
-    #echo $COMMAND
     eval $COMMAND
 }
 

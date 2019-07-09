@@ -24,7 +24,10 @@ $MAKE VERBOSE=1 $MAKEOPT
 $MAKE install
 
 # add link to gmsh.py. it seems like there is two possible locations
-cd $TwoPiRoot/lib/python2.7/site-packages
+PYTHON=$TwoPiRoot/bin/python
+PYTHONVERSION=$(${PYTHON} -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
+cd $TwoPiRoot/lib/python${PYTHONVERSION}/site-packages
+
 if [ -L gmsh.py ] ; then
     echo "removing previous link to gmsh.py"
     rm gmsh.py

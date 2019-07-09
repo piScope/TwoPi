@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+#  twopi_env.sh
+#     set enviromental variables to use twopi
+#
+#     this script assumes python exists under $TwoPiRoot/bin
+#     normally this executable is made from virtualenv. but
+#     it could be a link to an executable in other location.
+#
+#     TwoPi install all modules using prefix=$TwoPiRoot
+#     python module is iinstalled in
+#       $TwoPiRoot/lib/pythonA.B/site-packages
+#     A.B is inferred from os.__file__
 
 function ostype() {
     unameOut="$(uname -s)"
@@ -49,13 +61,21 @@ export TwoPiRoot=$TWOPIROOT
 export LD_LIBRARY_PATH=$TwoPiRoot/lib:$LD_LIBRARY_PATH
 export PATH=$TwoPiRoot/bin:$PATH
 
-# this will find lib/pythonA.B (A.B is a version number)
+# we need to find lib/pythonA.B (A.B is a version number)
+# we get this number from os.__file__
 
-PYTHONLIB=$(find $TwoPiRoot/lib -name "python*")
+PYTHON=$TwoPiRoot/bin/python
+PYTHONVERSION=$(${PYTHON} -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
+PYTHONLIB=$TwoPiRoot/lib/python${PYTHONVERSION}
+mkdir -p $PYTHONLIB/site-packages
 export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
 export PetraM=$TwoPiRoot
 export TwoPiGit=git@github.com:piScope
 
 export PS1="("${TWOPIVER}")\\h:\\W \\u$ "
+
+INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
+
+alias piscope="${TwoPiRoot}/bin/piscope -e ${INTERPRETER}"
 

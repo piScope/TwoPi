@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
@@ -13,3 +13,4 @@ cp $OOCTGZ $SRCDIR
 cd  $SRCDIR
 tar -zxvf opencascade-7.3.0.tar.gz
 rm $SRCDIR/opencascade-7.3.0.tar.gz
+

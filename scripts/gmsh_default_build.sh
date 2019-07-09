@@ -15,10 +15,11 @@ $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
           -DCMAKE_C_COMPILER=${CC}            \
           -DCMAKE_CXX_COMPILER=${CXX}         \
           -DENABLE_BUILD_DYNAMIC=1            \
-	  -DENABLE_OS_SPECIFIC_INSTALL=0      \
+	        -DENABLE_OS_SPECIFIC_INSTALL=0      \
+          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib \
+          -DSOCKLEN_T_SIZE=True              \
           -DENABLE_WRAP_PYTHON=1              \
-          -DENABLE_BUILD_SHARED=1             \
-          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib 
+          -DENABLE_BUILD_SHARED=1 
 
 $MAKE VERBOSE=1 $MAKEOPT
 $MAKE install
@@ -35,11 +36,11 @@ if [ -e gmsh.py ]; then
 fi
 
 if [ -f $TwoPiRoot/lib/gmsh.py ]; then
-   ln -s $TwoPiRoot/lib/gmsh.py gmsh.py
-   ln -s $TwoPiRoot/lib/libgmsh.so libgmsh.so
+   ln -snf $TwoPiRoot/lib/gmsh.py gmsh.py
+   ln -snf $TwoPiRoot/lib/libgmsh.so libgmsh.so
 fi
 if [ -f $TwoPiRoot/lib64/gmsh.py ]; then
-   ln -s $TwoPiRoot/lib64/gmsh.py gmsh.py
-   ln -s $TwoPiRoot/lib64/libgmsh.so libgmsh.so
+   ln -snf $TwoPiRoot/lib64/gmsh.py gmsh.py
+   ln -snf $TwoPiRoot/lib64/libgmsh.so libgmsh.so
 fi
 

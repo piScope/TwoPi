@@ -112,11 +112,11 @@ RANLIB  = ranlib
 
 # DEFINE HERE YOUR LAPACK LIBRARY
 
-LAPACK = -llapack
+LAPACK = -lopenblas
 
 # SCALAP should define the SCALAPACK and  BLACS libraries.
 #SCALAP  = -lscalapack -lblacs
-SCALAP  = -L/usr/local/lib -lscalapack 
+SCALAP  = -L${NETLIB_SCALAPACK_ROOT}/lib -lscalapack
 
 # INCLUDE DIRECTORY FOR MPI
 INCPAR  = -I/usr/local/include/
@@ -132,7 +132,7 @@ LIBSEQ  = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
 # DEFINE HERE YOUR BLAS LIBRARY
 
-LIBBLAS = -lblas
+LIBBLAS = -lopenblas
 
 # DEFINE HERE YOUR PTHREAD LIBRARY
 LIBOTHERS = -lpthread

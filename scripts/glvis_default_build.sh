@@ -13,6 +13,8 @@ MAKE=$(command -v make)
 
 cd $REPO
 
+git checkout v3.4
+
 echo "############# configuring glvis"
 
 mkdir -p $REPO/cmbuild

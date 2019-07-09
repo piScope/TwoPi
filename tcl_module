@@ -1,0 +1,39 @@
+#%Module1.0#####################################################################
+##
+## petram modulefile
+##
+conflict       petram
+set            version              a55ae95
+set            phome                /opt/scorec/petram/
+set            pdevice              default
+set            proot                /opt/scorec/petram/twopi_$pdevice
+
+setenv         TwoPiDevice          $pdevice
+setenv         TwoPiRoot            $proot
+setenv         PetraM               $proot
+prepend-path   PATH                 $proot/bin
+append-path    LD_LIBRARY_PATH      $proot/lib/
+prepend-path   PYTHONPATH           $proot/lib/python2.7/site-packages
+
+module load gcc/7.3.0-bt47fwr
+module load mpich/3.2.1-niuhmad
+module load cmake/3.12.1-wfk2b7e
+module load tcl/8.6.8-ubux5te
+module load tk/8.6.8-chn25wl 
+
+module-whatis "Sets up environment for using PetraM (PetraM_Base SHA ${version})"
+
+proc ModulesHelp { } {
+  global version
+  global acuhome
+  global acumachine
+  puts stderr "\tSets up environment for using PetraM (PetraM_Base SHA ${version})"
+  puts stderr "\tDocumentation is available at:"
+  puts stderr "\t  http://piscope.psfc.mit.edu/index.php/"
+  puts stderr "\tSearch for 'launching petram'"
+  puts stderr "\tRun PetraM by first sourcing the python virtual environment"
+  puts stderr "\t  source \$TwoPiRoot/bin/activate"
+  puts stderr "\tand then in the piscope console entering the command"
+  puts stderr "\t  petram()"
+  puts stderr "\tIf all goes well an new window for PetraM should appear."
+}

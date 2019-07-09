@@ -7,10 +7,10 @@ mkdir -p $SRCDIR
 MYPATH=$BASH_SOURCE
 echo $MYPATH
 
-ooc=opencascade-7.2.0.tgz
-OOCTGZ=$(dirname "$MYPATH")/../externals/$ooc
+OOCTGZ=$(dirname "$MYPATH")/../externals/opencascade-7.3.0.tar.gz
 
 cp $OOCTGZ $SRCDIR
 cd  $SRCDIR
-tar xf $ooc
-rm $SRCDIR/$ooc
+tar -zxvf opencascade-7.3.0.tar.gz
+rm $SRCDIR/opencascade-7.3.0.tar.gz
+

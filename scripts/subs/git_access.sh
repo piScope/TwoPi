@@ -24,7 +24,6 @@ function git_clone_or_pull() {
     REPO=$2    
     SRCDIR=$3
 
-
     GIT=$(command -v git)
     mkdir -p $SRCDIR
     cd $SRCDIR

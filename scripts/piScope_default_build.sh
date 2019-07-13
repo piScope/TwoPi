@@ -19,17 +19,6 @@ if ! (python -c "import scipy") ; then
    exit 1
 fi
 
-# import all modules
-pip install wxPython
-pip install matplotlib
-pip install Pillow
-pip install hgapi
-pip install PyOpenGL
-pip install netCDF4
-pip install PyPDF2
-pip install pdfrw
-pip install h5py
-pip install mpi4py
 
 REPO=${piScope_REPO}
 

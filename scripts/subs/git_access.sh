@@ -22,27 +22,59 @@ function git_clone_or_pull() {
     GITREPO=$1
     REPO=$2    
     SRCDIR=$3
+    shift 
+    shift 
+    shift 
 
     GIT=$(command -v git)
     mkdir -p $SRCDIR
     cd $SRCDIR
 
-#    send_log $REPO
+    DO_CHECKOUT=false
+    while [[ $# -gt 0 ]]
+    do
+        key="$1"
+        case $key in
+           --checkout)
+           DO_CHECKOUT=true
+           BRANCH=$2
+           shift # past argument
+           shift # past param
+           ;;
+           *)
+           echo "Unknown option " $key
+           exit 2  #  error_code=2
+           ;;
+        esac
+    done
+
+    
+#   send_log $REPO
     
     if [ ! -d $REPO ]; then
         $GIT clone $GITREPO $REPO    
         cd $SRCDIR/$REPO
+	if $DO_CHECKOUT ;then
+            $GIT checkout $BRANCH
+	fi
     else
-        cd $REPO	
-
-        BRANCH=$($GIT rev-parse --abbrev-ref HEAD)
-        echo ${BRANCH}
+        cd $REPO
+        BRANCH2=$($GIT rev-parse --abbrev-ref HEAD)
+	
         # if it is detached head, road master (mfem repo could be in this case)
-        if [ "$BRANCH" == "HEAD" ]; then
-            BRANCH="master"
+        if [ "$BRANCH2" == "HEAD" ]; then
+            BRANCH2="master"
         fi
+	
+        echo ${BRANCH2}	
+	if $DO_CHECKOUT ;then
+	    if [[ "$BRANCH2" != "$BRANCH" ]]; then
+		$GIT checkout $BRANCH
+	    fi
+	    BRANCH2=$BRANCH
+	fi
 
-        echo "pulling branch = "${BRANCH}
-        $GIT pull origin ${BRANCH}
+        echo "pulling branch = "${BRANCH2}
+        $GIT pull origin ${BRANCH2}
     fi
 }

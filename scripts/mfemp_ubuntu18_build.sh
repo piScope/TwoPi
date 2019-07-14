@@ -19,6 +19,11 @@ mkdir -p $REPO/cmbuild_par
 cd $REPO/cmbuild_par
 rm -rf $REPO/cmbuild_par/*
 
+echo ${TwoPiRoot}
+echo ${TWOPIINC}
+echo ${MPICXX}
+echo ${CXX11FLAG}
+
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
           -DBUILD_SHARED_LIBS=1                                \
           -DMFEM_ENABLE_EXAMPLES=1                             \
@@ -30,8 +35,8 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
           -DMFEM_USE_MPI=1                                     \
 	  -DMFEM_USE_METIS_5=1                                 \
 	  -DMFEM_ENABLE_EXAMPLES=1                             \
-          -DCMAKE_CXX_COMPILER=$MPICXX                         \
-          -DCMAKE_CXX_FLAGS=$CXX11FLAG                         \	  
+          -DCMAKE_CXX_COMPILER=${MPICXX}                       \
+          -DCMAKE_CXX_FLAGS=${CXX11FLAG}                       \
 	  -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-no-as-needed -L$TWOPILIB -lHYPRE -lmetis" \
 	  -DCMAKE_EXE_LINKER_FLAGS="-Wl,-no-as-needed -L$TWOPILIB -lHYPRE -lmetis"
 

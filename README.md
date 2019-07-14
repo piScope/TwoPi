@@ -4,21 +4,18 @@ for piScope/Petra-M. It is made from the collection of install scripts
 to configure various libraries in a coherent way to run Petra-M simulation.
 
 ## Usage
-### Enviromental Variables
-Following variables are used in TwoPi internally 
-```
- export TwoPiDevice=linux #DockerDebian, MITengaging, cori, brew,,,)
- export TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
- export TwoPiRoot=/usr/local/twopi       # install location
-```
-To use piScope/PetraM, one needs to edit PATH and PYTHONPATH.
-```
- # add bin and python path
- export PetraM=$TwoPiRoot
- export PATH=$TwoPiRoot/bin:$PATH        
- export PYTHONPATH=$TwoPiRoot/lib/python2.7/site-packages:$PYTHONPATH
+  
+  1) Initialize PREFIX using twopi-init
 
-```
+  2) source twopi_env.sh
+       this script setup enviromental variabls for TwoPi
+
+         TwoPiDevice=linux #DockerDebian, MITengaging, cori, brew,,,)
+         TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
+         TwoPiRoot=/usr/local/twopi       # install location
+  
+  3) Install packages using twopi-install or twopi-clone/build/clean
+   
 ### Install packages
 
 bin/twopi is the front-end command.
@@ -38,17 +35,17 @@ component (dependency):
    SWIG :
    	install swig 3.0.12
    hypre :
-        install hypre 2.11.2 (shared library)
+        install hypre 2.16.2 (shared library)
    metis : 
         install metis 5.1.0 (shared library)
    parmetis : 
         install parmetis 4.0.3 (shared library)
    OpenCascade :
-        install OOC 7.2.0
+        install OOC 7.3.0
    gmsh:
-        install gmsh 3.0.6
+        install gmsh 4.3.0
    MUMPS (metis, parmetis):
-        install MUMSP 5.1.2
+        install MUMSP 5.2.0
 	Metis/ParMetis BLR OpenMP MPI
    scotch:
         Both static and shared library is installed
@@ -77,7 +74,10 @@ component (dependency):
    PyMFEM:
 
    PetraM_Base:
+       clone --checkout <Branch>
    PetraM_RF:
+       clone --checkout <Branch>   
    PetraM_Geom:
+       clone --checkout <Branch>   
    PetraM_Driver:         
 ```   

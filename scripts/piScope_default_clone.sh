@@ -9,7 +9,15 @@ SRCDIR=${TwoPiRoot}/src
 REPO=${piScope_REPO}
 
 DO_LATEST=true
-BRANCH=master
+
+# check repository branch name
+OPWD=$PWD
+cd $SRCDIR/$REPO
+BRANCH=$($GIT rev-parse --abbrev-ref HEAD)
+if [ "$BRANCH" == "HEAD" ]; then
+   BRANCH="master"
+fi
+cd $OPWD
 
 while [[ $# -gt 0 ]]
 do
@@ -20,7 +28,7 @@ case $key in
     DO_LATEST=true
     shift # past argument    
     ;;
-    -b|--branch)
+    -b|--checkout)
     BRANCH=$2
     shift # past argument    
     shift # past param
@@ -37,7 +45,7 @@ done
 SC=$(dirname "$0")/subs/git_access.sh
 source $SC
 
-git_clone_or_pull "https://github.com/piScope/piScope.git" $REPO $SRCDIR
+git_clone_or_pull "https://github.com/piScope/piScope.git" $REPO $SRCDIR --checkout $BRANCH
 
 if [ ! -f ${SRCDIR}/${REPO} ]; then
    cd ${SRCDIR}/${REPO}

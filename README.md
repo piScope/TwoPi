@@ -70,14 +70,20 @@ component (dependency):
 	      -mpi_root, -mpi_inc, -mpi_lib
 
            
-
+   piScope:
+       clone --checkout <Branch>
+       
    PyMFEM:
 
    PetraM_Base:
        clone --checkout <Branch>
+       
    PetraM_RF:
-       clone --checkout <Branch>   
+       clone --checkout <Branch>
+       
    PetraM_Geom:
-       clone --checkout <Branch>   
-   PetraM_Driver:         
+       clone --checkout <Branch>
+       
+   PetraM_Driver:
+       This modules requires a non-public repository
 ```   

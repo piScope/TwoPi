@@ -14,6 +14,7 @@ pip install PyOpenGL
 pip install netCDF4
 pip install PyPDF2
 pip install pdfrw
+pip install future
 pip install h5py
 
 # mpi4py need to know mpi.h. 

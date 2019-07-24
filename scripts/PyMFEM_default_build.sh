@@ -70,7 +70,7 @@ done
 
 ### 
 # set MPI and Booost related variable (This should happen before cd below)
-source $(dirname $BASH_SOURCE)/subs/find_boost.sh
+#source $(dirname $BASH_SOURCE)/subs/find_boost.sh
 source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
 ###
 

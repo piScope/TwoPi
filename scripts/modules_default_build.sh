@@ -70,6 +70,7 @@ mkdir -p $LOGDIR
 ### debug adjustment...move manually "fi" to skip somesteps  ;D
 SKIPTHIS=0
 if [[ "$SKIPTHIS" -ne "0" ]]; then
+    echo ""
 fi
 
 echo Installing PythonModules ${NO_WX}

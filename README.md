@@ -1,20 +1,30 @@
 # TwoPi
-TwoPi (stands for (p)iScope/(P)etra-M) is a package installer
-for piScope/Petra-M. It is made from the collection of install scripts
-to configure various libraries in a coherent way to run Petra-M simulation.
+TwoPi (stands for (p)iScope/(P)etra-M) is a package installer for piScope/Petra-M.
+It is made from the collection of install scripts to configure various libraries
+in a coherent way to run Petra-M simulation.
 
 ## Usage
-  
-  1) Initialize PREFIX using twopi-init
+  1) Initialize viertualenv using twopi-init
+         bin/twopi init <device> <location>
 
-  2) source twopi_env.sh
+         device : a parameter to specify the cluster/client enviroment
+    	          (ex. MITengaging, cori, brew)
+	 location : install location
+	 
+         ex) bin/twopi init  MITengaging $HOME/twopi_roots/20190724
+	 
+  2) source <location>/bin/twopi_env.sh
        this script setup enviromental variabls for TwoPi
-
-         TwoPiDevice=linux #DockerDebian, MITengaging, cori, brew,,,)
-         TwoPiGit=git@github.com:piScope  # repo for piScope/Petra-M modules
-         TwoPiRoot=/usr/local/twopi       # install location
-  
-  3) Install packages using twopi-install or twopi-clone/build/clean
+         TwoPiDevice : <device> used in step 1
+         TwoPiGit : git repo for piScope/Petra-M modules (default github.com/piscope)
+         TwoPiRoo : <location> used in step 1
+	 
+  3) Install numpy/scipy
+       Petra-M needs numpy/scipy compiled using the same compiler being used to
+       build following components. If the system provided numpy/scipy is not the
+       one built by the same compilere you need to build
+       
+  4) Install packages using twopi-install or twopi-clone/build/clean
    
 ### Install packages
 
@@ -50,7 +60,7 @@ component (dependency):
    scotch:
         Both static and shared library is installed
    strumpack (scotch, metis, parmetis):
-        install Strumpack 2.2.0
+        install Strumpack 3.1.1
 	ParMetis, Scotch are on
    mfem (metis, hypre):
         mfems install serial
@@ -69,7 +79,10 @@ component (dependency):
    	      -boost_root, -boost_inc, -boost_lib,
 	      -mpi_root, -mpi_inc, -mpi_lib
 
-           
+   PythonModule: Python module dependency
+       build : do all pip install   
+       install : same as build
+       
    piScope:
        clone --checkout <Branch>
        
@@ -86,4 +99,7 @@ component (dependency):
        
    PetraM_Driver:
        This modules requires a non-public repository
+
+   modules
+       install
 ```   

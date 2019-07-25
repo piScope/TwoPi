@@ -113,39 +113,9 @@ else
    export MPICHLNK=${MPI_LIB}
 fi
 
-#Boost
-#if [ -z ${BOOST_INC+x} ];then
-#   if [ -z ${BOOST_ROOT+x} ];then
-#       export BOOSTINC=${BOOST_INCLUDE_PATH}
-#   else
-#       export BOOSTINC=${BOOST_ROOT}/include
-#   fi
-#else
-#   export BOOSTINC=${BOOST_INC}
-#fi
-#if [ -z ${BOOST_LIB+x} ];then
-#    if [ -z ${BOOST_ROOT+x} ];then
-#       export BOOSTLIB=${BOOST_LIBRARY_PATH}
-#    else
-#	export BOOSTLIB=${BOOST_ROOT}/lib
-#    fi
-#else
-#   export BOOSTLIB=${BOOST_LIB}
-#fi
-
-# if iostream-mt is avilable use it.
-#if [ -f ${BOOSTLIB}/libboost_iostreams-mt.dylib ];then
-#    export LIBBOOSTIOSTREAMS=boost_iostreams-mt
-#fi
-#if [ -f ${BOOSTLIB}/libboost_iostreams-mt.so ];then
-#    export LIBBOOSTIOSTREAMS=boost_iostreams-mt
-#fi
-
 export CC=${CC}
 export CXX=${CXX}
 export CXX11FLAG=$CXX11FLAG
-
-touch Makefile.local
 
 if $DO_CLEAN_SWIG ;then
     $MAKE cleancxx

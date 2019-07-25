@@ -10,8 +10,6 @@ check_env ()
         echo "TwoPiDevice is not set"
         exit 0
     fi
-    echo "TwoPiRoot: "   ${TwoPiRoot}
-    echo "TwoPiDevice: " ${TwoPiDevice}
     return 1
 }
 
@@ -56,5 +54,8 @@ if [ -f $script ]; then
    if [ "${OPERATION}" = "build" ]; then
        send_log ${COMPONENT} "build" "$*"
    fi    
+   echo "TwoPiRoot: "   ${TwoPiRoot}
+   echo "TwoPiDevice: " ${TwoPiDevice}
+
    $script  $*
 fi

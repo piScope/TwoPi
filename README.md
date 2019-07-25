@@ -24,7 +24,11 @@ in a coherent way to run Petra-M simulation.
        build following components. If the system provided numpy/scipy is not the
        one built by the same compilere you need to build
        
-  4) Install packages using twopi-install or twopi-clone/build/clean
+  4) Install packages 
+       install everything using 
+           bin/twopi install modules
+       or each packages separately by using twopi-install or twopi-clone/build/clean
+
    
 ### Install packages
 
@@ -42,6 +46,21 @@ action:
    install: do above three together
    
 component (dependency):
+   modules : install all packages necessary to setup Petra-M client enviroment
+       PythonModule, OCC, gmsh, hypre, metis, parmetis, MUMPS,
+       mfem (serial/parallel), PyMFEM, PetraM_Base,
+       PetraM_Geom, PetraM_MUMPS, PetraM_RF
+
+       <options>
+       --PyMFEM-branch <branch> : PyMFEM branch 
+       --piScope-branch <branch> : piScope 
+       --PetraM-Repo <repo>     : Petra-M repository (default git@github.com:piScope)
+       --PetraM-branch <branch> : Petra-M branch
+       --no-wx 
+       --no-occ-gmsh 
+       --log-dir <location> : location of log files
+
+
    SWIG :
    	install swig 3.0.12
    hypre :
@@ -100,6 +119,4 @@ component (dependency):
    PetraM_Driver:
        This modules requires a non-public repository
 
-   modules
-       install
 ```   

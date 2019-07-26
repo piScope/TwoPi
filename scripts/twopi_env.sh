@@ -76,6 +76,7 @@ export TwoPiGit=git@github.com:piScope
 export PS1="("${TWOPIVER}")\\h:\\W \\u$ "
 
 INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
+export PYTHONHOME=$TWOPIROOT
 
 alias piscope="${TwoPiRoot}/bin/piscope -e ${INTERPRETER}"
 

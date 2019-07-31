@@ -70,13 +70,15 @@ mkdir -p $LOGDIR
 ### debug adjustment...move manually "fi" to skip somesteps  ;D
 SKIPTHIS=0
 if [[ "$SKIPTHIS" -ne "0" ]]; then
-fi
+    echo ""
+
 
 echo Installing PythonModules ${NO_WX}
 $TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
 
 echo Installing piScope :branch= "${PISCOPE_BRANCH}" 
-$TWOPI install piScope --checkout ${PISCOPE_BRANCH}  > $LOGDIR/piScope.log 2>&1
+$TWOPI clone piScope --checkout ${PISCOPE_BRANCH}  > $LOGDIR/piScope_clone.log 2>&1
+$TWOPI build piScope  > $LOGDIR/piScope_build.log 2>&1
 
 if [[ "$NO_OCC_GMSH" -eq "0" ]]; then
     echo Installing OCC
@@ -86,7 +88,7 @@ if [[ "$NO_OCC_GMSH" -eq "0" ]]; then
     $TWOPI install gmsh       | tee $LOGDIR/gmsh.log 
 else 
     echo skiping OOC/gmsh
-
+fi
 
 echo Installing hypre
 $TWOPI install hypre      | tee $LOGDIR/hypre.log
@@ -114,7 +116,6 @@ echo Installing PyMFEM :branch ="${PYMFEM_BRANCH}"
 $TWOPI clone PyMFEM       
 cd $TwoPiRoot/src/PyMFEM;$GIT checkout $PYMFEM_BRANCH;cd -
 $TWOPI build PyMFEM       | tee $LOGDIR/PyMFEM.log 
-fi 
 
 echo Installing PetraM Modules :repo = "${TwoPiGit}", branch="${PETRAM_BRANCH}"
 export TwoPiGit=$PETRAM_REPO

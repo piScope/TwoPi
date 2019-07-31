@@ -19,11 +19,6 @@ mkdir -p $REPO/cmbuild_par
 cd $REPO/cmbuild_par
 rm -rf $REPO/cmbuild_par/*
 
-echo ${TwoPiRoot}
-echo ${TWOPIINC}
-echo ${MPICXX}
-echo ${CXX11FLAG}
-
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
           -DBUILD_SHARED_LIBS=1                                \
           -DMFEM_ENABLE_EXAMPLES=1                             \

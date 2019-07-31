@@ -56,6 +56,6 @@ if [ -f $script ]; then
    fi    
    echo "TwoPiRoot: "   ${TwoPiRoot}
    echo "TwoPiDevice: " ${TwoPiDevice}
-
+   echo $script  $*
    $script  $*
 fi

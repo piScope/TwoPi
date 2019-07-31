@@ -99,7 +99,10 @@ component (dependency):
 	      -mpi_root, -mpi_inc, -mpi_lib
 
    PythonModule: Python module dependency
-       build : do all pip install   
+       build : do all pip install
+          optinal argments:
+              --force-reinstall: use pip --force-install
+              --no-wx: skip wxPython
        install : same as build
        
    piScope:

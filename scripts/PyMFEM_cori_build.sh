@@ -6,8 +6,9 @@ source $SCRIPT
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
-BOOST_ROOT=/usr/common/software/boost/1.63/gnu/haswell
-MPI_ROOT=/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1
+
+BOOST_ROOT=/usr/common/software/boost/1.70.0/intel/haswell
+MPI_ROOT=/opt/cray/pe/mpt/7.7.8/gni/mpich-intel/16.0
 
 while [[ $# -gt 0 ]]
 do

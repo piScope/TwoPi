@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 SCRIPT=$(dirname $BASH_SOURCE)/env_${TwoPiDevice}.sh
@@ -25,11 +26,6 @@ case $key in
 esac
 done
 
-### 
-# set MPI and Booost related variable (This should happen before cd below)
-#source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
-###
-
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PySTRUMPACK
 
@@ -53,8 +49,11 @@ if $DO_CLEAN_SWIG ;then
 fi
 if $DO_SWIG ;then
     $MAKE cxx
+
     exit 0
 fi
 
+# SCALAPACKLINK must be something like -L<dir> -lxxx
+export SCALAPACKLINK=${MKL_SCALAPACK_LINK}
 
 $PYTHON setup.py install --prefix=${TwoPiRoot}

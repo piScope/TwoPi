@@ -85,18 +85,6 @@ component (dependency):
         mfems install serial
         mfemp install parallel
 	
-        optional argments:
-           -s: build PyMFEM serial (mfem.ser)
-	   -p: build PyMFEM parallel (mfem.par)
-	   
-	   --clean-swig: delete all swig files (need to rerun --run-swig)
-	   --run-swig: generate wrapper codes
-
-           By default, twopi will use Boost and MPI include/link
-	   path found by CMAKE. Following argument can be used
-	   to overwrite these paths
-   	      -boost_root, -boost_inc, -boost_lib,
-	      -mpi_root, -mpi_inc, -mpi_lib
 
    PythonModule: Python module dependency
        build : do all pip install
@@ -109,6 +97,17 @@ component (dependency):
        clone --checkout <Branch>
        
    PyMFEM:
+        optional argments:
+           -s: build PyMFEM serial (mfem.ser)
+	   -p: build PyMFEM parallel (mfem.par)
+	   
+	   --clean-swig: delete all swig files (need to rerun --run-swig)
+	   --run-swig: generate wrapper codes
+
+           By default, twopi will use MPI include/link
+	   path found by CMAKE. Following argument can be used
+	   to overwrite these paths
+	      -mpi_root, -mpi_inc, -mpi_lib
 
    PetraM_Base:
        clone --checkout <Branch>
@@ -118,7 +117,14 @@ component (dependency):
        
    PetraM_Geom:
        clone --checkout <Branch>
-       
+
+   PetraM_MUMPS:
+       clone
+       build
+          option:
+	     --run-swig : generate SWIG wrapper code
+	     --clean-swig : clean SWIG wrapper code
+
    PetraM_Driver:
        This modules requires a non-public repository
 

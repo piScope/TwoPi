@@ -50,11 +50,15 @@ RANLIB = ranlib
 # Make this variable point to the path where the Intel MKL library is
 # installed. It is set to the default install directory for Intel MKL. 
 #MKLROOT=/opt/intel/mkl/lib/intel64
-MKLROOT=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64
+MKLROOT=/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mkl/lib/intel64
 LAPACK = 
 
-SCALAP = -L/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64_lin/ -lmkl_rt
-INCPAR = -I/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/include
+#SCALAP = -L/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mkl/lib/intel64_lin/ -lmkl_rt
+#
+# MKL_SCALAPACK_LINK "-L"${MKLROOT}"/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread"
+#
+SCALAP = $(MKL_SCALAPACK_LINK)
+INCPAR = -I$(MKLROOT)/include
 LIBPAR = $(SCALAP) 
 
 INCSEQ = -I$(topdir)/libseq
@@ -62,7 +66,8 @@ LIBSEQ  = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
 #LIBBLAS = -lblas
 # This line controls somple executalbe build
-LIBBLAS = -L/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64_lin/ -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5
+#LIBBLAS = -L/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mkl/lib/intel64_lin/ -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5
+LIBBLAS = $(MKL_SCALAPACK_LINK)
 LIBOTHERS = -lpthread -lm -ldl
 
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)

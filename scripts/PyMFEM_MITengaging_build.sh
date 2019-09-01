@@ -1,4 +1,8 @@
 #!/bin/bash
+
+SCRIPT=$(dirname $BASH_SOURCE)/env_${TwoPiDevice}.sh
+source $SCRIPT
+
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true

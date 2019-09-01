@@ -73,8 +73,26 @@ export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 export PetraM=$TwoPiRoot
 export TwoPiGit=git@github.com:piScope
 
-export PS1="("${TWOPIVER}")\\h:\\W \\u$ "
+#Prompot
+# Note: Change color code based on following BASH colors
+#Color	Code  Black	0;30
+#              Blue	0;34
+#              Green	0;32
+#              Cyan	0;36
+#              Red	0;31
+#              Purple	0;35
+#              Brown	0;33
+#              Blue	0;34
+#              Green	0;32
+#              Cyan	0;36
+#              Red	0;31
+#              Purple	0;35
+#              Brown	0;33
+PS1="("${TWOPIVER}")"
+PS1="\e[0;32m"${PS1}"\e[m"
+export PS1=${PS1}"\\h:\\W \\u$ "
 
+# this is necessary to luanch piScope with proper framework enviroment
 INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
 export PYTHONHOME=$TWOPIROOT
 

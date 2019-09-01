@@ -1,0 +1,15 @@
+#!/bin/bash
+
+MYSELF=${BASH_SOURCE:-$0}
+STRING=($(which -a hg))
+COMMAND=''
+for i in "${STRING[@]}"; do
+    if [ "$i" != "$MYSELF" ]; then
+        echo "command found " "$i"
+        COMMAND="$i"
+	break
+    fi
+done
+
+unset PYTHONHOME
+$COMMAND "$@"

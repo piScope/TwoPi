@@ -76,4 +76,5 @@ fi
 echo $TwoPiDevice > $TwoPiRoot/etc/devicename
 echo $INTERPRETER > $TwoPiRoot/etc/interpreter
 cp scripts/twopi_env.sh $TwoPiRoot/bin
+cp scripts/hg $TwoPiRoot/bin
 

@@ -78,9 +78,15 @@ component (dependency):
 	Metis/ParMetis BLR OpenMP MPI
    scotch:
         Both static and shared library is installed
+	
    strumpack (scotch, metis, parmetis):
         install Strumpack 3.1.1
-	ParMetis, Scotch are on
+	ParMetis, Scotch are off for now.
+
+   PyStrumpack:
+        clone
+	 
+        
    mfem (metis, hypre):
         mfems install serial
         mfemp install parallel
@@ -123,7 +129,8 @@ component (dependency):
        build
           option:
 	     --run-swig : generate SWIG wrapper code
-	     --clean-swig : clean SWIG wrapper code
+	     --clean-swig : clean SWIG
+	     wrapper code
 
    PetraM_Driver:
        This modules requires a non-public repository

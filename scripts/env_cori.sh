@@ -1,5 +1,8 @@
 #!/bin/bash
-
+CC=icc
+CXX=icpc
+FC=ifort
+FL=ifort
 MPICC=cc
 MPICXX=CC
 MPIFC=ftn

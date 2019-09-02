@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # We use INTEL compiler. $CC, $CXX, $FC are already set by module
-CC=$CC
-CXX=$CXX
-FC=$FC
+CC=icc
+CXX=icpc
+FC=ifort
 MPICC=mpiicc
 MPICXX=mpiicpc
 MPIFC=mpiifort

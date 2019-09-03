@@ -89,8 +89,8 @@ export TwoPiGit=git@github.com:piScope
 #              Purple	0;35
 #              Brown	0;33
 PS1="("${TWOPIVER}")"
-PS1="\e[1;32m"${PS1}"\e[0m"
-export PS1=${PS1}"\\h:\e[01;34m\\W \e[0m\\u\$ "
+PS1="\[\e[1;32m\]"${PS1}"\[\e[0m\]"
+export PS1=${PS1}"\\h:\[\e[01;34m\]\W\[\e[0m\]\u\$ "
 
 # this is necessary to luanch piScope with proper framework enviroment
 INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)

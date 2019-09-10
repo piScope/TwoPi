@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 #  install everything
 #  (usage)  bin/twopi install modules --PyMFEM-branch MFEM4_dev --PetraM-Repo git@github.mit.edu:piScope --piScope-branch py37_prep2 --PetraM-branch MFEM4_dev --no-wx --no-occ-gmsh -log-dir $HOME/logs
@@ -71,7 +70,7 @@ mkdir -p $LOGDIR
 SKIPTHIS=0
 if [[ "$SKIPTHIS" -ne "0" ]]; then
     echo ""
-
+fi
 
 echo Installing PythonModules ${NO_WX}
 $TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
@@ -134,4 +133,3 @@ $TWOPI build PetraM_RF
 echo PetraM_MUMPS
 $TWOPI clone PetraM_MUMPS   |tee $LOGDIR/PetraM_MUMPS.log 2>&1
 $TWOPI build PetraM_MUMPS
-

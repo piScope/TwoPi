@@ -16,6 +16,7 @@ PYMFEM_BRANCH=master
 PETRAM_BRANCH=master
 PISCOPE_BRANCH=master
 NO_WX=""
+NO_PYTHON_MOD=0
 NO_OCC_GMSH=0
 LOGDIR=$HOME/TwoPiInstallLog
 
@@ -53,6 +54,10 @@ case $key in
     NO_WX="--no-wx"
     shift # past param    
     ;;
+    --no-python_mod)
+    NO_PYTHON_MOD=1
+    shift # past param    
+    ;;
     --no-occ-gmsh)
     NO_OCC_GMSH=1
     shift # past param    
@@ -72,8 +77,12 @@ if [[ "$SKIPTHIS" -ne "0" ]]; then
     echo ""
 fi
 
-echo Installing PythonModules ${NO_WX}
-$TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
+if [[ "$NO_PYTHON_MOD" -eq "0" ]]; then
+   echo Installing PythonModules ${NO_WX}
+   $TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
+else 
+    echo skiping all python modules
+fi
 
 echo Installing piScope :branch= "${PISCOPE_BRANCH}" 
 $TWOPI clone piScope --checkout ${PISCOPE_BRANCH}  > $LOGDIR/piScope_clone.log 2>&1

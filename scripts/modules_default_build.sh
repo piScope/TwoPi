@@ -108,7 +108,7 @@ echo Installing parmetis
 $TWOPI install parmetis   | tee $LOGDIR/parmetis.log 
 
 echo Installing MUMPS
-$TWOPI install MUMPS      | tee $LOGDIR/MUMPS.log 
+$TWOPI install-noclean MUMPS      | tee $LOGDIR/MUMPS.log 
 
 echo Downloading MFEM
 $TWOPI clone mfem         | tee  $LOGDIR/mfem_clone.log 

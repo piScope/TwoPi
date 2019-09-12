@@ -15,10 +15,13 @@ MAKEOPT="-j 4"
 #             There is a way to turn-on but it involves
 #             playing with multiple compiler flags.
 OMPFLAG=
-OMPLINKFLAG=
 OMPCXXFLAG=
-OMPCCFLAG=
-OMPFCFLAG=
+#OMPLINKFLAG=
+#OMPCCFLAG=
+#OMPFCFLAG=
+OMPLINKFLAG=-fopenmp
+OMPCCFLAG=-fopenmp
+OMPFCFLAG=-fopenmp
 # if you want to use OpenMP with LLVM 
 #OMPFLAG="-fopenmp"  # -fopenmp (gcc/clang) -qopenmp (intel)
 #OMPFLAG=-fopenmp=libomp

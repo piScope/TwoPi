@@ -9,7 +9,6 @@
 
 _usage() {
     echo 'twopi-init : initialize twopi directory'
-    echo '   usage : piscope [-s] [-r command] [-e exec] [file]'
     echo '   -e : (optional) : python interpreter executable'
     echo '   -o : (optional) : other virtual env option (default: --python=python2.7 --system-site-packages --unzip-setup)'
     echo '   -n : (optional) : no virtualenv'
@@ -76,5 +75,7 @@ fi
 echo $TwoPiDevice > $TwoPiRoot/etc/devicename
 echo $INTERPRETER > $TwoPiRoot/etc/interpreter
 cp scripts/twopi_env.sh $TwoPiRoot/bin
+cp bin/twopi-config $TwoPiRoot/bin
+
 cp scripts/hg $TwoPiRoot/bin
 

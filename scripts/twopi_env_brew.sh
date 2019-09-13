@@ -62,7 +62,7 @@ function safe_realpath() {
 SC="$(safe_realpath  "$BASH_SOURCE")"
 SC="$(dirname $SC)"
 SC="$(dirname $SC)"
-TWOPIVER=TwoPi
+TWOPIVER=TwoPi_$(twopi-config --version)
 
 export TwoPiDevice=brew
 export TwoPiRoot=$SC

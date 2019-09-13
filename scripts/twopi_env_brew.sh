@@ -75,12 +75,12 @@ export TwoPiGit=git@github.com:piScope
 GMSHLIB=$(dirname $(dirname $(dirname $(which gmsh))/$(readlink $(which gmsh))))/lib
 WXLIB=/usr/local/opt/wxpython/libexec/lib/python3.7/site-packages/
 
-export PYTHONPATH=WXLIB:GMSHLIB:$PYTHONPATH
+export PYTHONPATH=$WXLIB:$GMSHLIB:$PYTHONPATH
 
 LLVMBIN=/usr/local/opt/llvm/bin
 PYTHONBIN=/usr/local/opt/python/libexec/bin
 
-export PATH=LLVMLIB:PYTHONBIN:$PATH
+export PATH=$LLVMLIB:$PYTHONBIN:$PATH
 
 #Prompot
 # Note: Change color code based on following BASH colors

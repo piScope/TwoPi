@@ -74,8 +74,12 @@ export TwoPiGit=git@github.com:piScope
 
 GMSHLIB=$(dirname $(dirname $(dirname $(which gmsh))/$(readlink $(which gmsh))))/lib
 WXLIB=/usr/local/opt/wxpython/libexec/lib/python3.7/site-packages/
-
 export PYTHONPATH=$WXLIB:$GMSHLIB:$PYTHONPATH
+
+PYTHONVERSION=$(python3 -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
+PYTHONLIB=$TwoPiRoot/lib/python${PYTHONVERSION}
+mkdir -p $PYTHONLIB/site-packages
+export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
 LLVMBIN=/usr/local/opt/llvm/bin
 PYTHONBIN=/usr/local/opt/python/libexec/bin

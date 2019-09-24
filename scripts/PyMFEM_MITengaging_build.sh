@@ -1,13 +1,26 @@
 #!/bin/bash
+
+SCRIPT=$(dirname $BASH_SOURCE)/env_${TwoPiDevice}.sh
+source $SCRIPT
+
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
-BOOST_ROOT=/usr/local
+DO_SWIG=false
+DO_CLEAN_SWIG=false
 while [[ $# -gt 0 ]]
 do
 key="$1"
 
 case $key in
+    --clean-swig)
+    DO_CLEAN_SWIG=true
+    shift # past argument    
+    ;;
+    --run-swig)
+    DO_SWIG=true
+    shift # past argument    
+    ;;
     -s|--serial)
     DO_SERIAL=true
     DO_DEFAULT=false
@@ -18,10 +31,6 @@ case $key in
     DO_DEFAULT=false
     shift # past argument
     ;;
-    --boost-root)
-    BOOST_ROOT=$2
-    shift # past argument
-    shift # past param
 esac
 done
 
@@ -33,35 +42,40 @@ TWOPIINC=${TwoPiRoot}/include
 
 MAKE=$(command -v make)
 cd $REPO
+
 touch Makefile.local
 
-export MFEM=${TwoPiRoot}/mfem-git/par
-export MFEMBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_par
-export MFEMSER=${TwoPiRoot}/mfem-git/ser
-export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem-git/cmbuild_ser
+export MFEM=${TwoPiRoot}/mfem/par
+export MFEMBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_par
+export MFEMSER=${TwoPiRoot}/mfem/ser
+export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_ser
 export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
-#MPI
-export MPICHINC=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/include
-export MPICHLNK=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mpi/intel64/lib
+export CC=${CC}
+export CXX=${CXX}
+export CXX11FLAG=$CXX11FLAG
 
-#Boost
-export BOOSTINC=/cm/shared/engaging/boost/1.56.0/include
-export BOOSTLIB=/cm/shared/engaging/boost/1.56.0/lib
-
+if $DO_CLEAN_SWIG ;then
+    $MAKE cleancxx
+    exit 0
+fi
+if $DO_SWIG ;then
+    $MAKE sercxx
+    $MAKE parcxx   
+    exit 0
+fi   
 
 if $DO_SERIAL || $DO_DEFAULT ;then
-    $MAKE sercxx
     $MAKE ser
 fi
+
+export CC=${MPICC}
+export CXX=${MPICXX}
 if $DO_PARALLEL || $DO_DEFAULT ;then
-    $MAKE parcxx
     $MAKE par
 fi
-
-mkdir -p ${TwoPiRoot}/lib/python2.7/site-packages
 
 $MAKE pyinstall PREFIX=${TwoPiRoot}

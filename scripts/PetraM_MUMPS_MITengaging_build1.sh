@@ -16,10 +16,12 @@ mkdir -p cmbuild
 cd cmbuild
 
 # use ${SCALAP} in MUMPS Makefile.inc
-MKLROOT=/home/software/intel/2017-01/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64
-LAPACKFLAG="-L"${MKLROOT}" -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core"
+#MKL_SCALAPACK_LINK is defined as "-L"${MKLROOT}"/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread"
+#MKLROOT is set by module load psfc/mkl/18
+#MKLROOT=/home/software/intel/2018-01/compilers_and_libraries_2017.1.163/linux/mkl/lib/intel64
+#LAPACKFLAG="-L"${MKLROOT}" -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core"
 #LAPACKFLAG="-L"${MKLROOT}" -lmkl_rt"
-echo "LAPACKGLAG:"${LAPACKFLAG}
+echo "LAPACKGLAG:"${MKL_SCALAPACK_LINK}
 
 export CC=${MPICC}
 export CXX=${MPICXX}
@@ -28,7 +30,7 @@ export FC=${MPIFC}
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
          -DMETIS_LINK_DIR=${TwoPiRoot}/lib              \
-         -DLAPACK_FLAGS="${LAPACKFLAG}"               \
+         -DLAPACK_FLAGS="${MKL_SCALAPACK_LINK}"               \
          -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib           \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \

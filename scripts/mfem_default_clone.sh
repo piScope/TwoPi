@@ -2,19 +2,21 @@
 #
 # default action is to get mfem-3.4 
 #
-#   ./script/buildcomponent.sh mfem clone (# master mfem 3.4)
+#   ./script/buildcomponent.sh mfem clone (# master mfem 4.0)
 #   ./script/buildcomponent.sh mfem clone -l (# master latest)
 #   ./script/buildcomponent.sh mfem clone -b test -l latest (# test branch latest)
 #   
 
 GIT=$(command -v git)
-REPO="mfem-git"
+REPO="mfem"
 SRCDIR=${TwoPiRoot}/src
 
 DO_LATEST=false
 
 # defualt SHA (v3.4)
-SHA=0715efbaf95990a4e76380ac69337096b1cd347d
+# SHA=0715efbaf95990a4e76380ac69337096b1cd347d
+# defualt SHA (v4.0)
+SHA=4d900b0c5fd6352c92173e74678bcbeeb11c8691
 BRANCH=master
 
 while [[ $# -gt 0 ]]

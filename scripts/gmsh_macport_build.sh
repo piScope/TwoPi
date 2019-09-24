@@ -12,8 +12,8 @@ mkdir -p $REPO/cmbuild
 cd $REPO/cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
           -DCMAKE_INSTALL_RPATH=${TwoPiRoot}  \
-          -DCMAKE_C_COMPILER=${CC}            \
-          -DCMAKE_CXX_COMPILER=${CXX}         \
+          -DCMAKE_C_COMPILER=clang           \
+          -DCMAKE_CXX_COMPILER=clang++         \
           -DENABLE_BUILD_DYNAMIC=1            \
 	  -DENABLE_OS_SPECIFIC_INSTALL=0      \
           -DENABLE_WRAP_PYTHON=1              \

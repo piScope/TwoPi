@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/mfem-git
+REPO=${SRCDIR}/mfem
 TWOPILIB=${TwoPiRoot}/lib
 TWOPIINC=${TwoPiRoot}/include
 

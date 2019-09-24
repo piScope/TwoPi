@@ -6,6 +6,7 @@ SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/${STRUMPACK_REPO}
 
 cd ${REPO}
+
 mkdir -p cmbuild
 
 cd cmbuild 
@@ -21,8 +22,7 @@ cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib \
          -DCMAKE_Fortran_COMPILER=${MPIFC}         \
          -DCMAKE_VERBOSE_MAKEFILE=1                \
          -DBUILD_SHARED_LIBS=on                    \
-         -DSTRUMPACK_USE_PARMETIS=ON               \
-         -DSTRUMPACK_USE_SCOTCH=ON                 \
+	 -DTPL_ENABLE_PARMETIS=off                \
          -DCMAKE_MACOSX_RPATH=false
 
 make VERBOSE=1

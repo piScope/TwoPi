@@ -66,4 +66,10 @@ if [ "$MODE" = "status" ]; then
     #echo "Executing: "$A $COMPONENT
     eval $A $COMPONENT
 fi
+if [ "$MODE" = "init" ]; then
+    COMPONENT="$2"
+    A=$(dirname "$BASH_SOURCE")/twopi-init
+    echo "Executing: " $A "${@:2}"
+    eval $A "${@:2}"
+fi
 

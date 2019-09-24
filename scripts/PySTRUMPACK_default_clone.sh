@@ -1,23 +1,11 @@
 #!/bin/bash
 
-# load env
-SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
-source $SCRIPT
-
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${piScope_REPO}
+REPO="PySTRUMPACK"
 
 DO_LATEST=true
-
-# check repository branch name
-OPWD=$PWD
-cd $SRCDIR/$REPO
-BRANCH=$($GIT rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH" == "HEAD" ]; then
-   BRANCH="master"
-fi
-cd $OPWD
+BRANCH=master
 
 while [[ $# -gt 0 ]]
 do
@@ -28,7 +16,7 @@ case $key in
     DO_LATEST=true
     shift # past argument    
     ;;
-    -b|--checkout)
+    -b|--branch)
     BRANCH=$2
     shift # past argument    
     shift # past param
@@ -45,7 +33,7 @@ done
 SC=$(dirname "$0")/subs/git_access.sh
 source $SC
 
-git_clone_or_pull "https://github.com/piScope/piScope.git" $REPO $SRCDIR --checkout $BRANCH
+git_clone_or_pull "https://github.com/sshiraiwa/PySTRUMPACK.git" $REPO $SRCDIR
 
 if [ ! -f ${SRCDIR}/${REPO} ]; then
    cd ${SRCDIR}/${REPO}
@@ -57,4 +45,3 @@ if [ ! -f ${SRCDIR}/${REPO} ]; then
       $GIT checkout ${SHA}
    fi
 fi
-

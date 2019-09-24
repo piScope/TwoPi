@@ -6,8 +6,10 @@ source $SCRIPT
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
+DO_SWIG=false
+DO_CLEAN_SWIG=false
 
-BOOST_ROOT=/usr/common/software/boost/1.70.0/intel/haswell
+# this option may not be used anymore..?
 MPI_ROOT=/opt/cray/pe/mpt/7.7.8/gni/mpich-intel/16.0
 
 while [[ $# -gt 0 ]]
@@ -15,6 +17,14 @@ do
 key="$1"
 
 case $key in
+    --clean-swig)
+    DO_CLEAN_SWIG=true
+    shift # past argument    
+    ;;
+    --run-swig)
+    DO_SWIG=true
+    shift # past argument    
+    ;;
     -s|--serial)
     DO_SERIAL=true
     DO_DEFAULT=false
@@ -25,16 +35,10 @@ case $key in
     DO_DEFAULT=false
     shift # past argument
     ;;
-    --boost-root)
-    BOOST_ROOT=$2
-    shift # past argument
-    shift # past param
-    ;;
     --mpi-root)
     MPI_ROOT=$2
     shift # past argument
     shift # past param
-
 esac
 done
 
@@ -58,17 +62,29 @@ export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
 
-#MPI
-export MPICHINC=${MPI_ROOT}/include
-export MPICHLNK=${MPI_ROOT}/lib
+export CC=${CC}
+export CXX=${CXX}
+export CXX11FLAG=$CXX11FLAG
 
-#Boost
-export BOOSTINC=${BOOST_ROOT}/include
-export BOOSTLIB=${BOOST_ROOT}/lib
+#export MPICHINC=${MPI_ROOT}/include
+#export MPICHLNK=${MPI_ROOT}/lib
+
+if $DO_CLEAN_SWIG ;then
+    $MAKE cleancxx
+    exit 0
+fi
+
+if $DO_SWIG ;then
+    $MAKE sercxx
+    $MAKE parcxx   
+    exit 0
+fi   
 
 if $DO_SERIAL || $DO_DEFAULT ;then
     $MAKE ser
 fi
+export CC=${MPICC}
+export CXX=${MPICXX}
 if $DO_PARALLEL || $DO_DEFAULT ;then
     $MAKE par
 fi

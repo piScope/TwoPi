@@ -21,7 +21,7 @@ cd cmbuild
 #MKLROOT=/home/software/intel/2018-01/compilers_and_libraries_2017.1.163/linux/mkl/lib/intel64
 #LAPACKFLAG="-L"${MKLROOT}" -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core"
 #LAPACKFLAG="-L"${MKLROOT}" -lmkl_rt"
-echo "LAPACKGLAG:"${MKL_SCALAPACK_LINK}
+echo "LAPACKFLAG:"${MKL_SCALAPACK_LINK}
 
 export CC=${MPICC}
 export CXX=${MPICXX}

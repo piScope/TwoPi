@@ -16,24 +16,39 @@ mkdir -p cmbuild
 cd cmbuild
 
 # use ${SCALAP} in MUMPS Makefile.inc
-LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)
+
+if [ -z "$MUMPS_BLASLAPACK_FLAG" ]
+then
+    # empty
+    LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)
+else
+    LAPACKFLAG=${MUMPS_BLASLAPACK_FLAG}
+fi
+
 echo ${LAPACKFLAG}
 
-export CC=${CC}
-export CXX=${CXX}
-export FC=${FC}
+if [ -z "$MUMPSSOLVE_USE_MPISEQ"]
+then
+    CC1= ${MPICC}
+    CXX1=${MPICXX}
+    FC1=${MPIFC}
+else
+    CC1=${CC}
+    CXX1=${CXX}
+    FC1=${FC}
+fi
 
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
          -DMETIS_LINK_DIR=${TwoPiRoot}/lib              \
          -DLAPACK_FLAGS="${LAPACKFLAG}"               \
-         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib           \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \
          -DOpenMP_LINK_FLAG=${OMPLINKFLAG} \
-         -DCMAKE_Fortran_COMPILER=${MPIFC}  \
-         -DCMAKE_CXX_COMPILER=${MPICXX} \
-	 -DCMAKE_C_COMPILER=${MPICC}
+         -DCMAKE_Fortran_COMPILER=${FC1}  \
+         -DCMAKE_CXX_COMPILER=${CXX1} \
+	 -DCMAKE_C_COMPILER=${CC1}   \
+         -DMUMPSSOLVE_USE_MPISEQ=${MUMPSSOLVE_USE_MPISEQ}
 
 make VERBOSE=1
 make install

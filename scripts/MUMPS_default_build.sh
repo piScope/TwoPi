@@ -12,23 +12,28 @@ source $SCRIPT
 REPO=${SRCDIR}/${MUMPS_REPO}
 
 # find MPI 
-source $(dirname "$0")/subs/find_mpi.sh
+#source $(dirname "$0")/subs/find_mpi.sh
 #source $(dirname "$0")/subs/find_lapack.sh
 
 MYPATH=$BASH_SOURCE
 echo $MYPATH
 
-MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_PAR_Makefile.inc
+MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_Makefile.inc
 if [ ! -f $MAKEINC ]; then
-    MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_default_PAR_Makefile.inc
+    MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_default_Makefile.inc
 fi
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
+$MAKE alllib MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
+      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} $MAKEOPT
 $MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
-      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} \
-      MPI_LIBRARY_PATH=${MPI_LIBRARY_PATH} \
-      MPI_INCLUDE_PATH=${MPI_INCLUDE_PATH}
+      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} $MAKEOPT
+
+#$MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
+#      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} \
+#      MPI_LIBRARY_PATH=${MPI_LIBRARY_PATH} \
+#      MPI_INCLUDE_PATH=${MPI_INCLUDE_PATH}
 
 
 

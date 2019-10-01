@@ -18,13 +18,15 @@ REPO=${SRCDIR}/${MUMPS_REPO}
 MYPATH=$BASH_SOURCE
 echo $MYPATH
 
-MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_PAR_Makefile.inc
+MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_Makefile.inc
 if [ ! -f $MAKEINC ]; then
-    MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_default_PAR_Makefile.inc
+    MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_default_Makefile.inc
 fi
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
+$MAKE alllib MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
+      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG}
 $MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
       OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG}
 

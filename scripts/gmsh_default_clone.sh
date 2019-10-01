@@ -4,6 +4,7 @@ source $SCRIPT
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
+mkdir -p ${TwoPiRoot}/src
 
 cd  $SRCDIR
 wget http://gmsh.info/src/${GMSH}-source.tgz

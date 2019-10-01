@@ -1,27 +1,26 @@
 #!/bin/bash
-CC=gcc
-CXX=c++
-FC=gfortran
+CC=icc
+CXX=icpc
+FC=ifort
 MPICC=mpicc
 MPICXX=mpicxx
 MPIFC=mpif90
 MPIFL=mpif90
-MAKEOPT=""
-OMPFLAG="-fopenmp"
-OMPLINKFLAG=-fopenmp
-OMPCXXFLAG=-fopenmp
-OMPCCFLAG=-fopenmp
-OMPFCFLAG=-fopenmp
-
-# if you want to specify MPI path, instead of having CMAKE to find...
-#MPI_INCLUDE_PATH=/usr/lib/openmpi/include
-#MPI_LIBRARY_PATH=/usr/lib/openmpi/lib
-
-# if you want to specify Boost instead of having CMAKE to find...
-#BOOST_INCLUDE_PATH=/usr/local/inclue
-#BOOST_LIBRARY_PATH=/usr/local/lib
+MAKEOPT="-j 8"
+OMPFLAG="-qopenmp"
+OMPLINKFLAG=-qopenmp
+OMPCXXFLAG=-qopenmp
+OMPCCFLAG=-qopenmp
+OMPFCFLAG=-qopenmp
 
 source $(dirname $BASH_SOURCE)/env_common.sh
-#echo $MPI_INCLUDE_PATH
+
+# based on mkl link adviser, we should not need -lmkl_def
+# but without it, it causes mkl load error at run time
+export MUMPS_BLASLAPACK_FLAG="-L"${MKLROOT}" -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_def"
+
+# we use no-MPI MUMPS and need to build PetraM_MUMPS correspondingly
+export MUMPSSOLVE_USE_MPISEQ=1
+
 
 

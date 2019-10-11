@@ -73,6 +73,11 @@ export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 export PetraM=$TwoPiRoot
 export TwoPiGit=git@github.com:piScope
 
+# this is necessary to luanch piScope with proper framework enviroment
+INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
+export PYTHONHOME=$TWOPIROOT
+alias piscope="${TwoPiRoot}/bin/piscope -e ${INTERPRETER}"
+
 #Prompot
 # Note: Change color code based on following BASH colors
 #Color	Code  Black	0;30
@@ -88,13 +93,14 @@ export TwoPiGit=git@github.com:piScope
 #              Red	0;31
 #              Purple	0;35
 #              Brown	0;33
-PS1="("${TWOPIVER}")"
-PS1="\[\e[1;32m\]"${PS1}"\[\e[0m\]"
-export PS1=${PS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS1="("${TWOPIVER}")"
+PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
+#export PS1=${PS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS2="PS1=\"""${PPS1}""\""
 
-# this is necessary to luanch piScope with proper framework enviroment
-INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
-export PYTHONHOME=$TWOPIROOT
+BASH="$(command -v bash)"
+echo "starting ..." ${BASH}
+${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}")
 
-alias piscope="${TwoPiRoot}/bin/piscope -e ${INTERPRETER}"
 

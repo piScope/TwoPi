@@ -1,4 +1,4 @@
-b#!/bin/bash
+#!/bin/bash
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
@@ -14,9 +14,14 @@ mkdir -p cmbuild
 cd cmbuild
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1         \
           -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
+#          -DCMAKE_C_COMPILER=${CC}            \
+#          -DCMAKE_CXX_COMPILER=${CXX}         \
           -DCMAKE_C_COMPILER=clang            \
           -DCMAKE_CXX_COMPILER=clang++         \
-          -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib	  
+	  -DBUILD_MODULE_Draw=0 \
+	  -DBUILD_MODULE_Visualization=0 \
+	  -DBUILD_MODULE_ApplicationFramework=0 \
+          -DINSTALL_NAME_DIR=${TwoPiRoot}/lib	  
 #          -DCMAKE_C_COMPILER=clang           \
 #          -DCMAKE_CXX_COMPILER=clang++         \
 

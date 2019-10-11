@@ -15,6 +15,7 @@ OMPCCFLAG=-qopenmp
 OMPFCFLAG=-qopenmp
 
 source $(dirname $BASH_SOURCE)/env_common.sh
+
 #echo $MPI_INCLUDE_PATH
 
 

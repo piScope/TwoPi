@@ -1,0 +1,89 @@
+#!/bin/bash
+
+function ostype() {
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:${unameOut}"
+    esac
+    echo ${machine}
+}
+function safe_realpath() {
+   OSTYPE=$(ostype)  
+   if [ -x "$(command -v realpath)" ]; then
+      #echo "realpath found !"
+      realpath $1
+      return
+   fi
+   if [ "$OSTYPE" == "Mac" ]; then
+      # we dont try readlink in Mac since it is different 
+      # readlink (BSD) used in Linuxxa
+      echo "realpath is not avaialbe emulating it with python (Mac)"
+      python -c 'import os,sys;print(os.path.realpath("'"$1"'"))'
+      exit 0
+   fi
+   if [ -x "$(command -v readlink)" ]; then
+      #echo "Using readlink"
+      readlink -f $1
+      return
+   fi
+   # I am not sure if it comes to this fallback...
+   echo "realpath is not avaialbe emulating it with python"
+   python -c 'import os,sys;print(os.path.realpath("'"$1"'"))'
+}
+_usage() {
+    echo 'twopi-config : show config'
+    echo '   usage : twopi-config --root'
+    echo '   usage : twopi-config --env'
+    echo '   usage : twopi-config --version'
+    exit 1
+}
+
+DO_ROOT=0
+DO_VERSION=0
+DO_ENV=0
+
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    --root)
+    DO_ROOT=1	
+    shift # past argument
+    ;;
+    --version)
+    DO_VERSION=1	
+    shift # past argument
+    ;;
+    --env)
+    DO_ENV=1	
+    shift # past argument
+    ;;
+    --help)
+    _usage
+    shift # past argument    
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
+esac
+done
+
+SC="$(safe_realpath  "$BASH_SOURCE")"
+SC="$(dirname $SC)"
+SC="$(dirname $SC)"
+
+if [[ "$DO_ROOT" -ne "0" ]]; then
+    echo $SC
+fi
+if [[ "$DO_VERSION" -ne "0" ]]; then
+    echo $(basename $SC)
+fi
+if [[ "$DO_ENV" -ne "0" ]]; then
+    echo ${SC}/bin/twopi_env.sh
+fi

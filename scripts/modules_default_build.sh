@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 #  install everything
 #  (usage)  bin/twopi install modules --PyMFEM-branch MFEM4_dev --PetraM-Repo git@github.mit.edu:piScope --piScope-branch py37_prep2 --PetraM-branch MFEM4_dev --no-wx --no-occ-gmsh -log-dir $HOME/logs
@@ -17,6 +16,7 @@ PYMFEM_BRANCH=master
 PETRAM_BRANCH=master
 PISCOPE_BRANCH=master
 NO_WX=""
+NO_PYTHON_MOD=0
 NO_OCC_GMSH=0
 LOGDIR=$HOME/TwoPiInstallLog
 
@@ -54,6 +54,10 @@ case $key in
     NO_WX="--no-wx"
     shift # past param    
     ;;
+    --no-python_mod)
+    NO_PYTHON_MOD=1
+    shift # past param    
+    ;;
     --no-occ-gmsh)
     NO_OCC_GMSH=1
     shift # past param    
@@ -71,10 +75,14 @@ mkdir -p $LOGDIR
 SKIPTHIS=0
 if [[ "$SKIPTHIS" -ne "0" ]]; then
     echo ""
+fi
 
-
-echo Installing PythonModules ${NO_WX}
-$TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
+if [[ "$NO_PYTHON_MOD" -eq "0" ]]; then
+   echo Installing PythonModules ${NO_WX}
+   $TWOPI install PythonModule ${NO_WX} | tee $LOGDIR/PythonModule.log
+else 
+    echo skiping all python modules
+fi
 
 echo Installing piScope :branch= "${PISCOPE_BRANCH}" 
 $TWOPI clone piScope --checkout ${PISCOPE_BRANCH}  > $LOGDIR/piScope_clone.log 2>&1
@@ -100,7 +108,7 @@ echo Installing parmetis
 $TWOPI install parmetis   | tee $LOGDIR/parmetis.log 
 
 echo Installing MUMPS
-$TWOPI install MUMPS      | tee $LOGDIR/MUMPS.log 
+$TWOPI install-noclean MUMPS      | tee $LOGDIR/MUMPS.log 
 
 echo Downloading MFEM
 $TWOPI clone mfem         | tee  $LOGDIR/mfem_clone.log 
@@ -134,4 +142,3 @@ $TWOPI build PetraM_RF
 echo PetraM_MUMPS
 $TWOPI clone PetraM_MUMPS   |tee $LOGDIR/PetraM_MUMPS.log 2>&1
 $TWOPI build PetraM_MUMPS
-

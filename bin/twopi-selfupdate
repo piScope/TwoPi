@@ -78,8 +78,8 @@ else
            cd "${TwoPiRoot}"/src/TwoPi
            PREFIX="$TwoPiRoot" make install
            LOCALSHA=$(git rev-parse @)
-	   mkdir -p  "${TwoPiRoot}"/etc/twopi_sha
-           echo "${LOCALSHA}" >a "${TwoPiRoot}"/etc/twopi_sha
+	   mkdir -p  "${TwoPiRoot}"/etc
+           echo "${LOCALSHA}" > "${TwoPiRoot}"/etc/twopi_sha
            rm -rf "${TwoPiRoot}"/src/TwoPi
        fi
    fi

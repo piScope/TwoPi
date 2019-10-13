@@ -71,6 +71,9 @@ else
        fi
        if [ ! -z "${DO_CLONE}" ]; then
            cd "${TwoPiRoot}"/src
+	   if [ -d "${TWOPIBASE}"/src/TwoPi ]; then
+               rm -rf "${TwoPiRoot}"/src/TwoPi
+           fi
            git clone https://github.com/piScope/TwoPi.git
            cd "${TwoPiRoot}"/src/TwoPi
            PREFIX="$TwoPiRoot" make install

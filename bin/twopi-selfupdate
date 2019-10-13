@@ -64,6 +64,8 @@ else
 	   echo "Local SHA: "$LOCALSHA	   
 	   if [ ${REMOTESHA} != ${LOCALSHA} ]; then
                DO_CLONE=1
+           else
+               echo "TwoPi package is up-to-date"
            fi
        else
            echo "twopi_sha is not stored. Downloadig the latest twopi (master)"

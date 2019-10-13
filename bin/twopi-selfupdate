@@ -66,6 +66,7 @@ else
                DO_CLONE=1
            else
                echo "TwoPi package is up-to-date"
+	       #DO_CLONE=1
            fi
        else
            echo "twopi_sha is not stored. Downloadig the latest twopi (master)"

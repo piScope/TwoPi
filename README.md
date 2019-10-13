@@ -44,6 +44,9 @@ action:
    clean : clean working directory
            (typically, make clean or rm -rf cmbuild is called)
    install: do above three together
+   update: update installed package (only for Petra-M modules)
+   status: repository status of Petra-M modules
+   selfupdate : update TwoPi install.
    
 component (dependency):
    modules : install all packages necessary to setup Petra-M client enviroment

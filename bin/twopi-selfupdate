@@ -1,0 +1,82 @@
+#!/bin/bash
+
+#
+#  logic:
+#      1) if .git exist, it does pull.
+#      2) it it doesn't but $TwoPiRoot is set, clone TwoPi in $TwoPiRoot/src and
+#         run make install --prefix=$TwoPiRoot. In this case, $TwoPiRoot/etc/twopi_sha is
+#         used to check the need of download
+#
+
+TWOPIBASE=$(dirname($(dirname "$BASH_SOURCE"))
+OD=${PWD}
+
+
+_usage() {
+    echo 'twopi-selfupdate : load twopi script from repository'
+    echo '   usage : '
+    echo '      $ twopi selfupdate'
+    exit 1
+}
+
+_check_module() {
+   cd "${TWOPIBASE}"
+   UPSTREAM=${2:-'@{u}'}
+   LOCAL=$(git rev-parse @)
+   REMOTE=$(git rev-parse "$UPSTREAM")
+   BASE=$(git merge-base @ "$UPSTREAM")
+
+   if [ $LOCAL = $REMOTE ]; then
+       RES="UpToDate"
+   elif [ $LOCAL = $BASE ]; then
+       RES="NeedToPull"
+   elif [ $REMOTE = $BASE ]; then
+       RES="NeedToPush"
+   else
+       RES="Diverged"
+   fi
+}
+
+
+if [ -d "${TWOPIBASE}"/.git ]; then
+   _check_module
+   if [[ "$RES" == "NeedToPull" ]]; then      
+       if [[ "$DOUPDATE" -ne "0" ]]; then
+          git pull
+       fi
+   elif [[ "$RES" == "UpToDate" ]]; then
+       echo ${i}" is up-to-date"
+   elif [[ "$RES" == "NeedToPush" ]]; then
+       echo ${i}" is ahead of remote, consider to push"
+   elif [[ "$RES" == "Diverged" ]]; then
+       echo ${i}" is diverged. Need to fix it manually"
+   fi
+else
+   if [ -z "${TwoPiRoot}" ]; then
+       echo ".git directory is nof found and TwoPiRoot is not set"
+       exit 1
+   else
+       if [ -f "${TwoPiRoot}"/etc/twopi_sha ]; then
+           REMOTESHA=$(git ls-remote --refs https://github.com/piScope/TwoPi master | cut -f 1)
+	   LOCALSHA=$(cat "${TwoPiRoot}"/etc/twopi_sha)
+	   echo "Testing remote sha"
+	   echo "Remote SHA: "$REMOTESHA
+	   echo "Local SHA: "$LOCALSHA	   
+	   if [ ${REMOTESHA} != ${LOCALSHA} ];
+               DO_CLONE=1
+           fi
+       else
+           echo "twopi_sha is not stored. Downloadig the latest twopi (master)"
+           DO_CLONE=1
+       fi
+       if [ -z "${DO_CLONE}" ]; then
+           cd "${TwoPiRoot}"/src
+           git clone https://github.com/piScope/TwoPi.git
+           cd "${TwoPiRoot}"/src/TwoPi
+           PREFIX="$TwoPiRoot" make install
+           LOCALSHA=$(git rev-parse @)
+           echo "${LOCALSHA}" > "${TwoPiRoot}"/etc/twopi_sha
+       fi
+   fi
+fi
+cd ${OD}

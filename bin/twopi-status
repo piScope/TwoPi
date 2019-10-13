@@ -2,12 +2,39 @@
 #   
 #   Show status of PetraM modules
 #
-if [ $# -eq 1 ]; then
-  declare -a arr=($1)
-else
-  declare -a arr=("PetraM_Base" "PetraM_Geom" "PetraM_RF" "PetraM_MUMPS" "PetraM_Driver")
-fi
 
+_usage() {
+    echo 'twopi-status : status of repositories'
+    echo '   usage:'
+    echo '     to show status of all modules'
+    echo '        $ twopi status '
+    echo '     to specify the module to show'    
+    echo '        $ twopi status <module name>'
+    echo '   options:'
+    echo '        -h|--help : show this help'
+    exit 1
+}   
+
+MODULES=$(dirname $BASH_SOURCE)"/../scripts/list_of_modules.sh"
+source ${MODULES}
+
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+case $key in
+    -h|--help)
+    _usage
+    shift # past argument    
+    ;;
+    *)
+    declare -a arr=($1)
+    shift # past argument    	
+    ;;
+esac
+done
+
+echo "checking status in "${TwoPiRoot}/src
+			
 OD=${PWD}
 for i in "${arr[@]}"
 do 

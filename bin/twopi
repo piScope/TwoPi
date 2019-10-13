@@ -19,10 +19,30 @@
 #
 #     install: do clone -> build (with options) -> clean
 
+_usage() {
+    echo 'twopi : twopi package command'
+    echo '   usage:'
+    echo '      twopi <command> '
+    echo '   command:'
+    echo '      clone:'
+    echo '      build:'
+    echo '      clean:'
+    echo '      status:'
+    echo '      update:'    
+    echo '      init:'
+    echo '   command --help : show help for command'    
+    exit 1
+}   
+
+
 MODE="$1"
 COMPONENT="$2"
 BUILDCOMPONENT=$(dirname "$BASH_SOURCE")/../scripts/buildcomponent.sh 
 
+if [ "$MODE" = "--help" ]; then
+    _usage
+    exit 1
+fi
 if [ "$MODE" = "clone" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
@@ -61,10 +81,22 @@ if [ "$MODE" = "install-noclean" ]; then
     eval $A
 fi
 if [ "$MODE" = "status" ]; then
-    COMPONENT="$2"
-    A=$(dirname "$BASH_SOURCE")/twopi-status
-    #echo "Executing: "$A $COMPONENT
-    eval $A $COMPONENT
+    EXTRA="${@:2}"
+    A=$(dirname "$BASH_SOURCE")/twopi-status"  "${EXTRA}
+    #echo "Executing: "$A
+    eval $A 
+fi
+if [ "$MODE" = "config" ]; then
+    EXTRA="${@:2}"
+    A=$(dirname "$BASH_SOURCE")/twopi-config"  "${EXTRA}
+    #echo "Executing: "$A
+    eval $A 
+fi
+if [ "$MODE" = "update" ]; then
+    EXTRA="${@:2}"
+    A=$(dirname "$BASH_SOURCE")/twopi-update"  "${EXTRA}
+    #echo "Executing: "$A
+    eval $A 
 fi
 if [ "$MODE" = "init" ]; then
     COMPONENT="$2"

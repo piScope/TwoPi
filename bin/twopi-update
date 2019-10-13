@@ -1,0 +1,91 @@
+#!/bin/bash
+
+_usage() {
+    echo 'twopi-update : show if'
+    echo '   usage : '
+    echo '      $ twopi update <module>'
+    echo '      $ twopi update --install  <module>'    
+#    echo '      $ twopi-config --env'
+    exit 1
+}
+
+_update_module() {
+   echo "running update" $1
+   twopi clone $1
+   twopi build $1   
+}
+
+_check_module() {
+   cd ${TwoPiRoot}/src/$1
+   UPSTREAM=${2:-'@{u}'}
+   LOCAL=$(git rev-parse @)
+   REMOTE=$(git rev-parse "$UPSTREAM")
+   BASE=$(git merge-base @ "$UPSTREAM")
+
+   if [ $LOCAL = $REMOTE ]; then
+       RES="UpToDate"
+   elif [ $LOCAL = $BASE ]; then
+       RES="NeedToPull"
+   elif [ $REMOTE = $BASE ]; then
+       RES="NeedToPush"
+   else
+       RES="Diverged"
+   fi
+}
+
+DOCHECK=1
+DOUPDATE=0
+
+MODULES=$(dirname $BASH_SOURCE)"/../scripts/list_of_modules.sh"
+source ${MODULES}
+
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+case $key in
+    -h|--help)
+    _usage
+    shift # past argument    
+    ;;
+    -I|--install)
+    DOUPDATE=1
+    DOCHECK=0
+    shift # past argument    
+    ;;
+    -C|--check)
+    DOUPDATE=0
+    DOCHECK=1
+    shift # past argument    
+    ;;
+    *)
+    declare -a arr=($1)
+    shift # past argument    	
+    ;;
+esac
+done
+
+echo "working in "${TwoPiRoot}/src
+
+OD=${PWD}
+for i in "${arr[@]}"
+do 
+if [ -d ${TwoPiRoot}/src/$i ]; then
+   #echo "#### "${i}" ####"
+   if [[ "$DOCHECK" -ne "0" ]]; then
+       _check_module ${i}
+       #echo $RES
+   fi
+   if [[ "$RES" == "NeedToPull" ]]; then      
+       if [[ "$DOUPDATE" -ne "0" ]]; then
+          _update_module ${i}
+       fi
+   elif [[ "$RES" == "UpToDate" ]]; then
+       echo ${i}" is up-to-date"
+   elif [[ "$RES" == "NeedToPush" ]]; then
+       echo ${i}" is ahead of remote, consider to push"
+   elif [[ "$RES" == "Diverged" ]]; then
+       echo ${i}" is diverged. Need to fix it manually"
+   fi
+fi
+done
+cd ${OD}

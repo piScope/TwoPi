@@ -59,10 +59,12 @@ function safe_realpath() {
    python -c 'import os,sys;print(os.path.realpath("'"$1"'"))'
 }
 
+
 SC="$(safe_realpath  "$BASH_SOURCE")"
 SC="$(dirname $SC)"
 SC="$(dirname $SC)"
-TWOPIVER=TwoPi_$(twopi-config --version)
+VERSION=$(dirname $SC)"
+TWOPIVER=TwoPi_${VERSION}
 
 export TwoPiDevice=brew
 export TwoPiRoot=$SC
@@ -86,6 +88,14 @@ PYTHONBIN=/usr/local/opt/python/libexec/bin
 
 export PATH=$LLVMLIB:$PYTHONBIN:$PATH
 
+# this is necessary to luanch piScope with proper framework enviroment
+INTERPRETER=$(which python3)
+
+# define two alias as text 
+ALIAS_PISCOPE="alias piscope=\"${TwoPiRoot}/bin/piscope -e ${INTERPRETER}\""
+ALIAS_CIAO="alias ciao=\"echo Addio!;exit\""
+ALIAS_TWOPI="alias twopi=\"${TwoPiRoot}/TwoPi/bin/twopi\""
+
 #Prompot
 # Note: Change color code based on following BASH colors
 #Color	Code  Black	0;30
@@ -101,12 +111,18 @@ export PATH=$LLVMLIB:$PYTHONBIN:$PATH
 #              Red	0;31
 #              Purple	0;35
 #              Brown	0;33
-PS1="("${TWOPIVER}")"
-PS1="\[\e[1;32m\]"${PS1}"\[\e[0m\]"
-export PS1=${PS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS1="("${TWOPIVER}")"
+PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
+#export PS1=${PS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+PPS2="PS1=\"""${PPS1}""\""
 
-# this is necessary to luanch piScope with proper framework enviroment
-INTERPRETER=$(which python3)
+#BASH="$(command -v bash)"
+BASH=/bin/bash
+echo "starting ..." ${BASH}
 
-alias piscope="${TwoPiRoot}/bin/piscope -e ${INTERPRETER}"
+${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}"; echo "${ALIAS_TWOPI}")
+
+
+
 

@@ -43,28 +43,29 @@ if [ "$MODE" = "--help" ]; then
     _usage
     exit 1
 fi
+
 if [ "$MODE" = "clone" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
     #echo "Executing: "$A
     eval $A
-fi
-if [ "$MODE" = "build" ]; then
+    
+elif [ "$MODE" = "build" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
     #echo "Executing: "$A
     eval $A
-fi
-if [ "$MODE" = "clean" ]; then
+    
+elif [ "$MODE" = "clean" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
     #echo "Executing: "$A
     eval $A
-fi
-if [ "$MODE" = "install" ]; then
+    
+elif [ "$MODE" = "install" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" clone"
     eval $A
@@ -72,36 +73,48 @@ if [ "$MODE" = "install" ]; then
     eval $A
     A=$BUILDCOMPONENT" "$COMPONENT" clean"
     eval $A
-fi
-if [ "$MODE" = "install-noclean" ]; then
+    
+elif [ "$MODE" = "install-noclean" ]; then
     EXTRA="${@:3}"
     A=$BUILDCOMPONENT" "$COMPONENT" clone"
     eval $A
     A=$BUILDCOMPONENT" "$COMPONENT" build "$EXTRA
     eval $A
-fi
-if [ "$MODE" = "status" ]; then
+
+elif [ "$MODE" = "status" ]; then
     EXTRA="${@:2}"
     A=$(dirname "$BASH_SOURCE")/twopi-status"  "${EXTRA}
     #echo "Executing: "$A
-    eval $A 
-fi
-if [ "$MODE" = "config" ]; then
+    eval $A
+
+elif [ "$MODE" = "config" ]; then
     EXTRA="${@:2}"
     A=$(dirname "$BASH_SOURCE")/twopi-config"  "${EXTRA}
     #echo "Executing: "$A
-    eval $A 
-fi
-if [ "$MODE" = "update" ]; then
+    eval $A
+
+elif [ "$MODE" = "update" ]; then
     EXTRA="${@:2}"
     A=$(dirname "$BASH_SOURCE")/twopi-update"  "${EXTRA}
     #echo "Executing: "$A
-    eval $A 
-fi
-if [ "$MODE" = "init" ]; then
+    eval $A
+
+elif [ "$MODE" = "selfupdate" ]; then
+    EXTRA="${@:2}"
+    A=$(dirname "$BASH_SOURCE")/twopi-selfupdate"  "${EXTRA}
+    #echo "Executing: "$A
+    eval $A
+
+elif [ "$MODE" = "init" ]; then
     COMPONENT="$2"
     A=$(dirname "$BASH_SOURCE")/twopi-init
     echo "Executing: " $A "${@:2}"
     eval $A "${@:2}"
-fi
+
+else
+    echo "Unknown mode :""${MODE}"
+    exit 1
+fi    
+
+
 

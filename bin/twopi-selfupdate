@@ -8,7 +8,7 @@
 #         used to check the need of download
 #
 
-TWOPIBASE=$(dirname($(dirname "$BASH_SOURCE"))
+TWOPIBASE=$(dirname $(dirname "$BASH_SOURCE"))
 OD=${PWD}
 
 
@@ -62,21 +62,24 @@ else
 	   echo "Testing remote sha"
 	   echo "Remote SHA: "$REMOTESHA
 	   echo "Local SHA: "$LOCALSHA	   
-	   if [ ${REMOTESHA} != ${LOCALSHA} ];
+	   if [ ${REMOTESHA} != ${LOCALSHA} ]; then
                DO_CLONE=1
            fi
        else
            echo "twopi_sha is not stored. Downloadig the latest twopi (master)"
            DO_CLONE=1
        fi
-       if [ -z "${DO_CLONE}" ]; then
+       if [ ! -z "${DO_CLONE}" ]; then
            cd "${TwoPiRoot}"/src
            git clone https://github.com/piScope/TwoPi.git
            cd "${TwoPiRoot}"/src/TwoPi
            PREFIX="$TwoPiRoot" make install
            LOCALSHA=$(git rev-parse @)
-           echo "${LOCALSHA}" > "${TwoPiRoot}"/etc/twopi_sha
+	   mkdir -p  "${TwoPiRoot}"/etc/twopi_sha
+           echo "${LOCALSHA}" >a "${TwoPiRoot}"/etc/twopi_sha
+           rm -rf "${TwoPiRoot}"/src/TwoPi
        fi
    fi
 fi
-cd ${OD}
+
+cd  ${OD}

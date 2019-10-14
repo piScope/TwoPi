@@ -41,6 +41,7 @@ fi
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
          -DMETIS_LINK_DIR=${TwoPiRoot}/lib              \
+         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib           \	 
          -DLAPACK_FLAGS="${LAPACKFLAG}"               \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \

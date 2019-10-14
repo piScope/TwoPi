@@ -63,7 +63,7 @@ function safe_realpath() {
 SC="$(safe_realpath  "$BASH_SOURCE")"
 SC="$(dirname $SC)"
 SC="$(dirname $SC)"
-VERSION=$(dirname $SC)"
+VERSION="$(dirname $SC)"
 TWOPIVER=TwoPi_${VERSION}
 
 export TwoPiDevice=brew
@@ -113,7 +113,6 @@ ALIAS_TWOPI="alias twopi=\"${TwoPiRoot}/TwoPi/bin/twopi\""
 #              Brown	0;33
 PPS1="("${TWOPIVER}")"
 PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
-#export PS1=${PS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
 PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
 PPS2="PS1=\"""${PPS1}""\""
 

@@ -29,20 +29,22 @@ echo ${LAPACKFLAG}
 
 if [ -z "$MUMPSSOLVE_USE_MPISEQ"]
 then
-    CC1= ${MPICC}
+    CC1=${MPICC}
     CXX1=${MPICXX}
     FC1=${MPIFC}
+    MUMPSSOLVE_USE_MPISEQ=off
 else
     CC1=${CC}
     CXX1=${CXX}
     FC1=${FC}
 fi
+echo $PWD
 
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
-         -DMETIS_LINK_DIR=${TwoPiRoot}/lib              \
-         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib           \	 
-         -DLAPACK_FLAGS="${LAPACKFLAG}"               \
+         -DMETIS_LINK_DIR=${TwoPiRoot}/lib          \
+         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib       \
+	 -DLAPACK_FLAGS="${LAPACKFLAG}"             \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \
          -DOpenMP_LINK_FLAG=${OMPLINKFLAG} \

@@ -105,7 +105,7 @@ PPS2="PS1=\"""${PPS1}""\""
 BASH="$(command -v bash)"
 echo "starting ..." ${BASH}
 
-${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO})"
+${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}")
 
 
 

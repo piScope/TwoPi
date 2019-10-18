@@ -9,14 +9,17 @@ _usage() {
     exit 1
 }
 
+TWOPI=${TwoPiRoot}/TwoPi/bin/twopi
+
 _update_module() {
    echo "running update" $1
-   twopi clone $1
-   twopi build $1   
+   $TWOPI clone $1
+   $TWOPI build $1   
 }
 
 _check_module() {
    cd ${TwoPiRoot}/src/$1
+   git fetch
    UPSTREAM=${2:-'@{u}'}
    LOCAL=$(git rev-parse @)
    REMOTE=$(git rev-parse "$UPSTREAM")
@@ -49,7 +52,7 @@ case $key in
     ;;
     -I|--install)
     DOUPDATE=1
-    DOCHECK=0
+    DOCHECK=1
     shift # past argument    
     ;;
     -C|--check)
@@ -77,7 +80,9 @@ if [ -d ${TwoPiRoot}/src/$i ]; then
    fi
    if [[ "$RES" == "NeedToPull" ]]; then      
        if [[ "$DOUPDATE" -ne "0" ]]; then
-          _update_module ${i}
+           _update_module ${i}
+       else
+           echo ${i}" need to pull"
        fi
    elif [[ "$RES" == "UpToDate" ]]; then
        echo ${i}" is up-to-date"

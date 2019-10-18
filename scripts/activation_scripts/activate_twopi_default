@@ -80,6 +80,7 @@ export PYTHONHOME=$TWOPIROOT
 # define two alias as text 
 ALIAS_PISCOPE="alias piscope=\"${TwoPiRoot}/bin/piscope -e ${INTERPRETER}\""
 ALIAS_CIAO="alias ciao=\"echo Addio!;exit\""
+ALIAS_TWOPI="alias twopi=\"${TwoPiRoot}/TwoPi/bin/twopi\""
 
 #Prompot
 # Note: Change color code based on following BASH colors
@@ -105,7 +106,7 @@ PPS2="PS1=\"""${PPS1}""\""
 BASH="$(command -v bash)"
 echo "starting ..." ${BASH}
 
-${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}")
+${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}"; echo "${ALIAS_TWOPI}")
 
 
 

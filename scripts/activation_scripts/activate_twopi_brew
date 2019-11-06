@@ -70,6 +70,13 @@ export TwoPiDevice=brew
 export TwoPiRoot=$SC
 
 export LD_LIBRARY_PATH=$TwoPiRoot/lib:$LD_LIBRARY_PATH
+
+## this is purposly added at the very end to use futurize. but not to use pytonn in
+## venv
+PATH2=$TwoPiRoot/libexec/bin
+if [ -d ${PATH2} ]; then
+    export PATH=$PATH:$PATH2
+fi
 export PATH=$TwoPiRoot/bin:$PATH
 
 export TwoPiGit=git@github.com:piScope

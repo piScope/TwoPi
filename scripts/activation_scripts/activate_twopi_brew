@@ -63,13 +63,20 @@ function safe_realpath() {
 SC="$(safe_realpath  "$BASH_SOURCE")"
 SC="$(dirname $SC)"
 SC="$(dirname $SC)"
-VERSION="$(dirname $SC)"
+VERSION="$(basename $SC)"
 TWOPIVER=TwoPi_${VERSION}
 
 export TwoPiDevice=brew
 export TwoPiRoot=$SC
 
 export LD_LIBRARY_PATH=$TwoPiRoot/lib:$LD_LIBRARY_PATH
+
+## this is purposly added at the very end to use futurize. but not to use pytonn in
+## venv
+PATH2=$TwoPiRoot/libexec/bin
+if [ -d ${PATH2} ]; then
+    export PATH=$PATH:$PATH2
+fi
 export PATH=$TwoPiRoot/bin:$PATH
 
 export TwoPiGit=git@github.com:piScope
@@ -79,9 +86,15 @@ WXLIB=/usr/local/opt/wxpython/libexec/lib/python3.7/site-packages/
 export PYTHONPATH=$WXLIB:$GMSHLIB:$PYTHONPATH
 
 PYTHONVERSION=$(python3 -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
-PYTHONLIB=$TwoPiRoot/lib/python${PYTHONVERSION}
-mkdir -p $PYTHONLIB/site-packages
-export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
+PYTHONLIB1=$TwoPiRoot/lib/python${PYTHONVERSION}
+mkdir -p $PYTHONLIB1/site-packages
+PYTHONLIB2=$TwoPiRoot/libexec/lib/python${PYTHONVERSION}
+
+if [ -d ${PYTHONLIB2} ]; then
+    export PYTHONPATH=$PYTHONLIB1/site-packages:$PYTHONLIB2/site-packages:$PYTHONPATH
+else
+    export PYTHONPATH=$PYTHONLIB1/site-packages:$PYTHONPATH
+fi
 
 LLVMBIN=/usr/local/opt/llvm/bin
 PYTHONBIN=/usr/local/opt/python/libexec/bin
@@ -111,16 +124,40 @@ ALIAS_TWOPI="alias twopi=\"${TwoPiRoot}/TwoPi/bin/twopi\""
 #              Red	0;31
 #              Purple	0;35
 #              Brown	0;33
-PPS1="("${TWOPIVER}")"
-PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
-PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
-PPS2="PS1=\"""${PPS1}""\""
 
-#BASH="$(command -v bash)"
-BASH=/bin/bash
-echo "starting ..." ${BASH}
+echo "starting ..." ${SHELL}
+if [[ ${SHELL: (4)} == "/zsh" ]]; then
+    PPS1="("${TWOPIVER}")""%n@%m %1~ %# "
+    PPS2="PS1=\"""${PPS1}""\""
+    
+    RC=""
+    if [[ -f $HOME/.zshrc ]]; then
+	RC=$(cat ~/.zshrc);
+    fi
+    mkdir -p $HOME/.zshrc_twopi
+    echo ${RC} > $HOME/.zshrc_twopi/.zshrc
+    echo "${PPS2}" >> $HOME/.zshrc_twopi/.zshrc    
+    echo "${ALIAS_PISCOPE}" >> $HOME/.zshrc_twopi/.zshrc
+    echo "${ALIAS_CIAO}" >> $HOME/.zshrc_twopi/.zshrc
+    echo "${ALIAS_TWOPI}" >> $HOME/.zshrc_twopi/.zshrc
+    ZDOTDIR=$HOME/.zshrc_twopi zsh
+else
+    PPS1="("${TWOPIVER}")"
+    PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
+    PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+    PPS2="PS1=\"""${PPS1}""\""
 
-${BASH} --rcfile <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}"; echo "${ALIAS_TWOPI}")
+    if [[ -f $HOME/.bashrc ]]; then
+        /bin/bash --rcfile  <(cat ~/.bashrc; echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}"; echo "${ALIAS_TWOPI}")    	
+    else
+        /bin/bash --rcfile  <(echo "${PPS2}"; echo "${ALIAS_PISCOPE}"; echo "${ALIAS_CIAO}"; echo "${ALIAS_TWOPI}")    	
+    fi
+fi    
+
+
+
+
+
 
 
 

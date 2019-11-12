@@ -29,11 +29,11 @@ export FC=${MPIFC}
 
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
-         -DMETIS_LINK_DIR=${TwoPiRoot}/lib              \
-         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib           \	 
-         -DLAPACK_FLAGS="${MKL_SCALAPACK_LINK}"               \
+         -DMETIS_LINK_DIR=${TwoPiRoot}/lib         \
+         -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib    \
+         -DLAPACK_FLAGS="${MKL_SCALAPACK_LINK}"   \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
-         -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \
+         -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib \
          -DOpenMP_LINK_FLAG=${OMPLINKFLAG} \
          -DCMAKE_Fortran_COMPILER=${MPIFC}  \
          -DCMAKE_CXX_COMPILER=${MPICXX}     \

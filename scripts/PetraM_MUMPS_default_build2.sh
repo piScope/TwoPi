@@ -13,9 +13,10 @@ source $(dirname "$0")/env_${TwoPiDevice}.sh
 MAKE=$(command -v make)
 cd $REPO
 
+
 make MUMPS_SOLVE_DIR=${TwoPiRoot}/lib \
-     MUMPS_INC_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include/ \
-#     MPI_INC_DIR=${MPI_INCLUDE_PATH} \
+     MUMPS_INC_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
      MPICXX=${MPICXX} \
-     MPICC=${MPICC}
+     MPICC=${MPICC}  
+
 make install PREFIX=${TwoPiRoot}

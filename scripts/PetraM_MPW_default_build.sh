@@ -1,0 +1,50 @@
+#!/bin/bash
+
+SRCDIR=${TwoPiRoot}/src
+REPO=${SRCDIR}/PetraM_MPW
+MAKE=$(command -v make)
+
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
+
+cd $REPO
+
+echo ${TwoPiRoot}
+export PetraM=${TwoPiRoot}
+
+DO_DEFAULT=true
+DO_SWIG=false
+DO_CLEAN_SWIG=false
+
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --clean-swig)
+    DO_CLEAN_SWIG=true
+    DO_DEFAULT=false	
+    shift # past argument    
+    ;;
+    --run-swig)
+    DO_SWIG=true
+    DO_DEFAULT=false		
+    shift # past argument    
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
+esac
+done
+
+if $DO_CLEAN_SWIG ;then
+    $MAKE clean_so PREFIX=${TwoPiRoot} MPICC=${MPICC} MPICXX=${MPICXX} CC=${CC} CXX=${CXX}
+fi
+if $DO_SWIG ;then
+    $MAKE cxx PREFIX=${TwoPiRoot} MPICC=${MPICC} MPICXX=${MPICXX} CC=${CC} CXX=${CXX}
+fi
+if $DO_DEFAULT ;then
+    $MAKE PREFIX=${TwoPiRoot} MPICC=${MPICC} MPICXX=${MPICXX} CC=${CC} CXX=${CXX}
+fi
+
+

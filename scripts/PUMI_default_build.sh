@@ -35,6 +35,8 @@ case $key in
 esac
 done
 
+echo what is this "${ENABLE_SIMMETRIX}"
+
 if $DO_TEST ;then
     cmake .. -DSCOREC_CXX_WARNINGS=OFF   \
              -DCMAKE_C_COMPILER="${MPICC}"    \
@@ -46,7 +48,7 @@ if $DO_TEST ;then
              -DBUILD_SHARED_LIBS=on   \
              -DCMAKE_VERBOSE_MAKEFILE=1 \
              -DIS_TESTING=ON \
-	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \	     
+	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
 #             -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
              -DCMAKE_BUILD_TYPE="Debug" 
 else

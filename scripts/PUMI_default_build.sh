@@ -9,8 +9,8 @@ source $SCRIPT
 
 cd $REPO
 mkdir -p cmbuild
+cd $REPO/cmbuild
 
-echo ${TwoPiRoot}
 export PetraM=${TwoPiRoot}
 
 cmake .. -DSCOREC_CXX_WARNINGS=OFF   \

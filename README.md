@@ -97,6 +97,10 @@ component (dependency):
 	
    PUMI-MESHES 
         clone : 
+   PUMI-PYTHON
+        (no clone, this is part of SCOREC/core, need to swith python_wrapper baranch)
+        build
+	clean
 	
    mfem (metis, hypre):
         mfems install serial

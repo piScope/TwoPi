@@ -43,11 +43,11 @@ if $DO_TEST ;then
 	     -DSCOREC_CXX_OPTIMIZE=ON       \
              -DSCOREC_CXX_WARNINGS=ON       \
              -DCMAKE_INSTALL_PREFIX="${TwoPiRoot}" \
-             -DBUILD_SHARED_LIBS=on   \
-             -DCMAKE_VERBOSE_MAKEFILE=1 \
-             -DIS_TESTING=ON \
-	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \	     
-             -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
+#             -DBUILD_SHARED_LIBS=on   \
+#             -DCMAKE_VERBOSE_MAKEFILE=1 \
+#             -DIS_TESTING=ON \
+#	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \	     
+#             -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
              -DCMAKE_BUILD_TYPE="Debug" 
 else
     cmake .. -DSCOREC_CXX_WARNINGS=OFF   \

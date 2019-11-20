@@ -35,8 +35,6 @@ case $key in
 esac
 done
 
-echo what is this "${TwoPiRoot}"/src/PUMI-MESHES \
-
 if $DO_TEST ;then
     cmake .. -DSCOREC_CXX_WARNINGS=OFF   \
              -DCMAKE_C_COMPILER="${MPICC}"    \

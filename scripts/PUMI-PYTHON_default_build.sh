@@ -30,13 +30,11 @@ case $key in
 esac
 done
 
-echo what is this "${TwoPiRoot}"/src/PUMI-MESHES \
-
 cmake .. \
   -DSCOREC_PREFIX="${TwoPiRoot}" \
   -DCMAKE_INSTALL_PREFIX="${TwoPiRoot}" \
   -DCMAKE_C_COMPILER="${MPICC}" \
-  -DCMAKE_CXX_COMPILER="${MPICXX}} \
+  -DCMAKE_CXX_COMPILER="${MPICXX}" \
   -DENABLE_SIMX="${ENABLE_SIMMETRIX}" \
   -DSIM_MPI=mpich3.3 \
   -DENABLE_PYTHON=ON

@@ -91,7 +91,7 @@ component (dependency):
 	 
    PUMI
         clone : https://github.com/SCOREC/core.git
-	build
+	build : option --with-test : run test
 	clean
 	
    mfem (metis, hypre):

@@ -49,7 +49,7 @@ if $DO_TEST ;then
              -DCMAKE_VERBOSE_MAKEFILE=1 \
              -DIS_TESTING=ON \
 	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
-#             -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
+             -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
              -DCMAKE_BUILD_TYPE="Debug" 
 else
     cmake .. -DSCOREC_CXX_WARNINGS=OFF   \

@@ -5,7 +5,7 @@ SRCDIR=${TwoPiRoot}/src
 
 mkdir -p $SRCDIR
 cd $SRCDIR
-wget http://github.com/swig/swig/archive/rel-3.0.12.tar.gz
-tar -zxvf rel-3.0.12.tar.gz
-rm rel-3.0.12.tar.gz
+wget http://github.com/swig/swig/archive/rel-4.0.1.tar.gz
+tar -zxvf rel-4.0.1.tar.gz
+rm rel-4.0.1.tar.gz
 

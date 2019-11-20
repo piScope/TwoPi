@@ -89,7 +89,11 @@ component (dependency):
    PyStrumpack:
         clone
 	 
-        
+   PUMI
+        clone : https://github.com/SCOREC/core.git
+	build
+	clean
+	
    mfem (metis, hypre):
         mfems install serial
         mfemp install parallel

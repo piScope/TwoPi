@@ -144,7 +144,7 @@ if [[ ${SHELL: (4)} == "/zsh" ]]; then
 else
     PPS1="("${TWOPIVER}")"
     PPS1="\[\e[1;32m\]"${PPS1}"\[\e[0m\]"
-    PPS1=${PPS1}"\\h:\[\e[01;34m\]\w \[\e[0m\]\u\$ "
+    PPS1=${PPS1}"\\h:\[\e[01;34m\]\W \[\e[0m\]\u\$ "
     PPS2="PS1=\"""${PPS1}""\""
 
     if [[ -f $HOME/.bashrc ]]; then

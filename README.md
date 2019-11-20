@@ -91,8 +91,12 @@ component (dependency):
 	 
    PUMI
         clone : https://github.com/SCOREC/core.git
-	build : option --with-test : run test
+	build : option --with-test : run test (need to have PUMI-MESHES cloned)
+	               --with-simmetrix : 
 	clean
+	
+   PUMI-MESHES 
+        clone : 
 	
    mfem (metis, hypre):
         mfems install serial

@@ -61,5 +61,5 @@ else
              -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
              -DCMAKE_VERBOSE_MAKEFILE=1 
 fi
-make 
+make "${MAKEOPT}"
 make install

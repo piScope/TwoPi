@@ -96,6 +96,9 @@ export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
+export ENABLE_PUMI="${ENABLE_PUMI}"
+export PUMIINC="${PUMI_INC}"
+export PUMILIB="${PUMI_LIB}"
 
 #MPI
 if [ -z ${MPI_INC+x} ];then

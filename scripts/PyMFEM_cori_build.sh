@@ -10,7 +10,7 @@ DO_SWIG=false
 DO_CLEAN_SWIG=false
 
 PUMI_INC="$TwoPiRoot"/include
-PUMI_LNK="$TwoPiRoot"/lib
+PUMI_LIB="$TwoPiRoot"/lib
 
 # this option may not be used anymore..?
 MPI_ROOT=/opt/cray/pe/mpt/7.7.8/gni/mpich-intel/16.0
@@ -48,7 +48,7 @@ case $key in
     ;;
     --pumi-include)
     ENABLE_PUMI=yes
-    PUMI_INC=$2
+    PUMI_LIB=$2
     shift # past argument    
     shift # past param
     ;;

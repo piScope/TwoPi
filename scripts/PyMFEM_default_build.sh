@@ -10,7 +10,7 @@ DO_SWIG=false
 DO_CLEAN_SWIG=false
 
 PUMI_INC="$TwoPiRoot"/include
-PUMI_LNK="$TwoPiRoot"/lib
+PUMI_LIB="$TwoPiRoot"/lib
 
 while [[ $# -gt 0 ]]
 do
@@ -46,7 +46,7 @@ case $key in
     ;;
     --pumi-lib)
     ENABLE_PUMI=yes
-    PUMI_LNK=$2
+    PUMI_LIB=$2
     shift # past argument    
     shift # past param
     ;;

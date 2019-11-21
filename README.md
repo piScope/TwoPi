@@ -91,8 +91,10 @@ component (dependency):
 	 
    PUMI
         clone : https://github.com/SCOREC/core.git
-	build : option --with-test : run test (need to have PUMI-MESHES cloned)
-	               --with-simmetrix : 
+	build :
+          optinal argments:
+	     --with-test : run test (need to have PUMI-MESHES cloned)
+	     --with-simmetrix : 
 	clean
 	
    PUMI-MESHES 
@@ -105,7 +107,8 @@ component (dependency):
    mfem (metis, hypre):
         mfems install serial
         mfemp install parallel
-	
+          optinal argments:
+	      --with-pumi : use pumi
 
    PythonModule: Python module dependency
        build : do all pip install

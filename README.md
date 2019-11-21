@@ -133,6 +133,10 @@ component (dependency):
 	   to overwrite these paths
 	      -mpi_root, -mpi_inc, -mpi_lib
 
+           --with-pumi: compile with pumi
+	   --pumi-include: PUMI include dir
+	   --pumi-lib: PUMI lib dir
+
    PetraM_Base:
        clone --checkout <Branch>
        

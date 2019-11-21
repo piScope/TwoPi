@@ -9,6 +9,9 @@ DO_DEFAULT=true
 DO_SWIG=false
 DO_CLEAN_SWIG=false
 
+PUMI_INC="$TwoPiRoot"/include
+PUMI_LNK="$TwoPiRoot"/lib
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -31,21 +34,22 @@ case $key in
     DO_DEFAULT=false
     shift # past argument
     ;;
-    #--boost-root)
-    #BOOST_ROOT=$2
-    #shift # past argument
-    #shift # past param
-    #;;
-    #--boost-lib)
-    #BOOST_LIB=$2
-    #shift # past argument
-    #shift # past param
-    #;;
-    #--boost-inc)
-    #BOOST_INC=$2
-    #shift # past argument
-    #shift # past param
-    #;;
+    --with-pumi)
+    ENABLE_PUMI=yes	
+    shift # past argument
+    ;;
+    --pumi-include)
+    ENABLE_PUMI=yes
+    PUMI_INC=$2
+    shift # past argument    
+    shift # past param
+    ;;
+    --pumi-lib)
+    ENABLE_PUMI=yes
+    PUMI_LNK=$2
+    shift # past argument    
+    shift # past param
+    ;;
     --mpi-root)
     MPI_ROOT=$2
     shift # past argument

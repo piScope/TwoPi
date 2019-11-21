@@ -48,6 +48,7 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
 	  -DMFEM_USE_METIS_5=1                                 \
 	  -DMFEM_ENABLE_EXAMPLES=1                             \
           -DMFEM_USE_PUMI="${WITH_PUMI}"                       \
+ 	  -DPUMI_DIR="${TwoPiRoot}"                            \
           -DCMAKE_CXX_COMPILER=$MPICXX                         \
           -DCMAKE_CXX_FLAGS=$CXX11FLAG                         \
 	  -DCMAKE_SHARED_LINKER_FLAGS="-L$TWOPILIB -lHYPRE -lmetis" \

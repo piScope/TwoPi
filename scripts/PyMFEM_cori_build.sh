@@ -9,6 +9,9 @@ DO_DEFAULT=true
 DO_SWIG=false
 DO_CLEAN_SWIG=false
 
+PUMI_INC="$TwoPiRoot"/include
+PUMI_LNK="$TwoPiRoot"/lib
+
 # this option may not be used anymore..?
 MPI_ROOT=/opt/cray/pe/mpt/7.7.8/gni/mpich-intel/16.0
 
@@ -39,6 +42,26 @@ case $key in
     MPI_ROOT=$2
     shift # past argument
     shift # past param
+    --with-pumi)
+    ENABLE_PUMI=yes	
+    shift # past argument
+    ;;
+    --pumi-include)
+    ENABLE_PUMI=yes
+    PUMI_INC=$2
+    shift # past argument    
+    shift # past param
+    ;;
+    --pumi-lib)
+    ENABLE_PUMI=yes
+    PUMI_LNK=$2
+    shift # past argument    
+    shift # past param
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
 esac
 done
 
@@ -61,6 +84,9 @@ export HYPREINC=$TWOPIINC
 export HYPRELIB=$TWOPILIB
 export METIS5INC=$TWOPIINC
 export METIS5LIB=$TWOPILIB
+export ENABLE_PUMI="${ENABLE_PUMI}"
+export PUMIINC="${PUMI_INC}"
+export PUMILIB="${PUMI_LIB}"
 
 export CC=${CC}
 export CXX=${CXX}

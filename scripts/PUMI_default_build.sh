@@ -33,7 +33,8 @@ case $key in
     --simmetrix-lib)
     SIMMETRIX_LIB_DIR=$2
     shift # past argument
-    shift # past argument    	
+    shift # past argument
+    ;;
     *)
     echo "Unknown option " $key
     exit 2  #  error_code=2

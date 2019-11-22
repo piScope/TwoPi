@@ -74,5 +74,6 @@ else
 	     -DSIMMETRIX_LIB_DIR="${SIMMETRIX_LIB_DIR}"  \
              -DCMAKE_VERBOSE_MAKEFILE=1 
 fi
+echo "${MAKEOPT}"
 make "${MAKEOPT}"
 make install

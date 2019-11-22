@@ -56,6 +56,7 @@ if $DO_TEST ;then
 	     -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
              -DSIM_PARASOLID="${ENABLE_PARASOLID}"   \
 	     -DSIMMETRIX_LIB_DIR="${SIMMETRIX_LIB_DIR}"  \
+             -DSIM_MPI=mpich3 \
              -DMESHES="${TwoPiRoot}"/src/PUMI-MESHES \
              -DCMAKE_BUILD_TYPE="Debug" 
 else
@@ -69,6 +70,7 @@ else
              -DBUILD_SHARED_LIBS=on   \
              -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
              -DSIM_PARASOLID="${ENABLE_PARASOLID}"   \
+             -DSIM_MPI=mpich3 \
 	     -DSIMMETRIX_LIB_DIR="${SIMMETRIX_LIB_DIR}"  \
              -DCMAKE_VERBOSE_MAKEFILE=1 
 fi

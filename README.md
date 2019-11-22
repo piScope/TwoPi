@@ -134,8 +134,8 @@ component (dependency):
 	      -mpi_root, -mpi_inc, -mpi_lib
 
            --with-pumi: compile with pumi
-	   --pumi-include: PUMI include dir
-	   --pumi-lib: PUMI lib dir
+	   --pumi-include: PUMI include dir (default is $TwoPiRoot/include)
+	   --pumi-lib: PUMI lib dir (default is $TwoPiRoot/lib)
 
    PetraM_Base:
        clone --checkout <Branch>

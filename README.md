@@ -94,7 +94,8 @@ component (dependency):
 	build :
           optinal argments:
 	     --with-test : run test (need to have PUMI-MESHES cloned)
-	     --with-simmetrix : 
+	     --with-simmetrix :
+	     --simmetrix-lib <dir>: simmetrix library location
 	clean
 	
    PUMI-MESHES 

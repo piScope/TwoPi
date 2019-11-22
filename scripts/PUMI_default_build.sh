@@ -42,6 +42,21 @@ case $key in
 esac
 done
 
+export LIBRARY_PATH=/opt/SimModSuite/15.0-191017dev/lib:$LIBRARY_PATH
+export CPATH=/opt/SimModSuite/15.0-191017dev/include:$CPATH
+
+export LD_LIBRARY_PATH=/opt/SimModSuite/15.0-191017dev/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/SimModSuite/15.0-191017dev/lib/acisKrnl
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/SimModSuite/15.0-191017dev/lib/psKrnl
+
+export CMAKE_PREFIX_PATH=/opt/SimModSuite/15.0-191017dev/:$CMAKE_PREFIX_PATH
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/SimModSuite/15.0-191017dev/lib
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/SimModSuite/15.0-191017dev/lib/acisKrnl
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/SimModSuite/15.0-191017dev/lib/psKrnl
+
+export SIMMETRIX_SIMMODSUITE_ROOT=/opt/SimModSuite/15.0-191017dev/
+export SIM_LICENSE_FILE=/home/shiraiwa/.simmetrix/MIT_Shiraiwa_2019
+
 if $DO_TEST ;then
     cmake .. -DSCOREC_CXX_WARNINGS=OFF   \
              -DCMAKE_C_COMPILER="${MPICC}"    \
@@ -68,9 +83,9 @@ else
              -DSCOREC_CXX_WARNINGS=ON       \
              -DCMAKE_INSTALL_PREFIX="${TwoPiRoot}" \
              -DBUILD_SHARED_LIBS=on   \
+             -DSIM_MPI=mpich3 \
              -DENABLE_SIMMETRIX="${ENABLE_SIMMETRIX}" \
              -DSIM_PARASOLID="${ENABLE_PARASOLID}"   \
-             -DSIM_MPI=mpich3 \
 	     -DSIMMETRIX_LIB_DIR="${SIMMETRIX_LIB_DIR}"  \
              -DCMAKE_VERBOSE_MAKEFILE=1 
 fi

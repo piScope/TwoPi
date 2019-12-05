@@ -2,7 +2,7 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-REPO=${SRCDIR}/swig-rel-3.0.12
+REPO=${SRCDIR}/swig-rel-4.0.1
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 

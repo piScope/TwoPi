@@ -89,11 +89,27 @@ component (dependency):
    PyStrumpack:
         clone
 	 
-        
+   PUMI
+        clone : https://github.com/SCOREC/core.git
+	build :
+          optinal argments:
+	     --with-test : run test (need to have PUMI-MESHES cloned)
+	     --with-simmetrix :
+	     --simmetrix-lib <dir>: simmetrix library location
+	clean
+	
+   PUMI-MESHES 
+        clone : 
+   PUMI-PYTHON
+        (no clone, this is part of SCOREC/core, need to swith python_wrapper baranch)
+        build
+	clean
+	
    mfem (metis, hypre):
         mfems install serial
         mfemp install parallel
-	
+          optinal argments:
+	      --with-pumi : use pumi
 
    PythonModule: Python module dependency
        build : do all pip install
@@ -117,6 +133,10 @@ component (dependency):
 	   path found by CMAKE. Following argument can be used
 	   to overwrite these paths
 	      -mpi_root, -mpi_inc, -mpi_lib
+
+           --with-pumi: compile with pumi
+	   --pumi-include: PUMI include dir (default is $TwoPiRoot/include)
+	   --pumi-lib: PUMI lib dir (default is $TwoPiRoot/lib)
 
    PetraM_Base:
        clone --checkout <Branch>

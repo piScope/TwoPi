@@ -155,6 +155,18 @@ component (dependency):
 	     --clean-swig : clean SWIG
 	     wrapper code
 
+   PetraM_Base_ext:
+          option:
+	     --run-swig : generate SWIG wrapper code
+	     --clean-swig : clean SWIG
+	     --clean-all : clean SWIG + ext 
+
+   PetraM_MPW:
+          option:
+	     --run-swig : generate SWIG wrapper code
+	     --clean-swig : clean SWIG
+	     --clean-all : clean SWIG + ext 
+
    PetraM_Driver:
        This modules requires a non-public repository
 

@@ -42,6 +42,7 @@ case $key in
     MPI_ROOT=$2
     shift # past argument
     shift # past param
+    ;;
     --with-pumi)
     ENABLE_PUMI=yes	
     shift # past argument

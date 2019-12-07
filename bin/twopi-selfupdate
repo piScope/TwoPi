@@ -91,9 +91,11 @@ else
            echo "twopi_sha is not stored. Downloadig the latest twopi (master)"
            DO_CLONE=1
        fi
+       
        if [ ! -z "${DO_FORCE}" ]; then
            DO_CLONE=1
        fi
+       
        if [ ! -z "${DO_CLONE}" ]; then
            cd "${TwoPiRoot}"/src
 	   if [ -d "${TWOPIBASE}"/src/TwoPi ]; then

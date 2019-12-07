@@ -75,6 +75,7 @@ else
        echo ".git directory is nof found and TwoPiRoot is not set"
        exit 1
    else
+       
        if [ -f "${TwoPiRoot}"/etc/twopi_sha ]; then
            REMOTESHA=$(git ls-remote --refs https://github.com/piScope/TwoPi master | cut -f 1)
 	   LOCALSHA=$(cat "${TwoPiRoot}"/etc/twopi_sha)

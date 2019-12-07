@@ -37,6 +37,25 @@ _check_module() {
    fi
 }
 
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+case $key in
+    -h|--help)
+    _usage
+    shift # past argument    
+    ;;
+    -f|--force)
+    DO_FORCE=1
+    shift # past argument    
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
+esac
+done
+
 
 if [ -d "${TWOPIBASE}"/.git ]; then
    _check_module
@@ -70,6 +89,9 @@ else
            fi
        else
            echo "twopi_sha is not stored. Downloadig the latest twopi (master)"
+           DO_CLONE=1
+       fi
+       if [ ! -z "${DO_FORCE}" ]; then
            DO_CLONE=1
        fi
        if [ ! -z "${DO_CLONE}" ]; then

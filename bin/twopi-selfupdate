@@ -16,7 +16,7 @@ _usage() {
     echo 'twopi-selfupdate : load twopi script from repository'
     echo '   usage : '
     echo '      $ twopi selfupdate'
-    echo '      $ twopi selfupdate --force  # update files w/o version check'    
+    echo '      $ twopi selfupdate --force  ** update files w/o version check'    
     exit 1
 }
 

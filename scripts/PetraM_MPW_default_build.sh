@@ -44,7 +44,7 @@ case $key in
     shift # past argument    
     ;;
     --help)
-    DO_SWIG=true
+    _usage()
     exit 1
     ;;
     *)

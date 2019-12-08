@@ -28,7 +28,8 @@ _usage() {
     echo '      build:'
     echo '      clean:'
     echo '      status:'
-    echo '      update:'    
+    echo '      update:'
+    echo '      selfupdate:'    
     echo '      init:'
     echo '   command --help : show help for command'    
     exit 1

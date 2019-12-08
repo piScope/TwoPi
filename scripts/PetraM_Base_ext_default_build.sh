@@ -17,6 +17,13 @@ DO_SWIG=false
 DO_CLEAN_SWIG=false
 DO_CLEAN_ALL=false
 
+_usage() {
+    echo 'PetraM_Base_ext : extension module for PetraM_Base'
+    echo '   options: --clean-all'
+    echo '            --clean-swig'
+    echo '            --run-swig'
+}
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -35,6 +42,10 @@ case $key in
     DO_SWIG=true
     DO_DEFAULT=false		
     shift # past argument    
+    ;;
+    --help)
+    DO_SWIG=true
+    exit 1
     ;;
     *)
     echo "Unknown option " $key

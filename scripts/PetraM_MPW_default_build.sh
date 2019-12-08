@@ -44,7 +44,7 @@ case $key in
     shift # past argument    
     ;;
     --help)
-    _usage()
+    _usage
     exit 1
     ;;
     *)

@@ -3,6 +3,17 @@
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
+_usage() {
+    echo 'PyMFEM : Python Wrapper for MFEM'
+    echo '   options: --parallel'
+    echo '            --serial'    
+    echo '            --clean-swig'
+    echo '            --run-swig'
+    echo '            --with-pumi'
+    echo '            --pumi-include'
+    echo '            --pumi-lib'
+}
+
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
@@ -58,6 +69,10 @@ case $key in
     PUMI_LNK=$2
     shift # past argument    
     shift # past param
+    ;;
+    --help)
+    _usage
+    exit 1
     ;;
     *)
     echo "Unknown option " $key

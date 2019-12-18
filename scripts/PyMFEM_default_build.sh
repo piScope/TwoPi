@@ -3,6 +3,22 @@
 SCRIPT=$(dirname $BASH_SOURCE)/env_${TwoPiDevice}.sh
 source $SCRIPT
 
+_usage() {
+    echo 'PyMFEM : Python Wrapper for MFEM'
+    echo '   options: --parallel'
+    echo '            --serial'    
+    echo '            --clean-swig'
+    echo '            --run-swig'
+    echo '            --with-pumi'
+    echo '            --pumi-include'
+    echo '            --pumi-lib'
+    echo '            --mpi-root'
+    echo '            --mpi-include'
+    echo '            --mpi-lib'    
+    
+}
+
+
 DO_SERIAL=false
 DO_PARALLEL=false
 DO_DEFAULT=true
@@ -60,10 +76,14 @@ case $key in
     shift # past argument
     shift # past param
     ;;
-    --mpi-inc)
+    --mpi-include)
     MPI_INC=$2
     shift # past argument
     shift # past param
+    ;;
+    --help)
+    _usage
+    exit 1
     ;;
     *)
     echo "Unknown option " $key

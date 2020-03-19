@@ -37,24 +37,24 @@ LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
+#LMETISDIR = /opt/metis-5.1.0/build/Linux-x86_64/libmetis
+#IMETIS    = /opt/metis-5.1.0/include
+
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
 # sequential analysis choose the first (remember to add -Dmetis in the ORDERINGSF
 # variable below); for both parallel and sequential analysis choose the second 
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
-LMETISDIR = $(TwoPiRoot)
-IMETIS    = -I$(LMETISDIR)/include
-
-# LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
-LMETIS    = -L$(LMETISDIR)/lib -lparmetis -lmetis
+#LMETIS    = -L$(LMETISDIR) -lmetis
+#LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
 # Please note that -Dptscotch and -Dparmetis imply -Dscotch and -Dmetis respectively.
 # If you want to use Metis 4.X or an older version, you should use -Dmetis4 instead of -Dmetis
 # or in addition with -Dparmetis (if you are using parmetis 3.X or older).
 #ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-ORDERINGSF  = -Dmetis -Dpord -Dparmetis
+ORDERINGSF  = -Dpord
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)
@@ -70,43 +70,34 @@ LIBEXT  = .a
 OUTC    = -o 
 OUTF    = -o 
 RM = /bin/rm -f
-CC = mpicc
-FC = mpif90
-FL = mpif90
+CC = icc
+FC = ifort
+FL = ifort
 AR = ar vr 
 #RANLIB = ranlib
 RANLIB  = echo
-
 # Make this variable point to the path where the Intel MKL library is
 # installed. It is set to the default install directory for Intel MKL.
-
 #MKLROOT=/opt/intel/mkl/lib/intel64
-SCALAP = $(MUMPS_SCALAPACK_FLAG)
+#LAPACK = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core
 LAPACK = $(MUMPS_BLASLAPACK_FLAG)
-
-INCPAR = -I$(MKLROOT)/include
-LIBPAR = $(SCALAP) 
 
 INCSEQ = -I$(topdir)/libseq
 LIBSEQ  = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
-#LIBBLAS = $(MUMPS_BLASLAPACK_FLAG)
-#LIBOTHERS = -lpthread
-LIBBLAS = $(MUMPS_SCALAPACK_FLAG)
-LIBOTHERS = -lpthread -lm -ldl
+#LIBBLAS = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
+LIBBLAS = $(MUMPS_BLASLAPACK_FLAG)
+LIBOTHERS = -lpthread
 
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
 
 #Begin Optimized options
-OPTF    = -O -fPIC -nofor_main -DBLR_MT -qopenmp
-OPTL    = -O -fPIC -nofor_main -DBLR_MT -qopenmp
+OPTF    = -O -fPIC -nofor_main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
+OPTL    = -O -fPIC -nofor_main -qopenmp
 OPTC    = -O -fPIC -qopenmp
 #End Optimized options
  
-#INCS = $(INCSEQ)
-#LIBS = $(LIBSEQ)
-#LIBSEQNEEDED = libseqneeded
-INCS = $(INCPAR)
-LIBS = $(LIBPAR)
-LIBSEQNEEDED = 
+INCS = $(INCSEQ)
+LIBS = $(LIBSEQ)
+LIBSEQNEEDED = libseqneeded

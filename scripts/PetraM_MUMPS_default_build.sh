@@ -1,4 +1,13 @@
 #!/bin/bash
+
+_usage() {
+    echo 'PetraM_MUMPS : MUMPS wrapper for Petra-M'
+    echo '   options: --clean-swig'
+    echo '            --run-swig'    
+    echo '            --help'
+}
+
+
 MAKE=$(command -v make)
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PetraM_MUMPS
@@ -25,6 +34,10 @@ case $key in
     --run-swig)
     DO_SWIG=true
     shift # past argument    
+    ;;
+    --help)
+    _usage
+    exit 1
     ;;
     *)
     echo "Unknown option " $key

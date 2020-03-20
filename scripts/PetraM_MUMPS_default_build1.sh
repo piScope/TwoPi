@@ -62,7 +62,7 @@ cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_CXX_COMPILER=${CXX1} \
 	 -DCMAKE_C_COMPILER=${CC1}   \
          -DMUMPSSOLVE_USE_MPISEQ=${MUMPSSOLVE_USE_MPISEQ}  \
-         -CMAKE_CXX_STANDARD=11
+         -DCMAKE_CXX_STANDARD=11
 
 make VERBOSE=1
 make install

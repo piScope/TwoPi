@@ -23,7 +23,6 @@ else
 fi
 
 if [ "${USE_SERIAL}" -eq "0" ]; then
-then
     # empty
     if [[ -z "${MUMPS_SCALAPACK_FLAG}" ]]; then
         LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)

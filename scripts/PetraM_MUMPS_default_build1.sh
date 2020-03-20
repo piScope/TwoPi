@@ -16,18 +16,28 @@ mkdir -p cmbuild
 cd cmbuild
 
 # use ${SCALAP} in MUMPS Makefile.inc
+if [[ -z "${MUMPSSOLVE_USE_MPISEQ}" ]]; then
+  USE_SERIAL=0
+else
+  USE_SERIAL="${MUMPSSOLVE_USE_MPISEQ}"
+fi
 
-if [ -z "$MUMPS_BLASLAPACK_FLAG" ]
+if [ "${USE_SERIAL}" -eq "0" ]; then
 then
     # empty
-    LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)
+    if [[ -z "${MUMPS_SCALAPACK_FLAG}" ]]; then
+        LAPACKFLAG=$(grep ^SCALAP ${TwoPiRoot}/src/${MUMPS_REPO}/Makefile.inc | cut -d = -f 2|awk '{$1=$1}1' -)
+    else
+        LAPACKFLAG=${MUMPS_SCALAPACK_FLAG}
+    fi
+
 else
     LAPACKFLAG=${MUMPS_BLASLAPACK_FLAG}
 fi
 
 echo ${LAPACKFLAG}
 
-if [ -z "$MUMPSSOLVE_USE_MPISEQ"]
+if [ "${USE_SERIAL}" -eq "0" ]; then
 then
     CC1=${MPICC}
     CXX1=${MPICXX}

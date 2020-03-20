@@ -24,7 +24,6 @@ else
   USE_SERIAL="${MUMPSSOLVE_USE_MPISEQ}"
 fi
 
-echo $USE_SERIAL
 if [ "${USE_SERIAL}" -eq "1" ]; then
    MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_serial_Makefile.inc
 else

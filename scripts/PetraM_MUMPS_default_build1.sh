@@ -37,7 +37,6 @@ fi
 echo ${LAPACKFLAG}
 
 if [ "${USE_SERIAL}" -eq "0" ]; then
-then
     CC1=${MPICC}
     CXX1=${MPICXX}
     FC1=${MPIFC}

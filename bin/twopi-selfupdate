@@ -52,7 +52,7 @@ case $key in
     shift # past argument    
     ;;
     -b|--branch)
-    BRANCH=1
+    BRANCH=$2
     shift # past argument    
     *)
     echo "Unknown option " $key

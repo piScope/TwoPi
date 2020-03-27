@@ -53,7 +53,9 @@ case $key in
     ;;
     -b|--branch)
     BRANCH=$2
-    shift # past argument    
+    shift # past argument
+    shift # past param
+    ;;    
     *)
     echo "Unknown option " $key
     exit 2  #  error_code=2

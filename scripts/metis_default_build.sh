@@ -12,6 +12,9 @@ MAKE=$(command -v make)
 
 cd ${SRCDIR}/metis-5.1.0
 
+#
+# SUPPORT 64BIT
+#
 $MAKE config shared=1 prefix=$TwoPiRoot cc=${CC}
 $MAKE $MAKEOPT
 $MAKE install

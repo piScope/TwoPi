@@ -38,6 +38,7 @@ _check_module() {
    fi
 }
 
+BRANCH=master
 while [[ $# -gt 0 ]]
 do
     key="$1"
@@ -50,6 +51,9 @@ case $key in
     DO_FORCE=1
     shift # past argument    
     ;;
+    -b|--branch)
+    BRANCH=1
+    shift # past argument    
     *)
     echo "Unknown option " $key
     exit 2  #  error_code=2
@@ -78,7 +82,7 @@ else
    else
        
        if [ -f "${TwoPiRoot}"/etc/twopi_sha ]; then
-           REMOTESHA=$(git ls-remote --refs https://github.com/piScope/TwoPi master | cut -f 1)
+           REMOTESHA=$(git ls-remote --refs https://github.com/piScope/TwoPi "${BRANCH}" | cut -f 1)
 	   LOCALSHA=$(cat "${TwoPiRoot}"/etc/twopi_sha)
 	   echo "Testing remote sha"
 	   echo "Remote SHA: "$REMOTESHA
@@ -90,7 +94,7 @@ else
 	       #DO_CLONE=1
            fi
        else
-           echo "twopi_sha is not stored. Downloadig the latest twopi (master)"
+           echo "twopi_sha is not stored. Downloadig the latest twopi"
            DO_CLONE=1
        fi
        
@@ -105,6 +109,7 @@ else
            fi
            git clone https://github.com/piScope/TwoPi.git
            cd "${TwoPiRoot}"/src/TwoPi
+	   git checkout "${BRANCH}"
            PREFIX="$TwoPiRoot" make install
            LOCALSHA=$(git rev-parse @)
 	   mkdir -p  "${TwoPiRoot}"/etc

@@ -29,7 +29,7 @@ pip install netCDF4
 pip install PyPDF2
 pip install pdfrw
 pip install h5py
-pip install mpi4py
+#pip install mpi4py
 
 REPO=${piScope_REPO}
 

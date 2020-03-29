@@ -2,8 +2,8 @@
 
 _usage() {
     echo 'Metis'
-    echo '   options: --int64'
-    echo '            --real64'
+    echo '   options: --int64 : use 64 bit integer'
+    echo '            --real64  : use 64 bit real'
     echo '            --help'    
     
 }

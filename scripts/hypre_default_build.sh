@@ -2,12 +2,13 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-HYPREDIR=${SRCDIR}/hypre-2.16.0
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
+
+HYPREDIR=${SRCDIR}/hypre-${HYPRE_VERSION}
 
 export CXX=${MPICXX}
 export CC=${MPICC}

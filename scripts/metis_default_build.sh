@@ -19,25 +19,19 @@ SRCDIR=${TwoPiRoot}/src
 CMAKE=$(command -v cmake)
 MAKE=$(command -v make)
 
-cd ${SRCDIR}/metis-5.1.0
-
-### put back to 32bit int/32bit real as a default
-
-sed -i 's/#define IDXTYPEWIDTH 64/#define IDXTYPEWIDTH 32/g' include/metis.h
-sed -i 's/#define REALTYPEWIDTH 64/#define REALTYPEWIDTH 32/g' include/metis.h
+DO_INT64=0
+DO_REAL64=0
 
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
     --int64)
-    echo "!!!! 64 bit int mode"
-    sed -i 's/#define IDXTYPEWIDTH 32/#define IDXTYPEWIDTH 64/g' include/metis.h
+    DO_INT64=1
     shift # past argument    
     ;;
     --real64)
-    echo "!!!! 64 bit real mode"
-    sed -i 's/#define REALTYPEWIDTH 32/#define REALTYPEWIDTH 64/g' include/metis.h
+    DO_REAL64=1
     shift # past argument    
     ;;
     --help)
@@ -51,6 +45,21 @@ case $key in
 esac
 done
 
+cd ${SRCDIR}/metis-5.1.0
+
+if [ "$DO_INT64" -eq "1" ]; then
+    echo "!!!! 64 bit int mode"
+    sed -i 's/#define IDXTYPEWIDTH 32/#define IDXTYPEWIDTH 64/g' include/metis.h
+else
+    sed -i 's/#define IDXTYPEWIDTH 64/#define IDXTYPEWIDTH 32/g' include/metis.h
+fi
+
+if [ "$DO_REAL64" -eq "1" ]; then
+    echo "!!!! 64 bit real mode"
+    sed -i 's/#define REALTYPEWIDTH 32/#define REALTYPEWIDTH 64/g' include/metis.h
+else
+    sed -i 's/#define REALTYPEWIDTH 64/#define REALTYPEWIDTH 32/g' include/metis.h
+fi
 
 $MAKE config shared=1 prefix=$TwoPiRoot cc=${CC}
 $MAKE $MAKEOPT

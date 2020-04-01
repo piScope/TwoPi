@@ -19,5 +19,6 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1          \
 	  -DBUILD_MODULE_Draw=0 \
 	  -DBUILD_MODULE_Visualization=0 \
           -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib
+
 $MAKE $MAKEOPT
 $MAKE install

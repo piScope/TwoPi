@@ -16,8 +16,8 @@ rm hypre.tar.gz
 if [ ${HYPRE_VERSION} == "2.18.2" ]; then
     CMAKE_FIX=$(dirname "$0")/../extra/hypre/CMakeLists_2.18.2_fix.txt
     HYPREDIR=${TwoPiRoot}/src/hypre-${HYPRE_VERSION}/src/
-    diff ${CMAKE_FIX} ${HYPREDIR}/src/CMakeLists.txt
-    cp ${CMAKE_FIX} ${HYPREDIR}
+    diff ${CMAKE_FIX} ${HYPREDIR}/CMakeLists.txt
+    cp ${CMAKE_FIX} ${HYPREDIR}/CMakeLists.txt
 fi
    
 

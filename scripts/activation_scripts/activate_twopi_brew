@@ -82,10 +82,11 @@ export PATH=$TwoPiRoot/bin:$PATH
 export TwoPiGit=git@github.com:piScope
 
 GMSHLIB=$(dirname $(dirname $(dirname $(which gmsh))/$(readlink $(which gmsh))))/lib
-WXLIB=/usr/local/opt/wxpython/libexec/lib/python3.7/site-packages/
+WXLIB=/usr/local/opt/wxpython/libexec/lib/python3.8/site-packages/
 export PYTHONPATH=$WXLIB:$GMSHLIB:$PYTHONPATH
 
-PYTHONVERSION=$(python3 -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
+PYTHONVERSION=3.8
+
 PYTHONLIB1=$TwoPiRoot/lib/python${PYTHONVERSION}
 mkdir -p $PYTHONLIB1/site-packages
 PYTHONLIB2=$TwoPiRoot/libexec/lib/python${PYTHONVERSION}
@@ -102,7 +103,8 @@ PYTHONBIN=/usr/local/opt/python/libexec/bin
 export PATH=$LLVMLIB:$PYTHONBIN:$PATH
 
 # this is necessary to luanch piScope with proper framework enviroment
-INTERPRETER=$(which python3)
+
+INTERPRETER=$(brew --prefix)/opt/python@3.8/bin/python3
 
 # define two alias as text 
 ALIAS_PISCOPE="alias piscope=\"${TwoPiRoot}/bin/piscope -e ${INTERPRETER}\""

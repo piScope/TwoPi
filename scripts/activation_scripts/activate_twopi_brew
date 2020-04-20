@@ -97,8 +97,8 @@ else
     export PYTHONPATH=$PYTHONLIB1/site-packages:$PYTHONPATH
 fi
 
-LLVMBIN=/usr/local/opt/llvm/bin
-PYTHONBIN=/usr/local/opt/python/libexec/bin
+LLVMBIN=$(brew --prefix)/opt/llvm/bin
+PYTHONBIN=$(brew --prefix)/opt/python@3.8/bin
 
 export PATH=$LLVMLIB:$PYTHONBIN:$PATH
 

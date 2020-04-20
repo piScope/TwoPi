@@ -1,13 +1,20 @@
 #!/bin/bash
+#
+
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 
-SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
-CMAKE_FIX_DIR=$(dirname "$0")/../extra/hypre
-source $SCRIPT
+SCRIPT_FULLPATH=$(realpath $(dirname "$0"))
 
-ODIR=$PWD
+SCRIPT=${SCRIPT_FULLPATH}/env_${TwoPiDevice}.sh
+CMAKE_FIX_DIR=${SCRIPT_FULLPATH}/../extra/hypre
+echo "Script path"
+echo $SCRIPT_FULLPATH
+source $SCRIPT
 
 mkdir -p $SRCDIR
 cd $SRCDIR

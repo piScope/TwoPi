@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 #  logic:
 #      1) if .git exist, it does pull.
@@ -8,6 +7,8 @@
 #         used to check the need of download
 #
 
+{ ## enclose everything to load script at once !
+    
 TWOPIBASE=$(dirname $(dirname "$BASH_SOURCE"))
 OD=${PWD}
 
@@ -124,3 +125,5 @@ fi
 
 
 cd  ${OD}
+exit  ## keep it here (to prevent executing overwritten part)
+}

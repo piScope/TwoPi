@@ -22,5 +22,6 @@ MPICC_FLAG=${MPICC} "-shared"
 echo ${MPICC_FLAG}
 
 cd mpi4py-3.0.3
+
 python setup.py build --mpicc="${MPICC_FLAG}"
 python seutp.py install PREFIX=${TwoPiRoot}

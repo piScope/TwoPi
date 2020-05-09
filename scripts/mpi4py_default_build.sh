@@ -19,6 +19,8 @@ tar -zxvf mpi4py-3.0.3.tar.gz
 cd mpi4py-3.0.3.tar.gz
 
 
-MPICC_FLAG=${MPICC} -shared
+MPICC_FLAG=${MPICC} "-shared"
+echo ${MPICC_FLAG}
 
+cd mpi4py-3.0.3
 python setup.py build --mpicc="${MPICC_FLAG}"

@@ -13,6 +13,7 @@ WDIR=${SRCDIR}/mpi4py
 export CXX=${MPICXX}
 export CC=${MPICC}
 
+mkdir -p ${WDIR}
 cd ${WDIR}
 
 pip3 download mpi4py --no-binary --dest ./

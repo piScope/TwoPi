@@ -16,7 +16,7 @@ export CC=${MPICC}
 mkdir -p ${WDIR}
 cd ${WDIR}
 
-pip3 download mpi4py --no-binary --dest ./
+pip3 download --no-binary=:all: --dest . mpi4py
 
 file = $(ls *.tar.gz)
 echo $(file)

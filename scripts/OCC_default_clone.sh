@@ -2,8 +2,10 @@
 
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
-mkdir -p $SRCDIR
+SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
+source $SCRIPT
 
+mkdir -p $SRCDIR
 MYPATH=$BASH_SOURCE
 echo $MYPATH
 

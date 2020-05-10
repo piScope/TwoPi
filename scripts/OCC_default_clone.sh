@@ -10,8 +10,10 @@ MYPATH=$BASH_SOURCE
 echo $MYPATH
 
 OOCTGZ=$(dirname "$MYPATH")/../externals/${OCC}.tar.gz
+OCCFILE=${OCC}.tar.gz
 if [ ! -f ${OOCTGZ} ]; then
    OOCTGZ=$(dirname "$MYPATH")/../externals/${OCC}.tgz
+   OCCFILE=${OCC}.tgz
    if [ ! -f ${OOCTGZ} ]; then
        echo "OCC source tar.gz does not exists in "$(dirname "$MYPATH")/../externals
        exit 1

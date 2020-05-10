@@ -20,7 +20,7 @@ if [ ! -f ${OOCTGZ} ]; then
    fi
 fi
 
-cp $OOCTGZ $SRCDIR
-cd  $SRCDIR
-tar -zxvf ${OCC}.tar.gz
-rm -rf $SRCDIR/${OCC}.tar.gz
+#cp $OOCTGZ $SRCDIR
+#cd  $SRCDIR
+tar -zxvf ${OCCTGZ} --directory $SRCDIR
+#rm -rf $SRCDIR/${OCCTGZ}

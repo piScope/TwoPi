@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 #  logic:
 #      1) if .git exist, it does pull.
@@ -8,6 +7,8 @@
 #         used to check the need of download
 #
 
+{ ## enclose everything to load script at once !
+    
 TWOPIBASE=$(dirname $(dirname "$BASH_SOURCE"))
 OD=${PWD}
 
@@ -16,7 +17,8 @@ _usage() {
     echo 'twopi-selfupdate : load twopi script from repository'
     echo '   usage : '
     echo '      $ twopi selfupdate'
-    echo '      $ twopi selfupdate --force  ** update files w/o version check'    
+    echo '      $ twopi selfupdate --branch (name)  ** use branch name'
+    echo '      $ twopi selfupdate --force          ** update files w/o version check'    
     exit 1
 }
 
@@ -121,5 +123,7 @@ else
    fi
 fi
 
-
 cd  ${OD}
+exit  ## keep it here (to prevent executing overwritten part)
+}
+

@@ -22,5 +22,5 @@ fi
 
 #cp $OOCTGZ $SRCDIR
 #cd  $SRCDIR
-tar -zxvf ${OCCTGZ} --directory $SRCDIR
+tar -zxvf ${OCCTGZ} -c $SRCDIR
 #rm -rf $SRCDIR/${OCCTGZ}

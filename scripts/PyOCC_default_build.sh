@@ -13,12 +13,21 @@ if [ ! -d ${REPO} ];then
     exit 1
 fi
 
+# if TwoPi has OOC installed use it otherwise defualt
+if [  -d ${TwoPiRoot}/include/opencascade ]; then
+    ${OCC_HEADER}=${TwoPiRoot}/include/opencascade 
+    ${OCC_LIB}=${TwoPiRoot}/lib
+else
+    ${OCC_HEADER}=/usr/local/include/opencascade
+    ${OCC_LIB}=/usr/local/lib
+fi
+
 mkdir -p $REPO/cmbuild
 cd $REPO/cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}     \
           -DCMAKE_INSTALL_RPATH=${TwoPiRoot}      \
-          -DOCE_INCLUDE_PATH=${TwoPiRoot}/include \
-          -DOCE_LIB_PATH=${TwoPiRoot}/lib         \
+          -DOCE_INCLUDE_PATH=${OCC_HEADER}        \
+          -DOCE_LIB_PATH=${OCC_LIB}               \
           -DCMAKE_C_COMPILER=${CC}                \
           -DCMAKE_CXX_COMPILER=${CXX}         
 

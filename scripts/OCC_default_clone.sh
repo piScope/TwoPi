@@ -21,6 +21,6 @@ if [ ! -f ${OOCTGZ} ]; then
 fi
 
 #cp $OOCTGZ $SRCDIR
-#cd  $SRCDIR
+cd  $(dirname "$MYPATH")/../externals/
 tar -zxvf ${OCCFILE} -C $SRCDIR
 #rm -rf $SRCDIR/${OCCTGZ}

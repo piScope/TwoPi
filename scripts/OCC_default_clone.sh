@@ -20,7 +20,6 @@ if [ ! -f ${OOCTGZ} ]; then
    fi
 fi
 
-#cp $OOCTGZ $SRCDIR
 cd  $(dirname "$MYPATH")/../externals/
 tar -zxvf ${OCCFILE} -C $SRCDIR
-#rm -rf $SRCDIR/${OCCTGZ}
+

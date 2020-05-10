@@ -4,7 +4,7 @@
 #
 
 GIT=$(command -v git)
-REPO="mfem"
+REPO="pythonocc-core"
 SRCDIR=${TwoPiRoot}/src
 
 DO_LATEST=false

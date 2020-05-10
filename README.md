@@ -65,19 +65,23 @@ component (dependency):
 
 
    SWIG :
-   	install swig 3.0.12
+   	install swig 4.0.1
+   mpi4py:
+        install using mpicc given in env_<device>.sh
    hypre :
-        install hypre 2.16.2 (shared library)
+        install hypre 2.18.2 (shared library)
    metis : 
         install metis 5.1.0 (shared library)
    parmetis : 
         install parmetis 4.0.3 (shared library)
    OpenCascade :
-        install OOC 7.3.0
+        install OOC 7.4.0
+   PyOCC:
+        install pythonocc-core
    gmsh:
-        install gmsh 4.3.0
+        install gmsh 4.5.4
    MUMPS (metis, parmetis):
-        install MUMSP 5.2.0
+        install MUMSP 5.3.1
 	Metis/ParMetis BLR OpenMP MPI
    scotch:
         Both static and shared library is installed

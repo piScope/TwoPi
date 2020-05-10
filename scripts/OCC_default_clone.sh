@@ -23,3 +23,6 @@ fi
 cd  $(dirname "$MYPATH")/../externals/
 tar -zxvf ${OCCFILE} -C $SRCDIR
 
+if [ -f ${SRCDIR}/${OCCFILE} ]; then
+    rm -rf  ${SRCDIR}/${OCCFILE}
+fi

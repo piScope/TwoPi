@@ -71,7 +71,9 @@ mkdir -p $PYTHONLIB/site-packages
 export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
 export PetraM=$TwoPiRoot
-export TwoPiGit=git@github.com:piScope
+if [[ -z "$TwoPiGit" ]]; then
+   export TwoPiGit=git@github.com:piScope
+fi
 
 # this is necessary to luanch piScope with proper framework enviroment
 INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)

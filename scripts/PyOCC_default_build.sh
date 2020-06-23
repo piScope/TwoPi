@@ -24,6 +24,7 @@ fi
 
 echo "OCC header :"${OCC_HEADER}
 echo "OCC lib    :"${OCC_LIB}
+
 mkdir -p $REPO/cmbuild
 cd $REPO/cmbuild
 $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}     \

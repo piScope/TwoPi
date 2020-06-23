@@ -16,7 +16,7 @@ cd ${WDIR}
 pip3 download --no-binary=:all: --dest . mpi4py==3.0.3
 
 tar -zxvf mpi4py-3.0.3.tar.gz
-cd mpi4py-3.0.3.tar.gz
+#cd mpi4py-3.0.3.tar.gz
 
 MPICC_FLAG=${MPICC} "-shared"
 echo ${MPICC_FLAG}

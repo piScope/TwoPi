@@ -27,4 +27,4 @@ echo ${MPICC_FLAG}
 cd mpi4py-3.0.3
 
 python setup.py build --mpicc="${MPICC_FLAG}"
-python setup.py install PREFIX=${TwoPiRoot}
+python setup.py install --prefix=${TwoPiRoot}

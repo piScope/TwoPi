@@ -112,7 +112,7 @@ RANLIB  = ranlib
 
 # DEFINE HERE YOUR LAPACK LIBRARY
 
-LAPACK = -llapack
+LAPACK = -L/usr/lib/x86_64-linux-gnu/lapack -llapack
 
 # SCALAP should define the SCALAPACK and  BLACS libraries.
 #SCALAP  = -lscalapack -lblacs

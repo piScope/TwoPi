@@ -116,7 +116,8 @@ LAPACK = -llapack
 
 # SCALAP should define the SCALAPACK and  BLACS libraries.
 #SCALAP  = -lscalapack -lblacs
-SCALAP  = -L/usr/lib/x86_64-linux-gnu -lscalapack-openmpi -lblacs-openmpi
+#SCALAP  = -L/usr/lib/x86_64-linux-gnu -lscalapack-openmpi -lblacs-openmpi
+SCALAP  = -L/usr/lib/x86_64-linux-gnu -lscalapack-openmpi 
 
 # INCLUDE DIRECTORY FOR MPI
 INCPAR  = -I$(MPI_INCLUDE_PATH)

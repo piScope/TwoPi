@@ -18,10 +18,24 @@ REPO=${SRCDIR}/${MUMPS_REPO}
 MYPATH=$BASH_SOURCE
 echo $MYPATH
 
-MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_Makefile.inc
+if [[ -z "${MUMPSSOLVE_USE_MPISEQ}" ]]; then
+  USE_SERIAL=0
+else
+  USE_SERIAL="${MUMPSSOLVE_USE_MPISEQ}"
+fi
+
+if [ "${USE_SERIAL}" -eq "1" ]; then
+   MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_serial_Makefile.inc
+else
+   MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_${TwoPiDevice}_Makefile.inc
+fi
+
+
 if [ ! -f $MAKEINC ]; then
     MAKEINC=$(dirname "$MYPATH")/../extra/MUMPS/MUMPS_default_Makefile.inc
 fi
+
+echo $MAKEINC
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
@@ -30,10 +44,7 @@ $MAKE alllib MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
 $MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
       OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} $MAKEOPT
 
-#$MAKE all MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
-#      OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} \
-#      MPI_LIBRARY_PATH=${MPI_LIBRARY_PATH} \
-#      MPI_INCLUDE_PATH=${MPI_INCLUDE_PATH}
+
 
 
 

@@ -8,7 +8,6 @@ MAKE=$(command -v make)
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-REPO=${SRCDIR}/${OCC}
+WDIR=${SRCDIR}/mpi4py
+rm -rf ${WDIR}
 
-cd $REPO
-rm -rf cmbuild

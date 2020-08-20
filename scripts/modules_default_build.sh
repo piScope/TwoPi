@@ -4,6 +4,17 @@
 #  (usage)  bin/twopi install modules --PyMFEM-branch MFEM4_dev --PetraM-Repo git@github.mit.edu:piScope --piScope-branch py37_prep2 --PetraM-branch MFEM4_dev --no-wx --no-occ-gmsh -log-dir $HOME/logs
 #
 #
+_usage() {
+    echo 'modeuls : install various moduels'
+    echo '   options: --PyMFEM-branch'
+    echo '            --PetraM-Repo'    
+    echo '            --piScope-branch'
+    echo '            --PetraM-branch'
+    echo '            --no-wx'
+    echo '            --no-occ-gmsh'
+    echo '            --log-dir'
+}
+
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 CMAKE=$(command -v cmake)
@@ -61,6 +72,10 @@ case $key in
     --no-occ-gmsh)
     NO_OCC_GMSH=1
     shift # past param    
+    ;;
+    --help)
+    _usage
+    exit 1
     ;;
     *)
     echo "Unknown option " $key

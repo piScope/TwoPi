@@ -20,7 +20,8 @@ _usage() {
 
 INTERPRETER=$(which python)
 CALL_VENV=1
-VENV_OPTION="--system-site-packages --unzip-setup"
+#VENV_OPTION="--system-site-packages --unzip-setup"
+VENV_OPTION="--system-site-packages"
 
 while getopts "e:o:dnh" opts
 do 
@@ -62,9 +63,12 @@ echo "                Location             " $TwoPiRoot
 
 if [ $CALL_VENV -eq 1 ]
 then
-   IOPT="--python="$INTERPRETER
-   virtualenv $IOPT  $VENV_OPTION $TwoPiRoot
+   #IOPT="--python="$INTERPRETER
+   #virtualenv $IOPT  $VENV_OPTION $TwoPiRoot
+    
+   $INTERPRETER -m venv $VENV_OPTION $TwoPiRoot
    mkdir -p $TwoPiRoot/etc
+   #echo "this file is read from activation script" > $TwoPiRoot/etc/set_pythonhome
 else
    mkdir -p $TwoPiRoot
    mkdir -p $TwoPiRoot/bin
@@ -80,4 +84,6 @@ cp bin/twopi-config $TwoPiRoot/bin
 cp scripts/activation_scripts/activate_twopi_default $TwoPiRoot/bin/activate_twopi
 
 cp scripts/hg $TwoPiRoot/bin
+
+make install PREFIX=$TwoPiRoot
 

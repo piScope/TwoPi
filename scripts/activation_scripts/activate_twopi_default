@@ -78,7 +78,10 @@ fi
 
 # this is necessary to luanch piScope with proper framework enviroment
 INTERPRETER=$(cat $TWOPIROOT/etc/interpreter)
-export PYTHONHOME=$TWOPIROOT
+
+if [[ -f $TwoPiRoot/etc/set_pythonhome ]]; then
+    export PYTHONHOME=$TWOPIROOT
+fi
 
 # define two alias as text 
 ALIAS_PISCOPE="alias piscope=\"${TwoPiRoot}/bin/piscope -e ${INTERPRETER}\""

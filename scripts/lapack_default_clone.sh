@@ -22,7 +22,7 @@ source $SCRIPT
 DO_LATEST=false
 SHA=fef53088d965582fd8cbccec8453c3bdb2371a81
 
-REPO="lapack-"${LAPACK_VERSION}
+REPO="lapack"
 SC=$(dirname "$0")/subs/git_access.sh
 source $SC
 

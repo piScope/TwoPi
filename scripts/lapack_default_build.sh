@@ -8,7 +8,7 @@ MAKE=$(command -v make)
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-LAPACKDIR=${SRCDIR}/lapack-${LAPACK_VERSION}
+LAPACKDIR=${SRCDIR}/lapack
 
 export CXX=${CXX}
 export CC=${CC}

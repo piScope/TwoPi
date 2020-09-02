@@ -8,6 +8,6 @@ source $SCRIPT
 
 LAPACKDIR=${SRCDIR}/lapack-${LAPACK_VERSION}
 
-rm -rf ${LAPACKDIR}/src/cmbuild
+rm -rf ${LAPACKDIR}/cmbuild
 
 

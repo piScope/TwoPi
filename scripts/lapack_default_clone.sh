@@ -15,7 +15,7 @@ source $SCRIPT
 
 mkdir -p $SRCDIR
 cd $SRCDIR
-wget https://github.com/Reference-LAPACK/lapack/archive/v{LAPACK_VERSION}.tar.gz -O lapack.tar.gz
+wget https://github.com/Reference-LAPACK/lapack/archive/v${LAPACK_VERSION}.tar.gz -O lapack.tar.gz
 tar -zxvf lapack.tar.gz
 rm lapack.tar.gz
 

@@ -16,11 +16,12 @@ export CC=${CC}
 mkdir -p ${LAPACKDIR}/cmbuild
 cd ${LAPACKDIR}/cmbuild
 
-$CMAKE .. -DBUILD_SHARED_LIBS=1  \
+$CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 \
+          -DBUILD_SHARED_LIBS=1  \
           -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/lapack             
 
-$MAKE verbose=1
-$MAKE install
+cmake --build . -j --target install
+
 
 
 

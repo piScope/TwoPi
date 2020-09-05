@@ -13,8 +13,8 @@ SCRIPT_FULLPATH=$(realpath $(dirname "$0"))
 SCRIPT=${SCRIPT_FULLPATH}/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-#mkdir -p $SRCDIR
-#cd $SRCDIR
+mkdir -p $SRCDIR
+cd $SRCDIR
 #wget https://github.com/Reference-LAPACK/lapack/archive/v${LAPACK_VERSION}.tar.gz -O lapack.tar.gz
 #tar -zxvf lapack.tar.gz
 #rm lapack.tar.gz
@@ -36,4 +36,7 @@ if [ ! -f ${SRCDIR}/${REPO} ]; then
       $GIT checkout ${SHA}
    fi
 fi
+
+cd ${SRCDIR}
+mv $REPO ${REPO}-${LAPACK_VERSION}
 

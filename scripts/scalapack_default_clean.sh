@@ -6,8 +6,8 @@ SRCDIR=${TwoPiRoot}/src
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-LAPACKDIR=${SRCDIR}/lapack-${LAPACK_VERSION}
+SCALAPACKDIR=${SRCDIR}/scalapack-${SCALAPACK_VERSION}
 
-rm -rf ${LAPACKDIR}/cmbuild
+rm -rf ${SCALAPACKDIR}/cmbuild
 
 

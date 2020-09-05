@@ -8,19 +8,20 @@ MAKE=$(command -v make)
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-LAPACKDIR=${SRCDIR}/lapack-${LAPACK_VERSION}
+SCALAPACKDIR=${SRCDIR}/scalapack-${SCALAPACK_VERSION}
 
-export CXX=${CXX}
-export CC=${CC}
+export CXX=${MPICXX}
+export CC=${MPICC}
 
-mkdir -p ${LAPACKDIR}/cmbuild
-cd ${LAPACKDIR}/cmbuild
+mkdir -p ${SCALAPACKDIR}/cmbuild
+cd ${SCALAPACKDIR}/cmbuild
 
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 \
           -DBUILD_SHARED_LIBS=1  \
-          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/lapack             
+          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/scalapack             
 
-cmake --build . -j --target install
+make ${MAKE_OPT}
+make install
 
 
 

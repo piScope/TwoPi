@@ -2,6 +2,37 @@
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
+_usage() {
+    echo 'GMSH '
+    echo '   options: --no-openmp'
+    echo '   options: --with-openmp'    
+}
+
+ENABLE_OMP=0
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --no-openmp)
+    ENABLE_OMP=0
+    shift # past argument
+    ;;
+    --with-openmp)
+    ENABLE_OMP=1
+    shift # past argument
+    ;;
+    --help)
+    _usage
+    exit 1
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
+esac
+done
+
+
 GIT=$(command -v git)
 SRCDIR=${TwoPiRoot}/src
 REPO=$SRCDIR/${GMSH}-source
@@ -15,6 +46,7 @@ $CMAKE .. -DCMAKE_INSTALL_PREFIX=${TwoPiRoot} \
           -DCMAKE_C_COMPILER=${CC}            \
           -DCMAKE_CXX_COMPILER=${CXX}         \
           -DENABLE_BUILD_DYNAMIC=1            \
+	  -DENABLE_OPENMP=${ENABLE_OMP}       \
 	  -DENABLE_OS_SPECIFIC_INSTALL=0      \
           -DENABLE_WRAP_PYTHON=1              \
           -DENABLE_BUILD_SHARED=1             \

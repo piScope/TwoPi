@@ -6,6 +6,8 @@ SRCDIR=${TwoPiRoot}/src
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
-HYPREDIR=${SRCDIR}/hypre-${HYPRE_VERSION}
+SCALAPACKDIR=${SRCDIR}/scalapack-${SCALAPACK_VERSION}
 
-rm -rf ${HYPREDIR}/src/cmbuild
+rm -rf ${SCALAPACKDIR}/cmbuild
+
+

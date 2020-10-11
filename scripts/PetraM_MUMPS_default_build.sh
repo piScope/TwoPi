@@ -53,7 +53,7 @@ case $key in
     _USE_METIS="ON"
     shift # past argument    
     ;;
-    --disable-scotch)
+    --disable-metis)
     _USE_METIS="OFF"
     shift # past argument    
     ;;

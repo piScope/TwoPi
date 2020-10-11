@@ -82,21 +82,20 @@ echo $MAKEINC
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
-export SCOTCHDIR=${TwoPiRoot}
-export METISDIR=${TwoPiRoot}
-
 ORDERING="-Dport"
 if [[ "${_USE_SCOTCH}" == "ON" ]]; then
-    sed -i 's/#ISCOTCH    = -I\$(SCOTCHDIR)\/include/ISCOTCH    = -I\$(SCOTCHDIR)\/include/' Makefile.inc
+    sed -i 's,#SCOTCHDIR  = ${HOME}/scotch_6.0, SCOTCHDIR=${TwoPiRoot},g' Makefile.inc
+    sed -i 's/#ISCOTCH    = -I\$(SCOTCHDIR)\/include/ISCOTCH    = -I\$(SCOTCHDIR)\/include/g' Makefile.inc
     sed -i 's/#LSCOTCH    = -L\$(SCOTCHDIR)\/lib -lptesmumps -lptscotch -lptscotcherr/LSCOTCH    = -L\$(SCOTCHDIR)\/lib -lptesmumps -lptscotch -lptscotcherr -lscotch/g' Makefile.inc
     ORDERING="-Dscotch "${ORDERING}" -Dptscotch"
 fi
 if [[ "${_USE_METIS}" == "ON" ]]; then
+    sed -i 's,#LMETISDIR = /opt/metis-5.1.0/build/Linux-x86_64/libmetis,METISDIR=${TwoPiRoot},g' Makefile.inc
     sed -i 's/#IMETIS    = \/opt\/metis-5.1.0\/includede/IMETIS   = -I\$(METISDIR)\/include/g' Makefile.inc
     sed -i 's/#LMETIS    = -L\$(LMETISDIR) -lparmetis -lmetis/LMETIS    = -L\$(LMETISDIR) -lparmetis -lmetis/g' Makefile.inc
     ORDERING="-Dmetis "${ORDERING}" -Dparmetis"    
 fi
-sed -i 's/ORDERINGSF  = -Dpord/ORDERINGSF  = "$ORDERING"/g' Makefile.inc
+sed -i 's,ORDERINGSF  = -Dpord,ORDERINGSF  = "$ORDERING",g' Makefile.inc
 
 $MAKE alllib MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
       OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} $MAKEOPT

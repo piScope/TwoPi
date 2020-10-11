@@ -37,3 +37,7 @@ SCALAPACK_VERSION=2.1.0
 
 # C++11 flag
 CXX11FLAG=-std=c++11
+
+# make runs using the half of processor cores
+NPROCHALF=$((($(nproc)+1)/2))
+MAKEOPT="-j "${NPROCHALF}

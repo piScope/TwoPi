@@ -168,8 +168,8 @@ component (dependency):
           option:
 	     --run-swig : generate SWIG wrapper code
 	     --clean-swig : clean SWIG
-	     --eneable-scotch
-             --disable-scotch (default)
+	     --eneable-scotch (default)
+             --disable-scotch 
              --enable-metis (default)
              --disable-metis
        clean

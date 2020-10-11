@@ -26,7 +26,7 @@ source $SCRIPT
 
 DO_SWIG=false
 DO_CLEAN_SWIG=false
-_USE_SCOTCH="OFF"
+_USE_SCOTCH="ON"
 _USE_METIS="ON"
 
 while [[ $# -gt 0 ]]

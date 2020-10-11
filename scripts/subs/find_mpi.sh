@@ -12,7 +12,7 @@ if [ -z ${MPI_INCLUDE_PATH+x} ]; then
    cmake . -DCMAKE_CXX_COMPILER=$CXX \
 	 -DCMAKE_C_COMPILER=$CC \
 	 -DMPI_CXX_COMPILER=$MPICXX \
-         -DMPI_C_COMPILER=$CC
+         -DMPI_C_COMPILER=$MPICC
    cd $DD
    #fi
 

@@ -10,6 +10,9 @@ SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
 REPO=${SRCDIR}/scotch_${SCOTCH_VERSION}
+source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
+
+echo "MPI include path: "$MPI_INCLUDE_PATH
 
 MYPATH=$BASH_SOURCE
 echo $MYPATH

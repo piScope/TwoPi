@@ -40,8 +40,8 @@
 #          Metis/ParMetis and SCOTCH/PT-SCOTCH (ver 6.0 and later) orderings are recommended.
 #
 
-#SCOTCHDIR  = ${HOME}/scotch_6.0
-#ISCOTCH    = -I$(SCOTCHDIR)/include
+SCOTCHDIR  = $(TwoPiRoot)
+ISCOTCH    = -I$(SCOTCHDIR)/include
 #
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
@@ -50,7 +50,7 @@
 # line (remember to add -Dptscotch in the ORDERINGSF variable below)
 
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lesmumps -lscotch -lscotcherr
-#LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
+LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr -lscotch
 
 
 LPORDDIR = $(topdir)/PORD/lib/
@@ -66,15 +66,15 @@ IMETIS    = -I$(TwoPiRoot)/include
 # variable below); for both parallel and sequential analysis choose the second 
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
-LMETIS    = -L$(LMETISDIR) -lmetis -lparmetis
-#LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+#LMETIS    = -L$(LMETISDIR) -lmetis
+LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
 # Please note that -Dptscotch and -Dparmetis imply -Dscotch and -Dmetis respectively.
 # If you want to use Metis 4.X or an older version, you should use -Dmetis4 instead of -Dmetis
 # or in addition with -Dparmetis (if you are using parmetis 3.X or older).
-#ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-ORDERINGSF  =  -Dmetis -Dpord -Dparmetis
+ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
+#ORDERINGSF  =  -Dmetis -Dpord -Dparmetis
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)

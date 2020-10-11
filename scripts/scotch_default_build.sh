@@ -28,6 +28,8 @@ CCD="$CC -I$MPI_INCLUDE_PATH"
 echo ${CCD}
 $MAKE scotch CCS="$CC" CCP="$MPICC" CCD="$CCD"
 $MAKE ptscotch CCS="$CC" CCP="$MPICC" CCD="$CCD"
+$MAKE esmumps CCS="$CC" CCP="$MPICC" CCD="$CCD"
+$MAKE ptesmumps CCS="$CC" CCP="$MPICC" CCD="$CCD"
 $MAKE install prefix="$TwoPiRoot"
 
 CMAKELIST=$(dirname "$MYPATH")/../extra/scotch/CMakeLists.txt

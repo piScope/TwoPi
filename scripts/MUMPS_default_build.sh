@@ -82,7 +82,7 @@ echo $MAKEINC
 cp $MAKEINC ${REPO}/Makefile.inc
 cd ${REPO}
 
-export SCOTHDIR=${TwoPiRoot}
+export SCOTCHDIR=${TwoPiRoot}
 export METISDIR=${TwoPiRoot}
 
 ORDERING="-Dport"
@@ -96,7 +96,7 @@ if [[ "${_USE_METIS}" == "ON" ]]; then
     sed -i 's/#LMETIS    = -L\$(LMETISDIR) -lparmetis -lmetis/LMETIS    = -L\$(LMETISDIR) -lparmetis -lmetis/g' Makefile.inc
     ORDERING="-Dmetis "${ORDERING}" -Dparmetis"    
 fi
-sed -i 's/ORDERINGSF  = -Dpord/ORDERINGSF  = "${ORDERING}"/g' Makefile.inc
+sed -i 's/ORDERINGSF  = -Dpord/ORDERINGSF  = "$ORDERING"/g' Makefile.inc
 
 $MAKE alllib MPICC=${MPICC} MPIFC=${MPIFC} OMPFCFLAG=${OMPFCFLAG} \
       OMPLINKFLAG=${OMPLINKFLAG} OMPCCFLAG=${OMPCCFLAG} $MAKEOPT

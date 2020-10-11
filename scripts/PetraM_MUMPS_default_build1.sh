@@ -51,7 +51,7 @@ echo $PWD
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
          -DUSE_SCOTCH=${USE_SCOTCH}                 \
-         -DUSE_METIS=${USE_METIS}                   \	 
+         -DUSE_METIS=${USE_METIS}                   \
 	 -DLAPACK_FLAGS="${LAPACKFLAG}"             \
          -DMUMPS_INCLUDE_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/include \
          -DMUMPS_LINK_DIR=${TwoPiRoot}/src/${MUMPS_REPO}/lib    \

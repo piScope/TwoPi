@@ -37,7 +37,7 @@ set( ESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libesmumps.a )
 set( PTSCERR_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherr.a )
 set( PTSCERREXIT_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherrexit.a )
 set( PTSC_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotch.a )
-set( PTSCPMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotchparmeti s.a )
+set( PTSCPMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotchparmetis.a )
 set( PTESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptesmumps.a )
 
 ### use RPATH

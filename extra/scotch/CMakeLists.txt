@@ -10,8 +10,6 @@
 
 cmake_minimum_required(VERSION 2.8.10)
 
-
-
 project(SCOTCH)
 
 find_package(ZLIB REQUIRED)
@@ -39,8 +37,11 @@ set( ESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libesmumps.a )
 set( PTSCERR_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherr.a )
 set( PTSCERREXIT_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherrexit.a )
 set( PTSC_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotch.a )
-set( PTSCPMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotchparmetis.a )
+set( PTSCPMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotchparmeti s.a )
 set( PTESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptesmumps.a )
+
+### use RPATH
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 # Create an empty cpp file to use as a stand-in for cpp sources in the library
 set (EMPTY_CPP ${CMAKE_CURRENT_BINARY_DIR}/empty.c)

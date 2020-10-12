@@ -37,7 +37,7 @@ cp $CMAKELIST ${REPO}/src/CMakeLists.txt
 mkdir -p ${REPO}/src/cmbuild
 cd ${REPO}/src/cmbuild
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib \
-         -DCMAKE_INSTALL_RPATH=${TwoPiRoot}/lib   \      
+         -DCMAKE_INSTALL_RPATH=${TwoPiRoot}/lib   \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}
 
 make VERBOSE=1

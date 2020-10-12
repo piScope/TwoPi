@@ -20,7 +20,7 @@ while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
-    --disable-soctch-pthread)
+    --disable-scotch-pthread)
     _USE_SCOTCH_PTHREAD="OFF"
     shift # past param
     ;;

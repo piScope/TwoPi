@@ -9,6 +9,33 @@ SRCDIR=${TwoPiRoot}/src
 SCRIPT=$(dirname "$0")/env_${TwoPiDevice}.sh
 source $SCRIPT
 
+_usage() {
+    echo 'Scotch/PT-Scotch : Ordering Library'
+    echo '   options: --disable-scotch-pthread'
+}
+
+
+_USE_SCOTCH_PTHREAD="ON"
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --disable-soctch-pthread)
+    _USE_SCOTCH_PTHREAD="OFF"
+    shift # past param
+    ;;
+    --help)
+    _usage
+    exit 1
+    ;;
+    *)
+    echo "Unknown option " $key
+    exit 2  #  error_code=2
+    ;;
+esac
+done
+
+
 REPO=${SRCDIR}/scotch_${SCOTCH_VERSION}
 source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
 
@@ -24,6 +51,11 @@ fi
 cp $MAKEINC ${REPO}/src/Makefile.inc
 cd ${REPO}/src
 
+if [[ "${_USE_SCOTCH_PTHREAD}" != "ON" ]]; then
+    sed -i s/-DSCOTCH_PTHREAD//g Makefile.inc
+fi
+
+###
 CCD="$CC -I$MPI_INCLUDE_PATH"
 echo ${CCD}
 $MAKE scotch CCS="$CC" CCP="$MPICC" CCD="$CCD"

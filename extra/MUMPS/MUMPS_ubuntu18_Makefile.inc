@@ -21,9 +21,12 @@
 #
 ################################################################################
 
-
 ########################################################################
 #Begin orderings
+#
+#
+#   This ordering section is edited by TwoPi
+#
 #
 # NOTE that PORD is distributed within MUMPS by default. It is recommended to
 # install other orderings. For that, you need to obtain the corresponding package
@@ -52,13 +55,12 @@
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lesmumps -lscotch -lscotcherr
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
 
-
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
-LMETISDIR = $(TwoPiRoot)/lib
-IMETIS    = -I$(TwoPiRoot)/include
+#LMETISDIR = /opt/metis-5.1.0/build/Linux-x86_64/libmetis
+#IMETIS    = /opt/metis-5.1.0/include
 
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
@@ -66,7 +68,7 @@ IMETIS    = -I$(TwoPiRoot)/include
 # variable below); for both parallel and sequential analysis choose the second 
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
-LMETIS    = -L$(LMETISDIR) -lmetis -lparmetis
+#LMETIS    = -L$(LMETISDIR) -lmetis
 #LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
@@ -74,7 +76,7 @@ LMETIS    = -L$(LMETISDIR) -lmetis -lparmetis
 # If you want to use Metis 4.X or an older version, you should use -Dmetis4 instead of -Dmetis
 # or in addition with -Dparmetis (if you are using parmetis 3.X or older).
 #ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-ORDERINGSF  =  -Dmetis -Dpord -Dparmetis
+ORDERINGSF  = -Dpord
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)

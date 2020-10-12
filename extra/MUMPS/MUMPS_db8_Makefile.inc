@@ -25,6 +25,11 @@
 ########################################################################
 #Begin orderings
 #
+#
+#   This ordering section is edited by TwoPi
+#
+#
+#
 # NOTE that PORD is distributed within MUMPS by default. It is recommended to
 # install other orderings. For that, you need to obtain the corresponding package
 # and modify the variables below accordingly.

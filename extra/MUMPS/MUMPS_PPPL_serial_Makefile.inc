@@ -3,8 +3,15 @@
 #  This file is part of MUMPS 5.2.0, released
 #  on Thu Apr 18 09:55:07 UTC 2019
 #
-#Begin orderings
+################################################################################
 
+########################################################################
+#Begin orderings
+#
+#
+#   This ordering section is edited by TwoPi
+#
+#
 # NOTE that PORD is distributed within MUMPS by default. It is recommended to
 # install other orderings. For that, you need to obtain the corresponding package
 # and modify the variables below accordingly.
@@ -31,7 +38,6 @@
 
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lesmumps -lscotch -lscotcherr
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
-
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
@@ -63,7 +69,6 @@ IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
 
 #End orderings
 ########################################################################
-################################################################################
 
 PLAT    =
 LIBEXT  = .a

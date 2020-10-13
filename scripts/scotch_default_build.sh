@@ -64,13 +64,13 @@ cp $MAKEINC ${REPO}/src/Makefile.inc
 cd ${REPO}/src
 
 if [[ "${_USE_SCOTCH_PTHREAD}" != "ON" ]]; then
-    sed -i s/-DSCOTCH_PTHREAD//g Makefile.inc
+    sed -i 's/-DSCOTCH_PTHREAD//g' Makefile.inc
 fi
 if [[ "${_USE_INT64}" == "ON" ]]; then
-    sed -i s/-DIDXSIZE64/-DINTSIZE64 -DIDXSIZE64/g Makefile.inc
+    sed -i 's/-DIDXSIZE64/-DINTSIZE64 -DIDXSIZE64/g' Makefile.inc
 fi
 if [[ "${_USE_INT32}" == "ON" ]]; then
-    sed -i s/-DIDXSIZE64/-DINTSIZE32 -DIDXSIZE64/g Makefile.inc
+    sed -i 's/-DIDXSIZE64/-DINTSIZE32 -DIDXSIZE64/g' Makefile.inc
 fi
 
 ###

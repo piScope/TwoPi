@@ -20,3 +20,8 @@ source $(dirname $BASH_SOURCE)/env_common.sh
 MPI_INCLUDE_PATH=/opt/cray/pe/mpt/7.7.10/gni/mpich-intel/16.0/include
 MPI_LIBRARY_PATH=/opt/cray/pe/mpt/7.7.10/gni/mpich-intel/16.0/lib
 
+# enforce scotch to 6.0.6
+SCOTCH_DL=37622
+SCOTCH_VERSION=6.0.6
+
+

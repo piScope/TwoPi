@@ -12,16 +12,28 @@ source $SCRIPT
 _usage() {
     echo 'Scotch/PT-Scotch : Ordering Library'
     echo '   options: --disable-scotch-pthread'
+    echo '   options: --int64 (enforce 64-bit integer type)'
+    echo '   options: --int32 (enforce 32-bit integer type)'
 }
 
 
 _USE_SCOTCH_PTHREAD="ON"
+_USE_INT64="OFF"
+_USE_INT32="OFF"
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
     --disable-scotch-pthread)
     _USE_SCOTCH_PTHREAD="OFF"
+    shift # past param
+    ;;
+    --int64)
+    _USE_INT64="ON"
+    shift # past param
+    ;;
+    --int32)
+    _USE_INT32="ON"
     shift # past param
     ;;
     --help)
@@ -53,6 +65,12 @@ cd ${REPO}/src
 
 if [[ "${_USE_SCOTCH_PTHREAD}" != "ON" ]]; then
     sed -i s/-DSCOTCH_PTHREAD//g Makefile.inc
+fi
+if [[ "${_USE_INT64}" == "ON" ]]; then
+    sed -i s/-DIDXSIZE64/-DINTSIZE64 -DIDXSIZE64/g Makefile.inc
+fi
+if [[ "${_USE_INT32}" == "ON" ]]; then
+    sed -i s/-DIDXSIZE64/-DINTSIZE32 -DIDXSIZE64/g Makefile.inc
 fi
 
 ###

@@ -12,4 +12,4 @@ source $SCRIPT
 REPO=${SRCDIR}/scotch_${SCOTCH_VERSION}
 
 cd ${REPO}/src
-make clean
+make realclean

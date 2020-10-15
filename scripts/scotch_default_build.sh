@@ -14,16 +14,20 @@ _usage() {
     echo '   options: --disable-scotch-pthread'
     echo '   options: --int64 (enforce 64-bit integer type)'
     echo '   options: --int32 (enforce 32-bit integer type)'
-    echo '   options: --debug (-O3 is replace to -O0 -g)'
-    echo '   options: --debug1 (-O3 is replace to -O2 -g)'
+    echo '   options: --debug (add -g)'
+    echo '   options: --O0    (-O3 is replace to -O0)'
+    echo '   options: --O1    (-O3 is replace to -O1)'
+    echo '   options: --O2    (-O3 is replace to -O2)'    
 }
 
 
 _USE_SCOTCH_PTHREAD="ON"
 _USE_INT64="OFF"
 _USE_INT32="OFF"
-_USE_DEBUG1="OFF"
-_USE_DEBUG2="OFF"
+_USE_DEBUG="OFF"
+_USE_O0="OFF"
+_USE_O1="OFF"
+_USE_O2="OFF"
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -41,11 +45,19 @@ case $key in
     shift # past param
     ;;
     --debug)
-    _USE_DEBUG1="ON"	
+    _USE_DEBUG="ON"	
     shift # past param
     ;;
-    --debug1)
-    _USE_DEBUG2="ON"	
+    --O2)
+    _USE_O2="ON"	
+    shift # past param
+    ;;
+    --01)
+    _USE_O1="ON"	
+    shift # past param
+    ;;
+    --00)
+    _USE_O0="ON"	
     shift # past param
     ;;
     --help)
@@ -84,11 +96,17 @@ fi
 if [[ "${_USE_INT32}" == "ON" ]]; then
     sed -i 's/-DIDXSIZE64/-DINTSIZE32 -DIDXSIZE64/g' Makefile.inc
 fi
-if [[ "${_USE_DEBUG1}" == "ON" ]]; then
-    sed -i 's/-O3/-g -O0/g' Makefile.inc
+if [[ "${_USE_DEBUG}" == "ON" ]]; then
+    sed -i 's/-O3/-g -O3/g' Makefile.inc
 fi
-if [[ "${_USE_DEBUG2}" == "ON" ]]; then
-    sed -i 's/-O3/-g/g' Makefile.inc
+if [[ "${_USE_O2}" == "ON" ]]; then
+    sed -i 's/-O3/-O2/g' Makefile.inc
+fi
+if [[ "${_USE_O1}" == "ON" ]]; then
+    sed -i 's/-O3/-O1/g' Makefile.inc
+fi
+if [[ "${_USE_O0}" == "ON" ]]; then
+    sed -i 's/-O3/-O0/g' Makefile.inc
 fi
 
 ###

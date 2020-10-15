@@ -52,11 +52,11 @@ case $key in
     _USE_O2="ON"	
     shift # past param
     ;;
-    --01)
+    --O1)
     _USE_O1="ON"	
     shift # past param
     ;;
-    --00)
+    --O0)
     _USE_O0="ON"	
     shift # past param
     ;;

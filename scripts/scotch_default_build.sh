@@ -20,6 +20,8 @@ _usage() {
 _USE_SCOTCH_PTHREAD="ON"
 _USE_INT64="OFF"
 _USE_INT32="OFF"
+_USE_DEBUG1="OFF"
+_USE_DEBUG2="OFF"
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -34,6 +36,13 @@ case $key in
     ;;
     --int32)
     _USE_INT32="ON"
+    shift # past param
+    ;;
+    --debug)
+    _USE_DEBUG1="ON"	
+    shift # past param
+    --debug1)
+    _USE_DEBUG2="ON"	
     shift # past param
     ;;
     --help)
@@ -71,6 +80,12 @@ if [[ "${_USE_INT64}" == "ON" ]]; then
 fi
 if [[ "${_USE_INT32}" == "ON" ]]; then
     sed -i 's/-DIDXSIZE64/-DINTSIZE32 -DIDXSIZE64/g' Makefile.inc
+fi
+if [[ "${_USE_DEBUG1}" == "ON" ]]; then
+    sed -i 's/-O3/-g -O0/g' Makefile.inc
+fi
+if [[ "${_USE_DEBUG2}" == "ON" ]]; then
+    sed -i 's/-O3/-g/g' Makefile.inc
 fi
 
 ###

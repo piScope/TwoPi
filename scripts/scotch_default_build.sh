@@ -14,6 +14,8 @@ _usage() {
     echo '   options: --disable-scotch-pthread'
     echo '   options: --int64 (enforce 64-bit integer type)'
     echo '   options: --int32 (enforce 32-bit integer type)'
+    echo '   options: --debug (-O3 is replace to -O0 -g)'
+    echo '   options: --debug1 (-O3 is replace to -O2 -g)'
 }
 
 
@@ -41,6 +43,7 @@ case $key in
     --debug)
     _USE_DEBUG1="ON"	
     shift # past param
+    ;;
     --debug1)
     _USE_DEBUG2="ON"	
     shift # past param

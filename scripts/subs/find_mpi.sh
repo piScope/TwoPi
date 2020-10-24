@@ -9,7 +9,10 @@ if [ -z ${MPI_INCLUDE_PATH+x} ]; then
    DD=$PWD
    cd $MPILOCDIR
    rm -f CMakeCache.txt
-   cmake . -DCMAKE_CXX_COMPILER=$MPICXX -DCMAKE_C_COMPILER=$MPICC
+   cmake . -DCMAKE_CXX_COMPILER=$CXX \
+	 -DCMAKE_C_COMPILER=$CC \
+	 -DMPI_CXX_COMPILER=$MPICXX \
+         -DMPI_C_COMPILER=$MPICC
    cd $DD
    #fi
 

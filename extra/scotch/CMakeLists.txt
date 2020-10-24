@@ -10,8 +10,6 @@
 
 cmake_minimum_required(VERSION 2.8.10)
 
-
-
 project(SCOTCH)
 
 find_package(ZLIB REQUIRED)
@@ -34,12 +32,13 @@ set( SCERR_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libscotcherr.a )
 set( SCERREXIT_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libscotcherrexit.a )
 set( SC_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libscotch.a )
 set( SCMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libscotchmetis.a )
+set( ESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libesmumps.a )
 
 set( PTSCERR_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherr.a )
 set( PTSCERREXIT_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotcherrexit.a )
 set( PTSC_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotch.a )
 set( PTSCPMETIS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptscotchparmetis.a )
-
+set( PTESMUMPS_STATIC ${CMAKE_INSTALL_PREFIX}/lib/libptesmumps.a )
 
 # Create an empty cpp file to use as a stand-in for cpp sources in the library
 set (EMPTY_CPP ${CMAKE_CURRENT_BINARY_DIR}/empty.c)
@@ -186,3 +185,42 @@ target_link_libraries(ptscotchparmetis ${SHARED_SC_LINK_FLAGS_1}
 install(TARGETS ptscotchparmetis
         DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
         )
+
+# esmumps
+add_library(esmumps SHARED ${EMPTY_CPP})
+add_dependencies( esmumps scotch scotcherr )
+set_target_properties(esmumps PROPERTIES 
+                      COMPILE_FLAGS ${SHARED_SC_COMPILE_FLAGS}
+                      OUTPUT_NAME esmumps)
+target_link_libraries(esmumps ${SHARED_SC_LINK_FLAGS_1}
+                         ${ESMUMPS_STATIC}
+			 ${SHARED_SC_LINK_FLAGS_2}
+ 			 $<TARGET_FILE:scotch>
+			 $<TARGET_FILE:scotcherr>
+			 z m)
+install(TARGETS esmumps
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        )
+
+
+# ptesmump
+add_library(ptesmumps SHARED ${EMPTY_CPP})
+add_dependencies(ptesmumps ptscotch ptscotcherr)
+set_target_properties(ptesmumps PROPERTIES 
+                      COMPILE_FLAGS ${SHARED_SC_COMPILE_FLAGS}
+                      OUTPUT_NAME ptesmumps)
+if(MPI_C_LINK_FLAGS)
+  set_target_properties(ptesmumps PROPERTIES
+    LINK_FLAGS "${MPI_C_LINK_FLAGS}")
+endif()
+
+target_link_libraries(ptesmumps ${SHARED_SC_LINK_FLAGS_1}
+                         ${PTESMUMPS_STATIC}
+			 ${SHARED_SC_LINK_FLAGS_2}
+ 			 $<TARGET_FILE:ptscotch>
+			 $<TARGET_FILE:ptscotcherr>
+			 z m)
+install(TARGETS ptesmumps
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        )
+      

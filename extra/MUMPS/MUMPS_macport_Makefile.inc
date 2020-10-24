@@ -25,6 +25,10 @@
 ########################################################################
 #Begin orderings
 #
+#
+#   This ordering section is edited by TwoPi
+#
+#
 # NOTE that PORD is distributed within MUMPS by default. It is recommended to
 # install other orderings. For that, you need to obtain the corresponding package
 # and modify the variables below accordingly.
@@ -40,7 +44,7 @@
 #          Metis/ParMetis and SCOTCH/PT-SCOTCH (ver 6.0 and later) orderings are recommended.
 #
 
-#SCOTCHDIR  = ${HOME}/sandbox
+#SCOTCHDIR  = ${HOME}/scotch_6.0
 #ISCOTCH    = -I$(SCOTCHDIR)/include
 #
 # You have to choose one among the following two lines depending on
@@ -52,13 +56,12 @@
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lesmumps -lscotch -lscotcherr
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
 
-
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
-LMETISDIR = /Users/shiraiwa/sandbox/lib
-IMETIS    = -I/Users/shiraiwa/sandbox/include
+#LMETISDIR = /opt/metis-5.1.0/build/Linux-x86_64/libmetis
+#IMETIS    = /opt/metis-5.1.0/include
 
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
@@ -67,14 +70,14 @@ IMETIS    = -I/Users/shiraiwa/sandbox/include
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
 #LMETIS    = -L$(LMETISDIR) -lmetis
-LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+#LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
 # Please note that -Dptscotch and -Dparmetis imply -Dscotch and -Dmetis respectively.
 # If you want to use Metis 4.X or an older version, you should use -Dmetis4 instead of -Dmetis
 # or in addition with -Dparmetis (if you are using parmetis 3.X or older).
 #ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-ORDERINGSF  =  -Dmetis -Dpord  -Dparmetis
+ORDERINGSF  = -Dpord
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)

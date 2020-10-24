@@ -10,7 +10,6 @@ MPICC=mpiicc
 MPICXX=mpiicpc
 MPIFC=mpiifort
 MPIFL=mpiifort
-MAKEOPT="-j 8"
 OMPFLAG="-qopenmp"
 OMPLINKFLAG=-fopenmp
 OMPCXXFLAG=-fopenmp

@@ -6,7 +6,6 @@ MPICC=mpicc
 MPICXX=mpicxx
 MPIFC=mpif90
 MPIFL=mpif90
-MAKEOPT=""
 OMPFLAG="-fopenmp"
 OMPLINKFLAG=-fopenmp
 OMPCXXFLAG=-fopenmp

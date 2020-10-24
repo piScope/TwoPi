@@ -79,12 +79,20 @@ component (dependency):
    PyOCC:
         install pythonocc-core
    gmsh:
-        install gmsh 4.5.4
-   MUMPS (metis, parmetis):
-        install MUMSP 5.3.1
-	Metis/ParMetis BLR OpenMP MPI
+        install gmsh 4.5.6
+   MUMPS:
+        Multifrontal Sparse Direct Solver (5.3.4)
+        clone: download tar.gz from http://graal.ens-lyon.fr/MUMPS/
+	build:
+	clean:
+	
    scotch:
-        Both static and shared library is installed
+        Scotch/PT-Scotch ordering library
+	Both static and shared library is installed
+
+        clone : download tar.gz from https://gforge.inria.fr/frs/
+        build :
+	clean :
 	
    strumpack (scotch, metis, parmetis):
         install Strumpack 3.1.1
@@ -103,7 +111,8 @@ component (dependency):
 	clean
 	
    PUMI-MESHES 
-        clone : 
+        clone :
+	
    PUMI-PYTHON
         (no clone, this is part of SCOREC/core, need to swith python_wrapper baranch)
         build
@@ -152,20 +161,28 @@ component (dependency):
        clone --checkout <Branch>
 
    PetraM_MUMPS:
+       Wrapper for MUMPS direct solver
+       
        clone
        build
           option:
 	     --run-swig : generate SWIG wrapper code
 	     --clean-swig : clean SWIG
-	     wrapper code
-
+	     --eneable-scotch (default)
+             --disable-scotch 
+             --enable-metis (default)
+             --disable-metis
+       clean
+       
    PetraM_Base_ext:
+       build
           option:
 	     --run-swig : generate SWIG wrapper code
 	     --clean-swig : clean SWIG
 	     --clean-all : clean SWIG + ext 
 
    PetraM_MPW:
+       build
           option:
 	     --run-swig : generate SWIG wrapper code
 	     --clean-swig : clean SWIG

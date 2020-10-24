@@ -10,7 +10,6 @@ MPICC=mpicc
 MPICXX=mpicxx
 MPIFC=mpif90
 MPIFL=mpif90
-MAKEOPT="-j 4"
 # No OpenMP : Apple compiler does not support -fopenmp
 #             There is a way to turn-on but it involves
 #             playing with multiple compiler flags.

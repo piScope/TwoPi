@@ -3,7 +3,11 @@
 _usage() {
     echo 'PetraM_MUMPS : MUMPS wrapper for Petra-M'
     echo '   options: --clean-swig'
-    echo '            --run-swig'    
+    echo '            --run-swig'
+    echo '            --eneable-scotch (default)'
+    echo '            --disable-scotch '
+    echo '            --enable-metis (default)'
+    echo '            --disable-metis'        
     echo '            --help'
 }
 
@@ -22,6 +26,8 @@ source $SCRIPT
 
 DO_SWIG=false
 DO_CLEAN_SWIG=false
+_USE_SCOTCH="ON"
+_USE_METIS="ON"
 
 while [[ $# -gt 0 ]]
 do
@@ -33,6 +39,22 @@ case $key in
     ;;
     --run-swig)
     DO_SWIG=true
+    shift # past argument    
+    ;;
+    --enable-scotch)
+    _USE_SCOTCH="ON"
+    shift # past argument    
+    ;;
+    --disable-scotch)
+    _USE_SCOTCH="OFF"
+    shift # past argument    
+    ;;
+    --enable-metis)
+    _USE_METIS="ON"
+    shift # past argument    
+    ;;
+    --disable-metis)
+    _USE_METIS="OFF"
     shift # past argument    
     ;;
     --help)
@@ -59,6 +81,10 @@ if $DO_CLEAN_SWIG ;then
     $MAKE cleancxx
     exit 0
 fi
+
+### this are used in build1
+export USE_METIS=${_USE_METIS}
+export USE_SCOTCH=${_USE_SCOTCH}
 
 SCRIPT=$(dirname "$0")/buildcomponent.sh
 ${SCRIPT} PetraM_MUMPS build1

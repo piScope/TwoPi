@@ -13,12 +13,14 @@ SRCDIR=${TwoPiRoot}/src
 
 DO_LATEST=false
 
-# defualt SHA (v3.4)
+# SHA (v3.4)
 # SHA=0715efbaf95990a4e76380ac69337096b1cd347d
-# defualt SHA (v4.0)
+# SHA (v4.0)
 # SHA=4d900b0c5fd6352c92173e74678bcbeeb11c8691
-# defualt SHA (v4.1)
-SHA=8dbbcfc25629ac7612fe31afd5b511752ff0e69b
+# SHA (v4.1)
+#SHA=8dbbcfc25629ac7612fe31afd5b511752ff0e69b
+# defualt SHA (v4.2)
+SHA=ed5604e0d350461f20842275578aa2f9e6a61343
 BRANCH=master
 
 while [[ $# -gt 0 ]]

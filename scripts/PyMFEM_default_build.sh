@@ -32,6 +32,7 @@ key="$1"
 case $key in
     --dry-run)
     DRY_RUN="--dry-run"
+    shift # past argument    	
     ;;
     --clean-swig)
     DO_CLEAN_SWIG=true

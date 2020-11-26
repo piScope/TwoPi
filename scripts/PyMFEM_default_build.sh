@@ -105,27 +105,38 @@ export CXX=${CXX}
 export CXX11FLAG=$CXX11FLAG
 
 if $DO_CLEAN_SWIG ;then
-    python setup.py clean --swig 
+    python setup.py clean --swig               
     #$MAKE cleancxx
     exit 0
 fi
 
 if $DO_SWIG ;then
-    python setup.py install --swig     
+    python setup.py install --swig               \
+           --mfem-prefix=${TwoPiRoot}/mfem       \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par  \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser
+    
     #$MAKE sercxx
     #$MAKE parcxx   
     exit 0
 fi
 
 if $DO_SERIAL;then
-    python setup.py install --mfem-prefix=${TwoPiRoot}/mfem/ser
+    python setup.py install                      \
+	   --mfem-prefix-no-swig                 \
+           --mfem-prefix=${TwoPiRoot}/mfem       \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par  \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser
 fi
 
 if $DO_PARALLEL ;then
     python setup.py install
+           --mfem-prefix-no-swig                        \    
            --no-serial                                  \
            --with-parallel                              \
-	   --mfem-prefix=${TwoPiRoot}/mfem/par          \
+           --mfem-prefix=${TwoPiRoot}/mfem              \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par         \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser         \
 	   --hypre-prefix=${TwoPiRoot}                  \
 	   --metis-prefix=${TwoPiRoot}                  \
 	   $ENABLE_PUMI $PUMI_PREFIX
@@ -134,8 +145,11 @@ fi
 #export CXX=${MPICXX}
 if $DO_DEFAULT ;then
     python setup.py install
+           --mfem-prefix-no-swig                        \
            --with-parallel                              \
-	   --mfem-prefix=${TwoPiRoot}/mfem/par          \
+           --mfem-prefix=${TwoPiRoot}/mfem              \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par         \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser         \
 	   --hypre-prefix=${TwoPiRoot}                  \
 	   --metis-prefix=${TwoPiRoot}                  \
 	   $ENABLE_PUMI $PUMI_PREFIX

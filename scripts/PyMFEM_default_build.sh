@@ -113,6 +113,7 @@ fi
 
 if $DO_SWIG ;then
     python setup.py install --swig               \
+	   --with-parallel                       \
            --mfem-prefix=${TwoPiRoot}/mfem       \
            --mfemp-prefix=${TwoPiRoot}/mfem/par  \
            --mfems-prefix=${TwoPiRoot}/mfem/ser  \

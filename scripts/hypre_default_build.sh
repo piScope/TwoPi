@@ -16,7 +16,9 @@ export CC=${MPICC}
 mkdir -p ${HYPREDIR}/src/cmbuild
 cd ${HYPREDIR}/src/cmbuild
 
-$CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1 -DHYPRE_INSTALL_PREFIX=${TwoPiRoot} \
+$CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                                     \
+          -DBUILD_SHARED_LIBS=1                                          \
+          -DHYPRE_INSTALL_PREFIX=${TwoPiRoot}                            \
           -DHYPRE_SHARED=1                                               \
           -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}                            \
           -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib                            

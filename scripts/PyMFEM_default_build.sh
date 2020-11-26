@@ -134,7 +134,7 @@ if $DO_SERIAL;then
 fi
 
 if $DO_PARALLEL ;then
-    python setup.py install
+    python setup.py install                             \
            --mfem-prefix-no-swig                        \    
            --no-serial                                  \
            --with-parallel                              \
@@ -149,7 +149,7 @@ fi
 #export CC=${MPICC}
 #export CXX=${MPICXX}
 if $DO_DEFAULT ;then
-    python setup.py install
+    python setup.py install                             \
            --mfem-prefix-no-swig                        \
            --with-parallel                              \
            --mfem-prefix=${TwoPiRoot}/mfem              \

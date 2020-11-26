@@ -135,7 +135,7 @@ fi
 
 if $DO_PARALLEL ;then
     python setup.py install                             \
-           --mfem-prefix-no-swig                        \    
+           --mfem-prefix-no-swig                        \
            --no-serial                                  \
            --with-parallel                              \
            --mfem-prefix=${TwoPiRoot}/mfem              \

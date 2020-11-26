@@ -106,7 +106,7 @@ export CXX=${CXX}
 export CXX11FLAG=$CXX11FLAG
 
 if $DO_CLEAN_SWIG ;then
-    python setup.py clean --swig               
+    python setup.py clean --swig $DRY_RUN
     #$MAKE cleancxx
     exit 0
 fi
@@ -115,7 +115,8 @@ if $DO_SWIG ;then
     python setup.py install --swig               \
            --mfem-prefix=${TwoPiRoot}/mfem       \
            --mfemp-prefix=${TwoPiRoot}/mfem/par  \
-           --mfems-prefix=${TwoPiRoot}/mfem/ser
+           --mfems-prefix=${TwoPiRoot}/mfem/ser  \
+           $DRY_RUN
     
     #$MAKE sercxx
     #$MAKE parcxx   
@@ -127,7 +128,8 @@ if $DO_SERIAL;then
 	   --mfem-prefix-no-swig                 \
            --mfem-prefix=${TwoPiRoot}/mfem       \
            --mfemp-prefix=${TwoPiRoot}/mfem/par  \
-           --mfems-prefix=${TwoPiRoot}/mfem/ser
+           --mfems-prefix=${TwoPiRoot}/mfem/ser  \
+	   $DRY_RUN
 fi
 
 if $DO_PARALLEL ;then
@@ -140,7 +142,8 @@ if $DO_PARALLEL ;then
            --mfems-prefix=${TwoPiRoot}/mfem/ser         \
 	   --hypre-prefix=${TwoPiRoot}                  \
 	   --metis-prefix=${TwoPiRoot}                  \
-	   $ENABLE_PUMI $PUMI_PREFIX
+	   $ENABLE_PUMI $PUMI_PREFIX                    \
+	   $DRY_RUN	   
 fi
 #export CC=${MPICC}
 #export CXX=${MPICXX}
@@ -153,7 +156,8 @@ if $DO_DEFAULT ;then
            --mfems-prefix=${TwoPiRoot}/mfem/ser         \
 	   --hypre-prefix=${TwoPiRoot}                  \
 	   --metis-prefix=${TwoPiRoot}                  \
-	   $ENABLE_PUMI $PUMI_PREFIX
+	   $ENABLE_PUMI $PUMI_PREFIX                    \
+	   $DRY_RUN	   	   
     #$MAKE par
 fi
 

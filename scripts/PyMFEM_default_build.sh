@@ -83,31 +83,12 @@ SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PyMFEM
 cd $REPO
 
-#TWOPILIB=${TwoPiRoot}/lib
-#TWOPIINC=${TwoPiRoot}/include
-
-#MAKE=$(command -v make)
-#touch Makefile.local
-
-#export MFEM=${TwoPiRoot}/mfem/par
-#export MFEMBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_par
-#export MFEMSER=${TwoPiRoot}/mfem/ser
-#export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_ser
-#export HYPREINC=$TWOPIINC
-#export HYPRELIB=$TWOPILIB
-#export METIS5INC=$TWOPIINC
-#export METIS5LIB=$TWOPILIB
-#export ENABLE_PUMI="${ENABLE_PUMI}"
-#export PUMIINC="${PUMI_INC}"
-#export PUMILIB="${PUMI_LIB}"
-
 export CC=${CC}
 export CXX=${CXX}
 export CXX11FLAG=$CXX11FLAG
 
 if $DO_CLEAN_SWIG ;then
     python setup.py clean --swig $DRY_RUN
-    #$MAKE cleancxx
     exit 0
 fi
 
@@ -119,8 +100,6 @@ if $DO_SWIG ;then
            --mfems-prefix=${TwoPiRoot}/mfem/ser  \
            $DRY_RUN
     
-    #$MAKE sercxx
-    #$MAKE parcxx   
     exit 0
 fi
 
@@ -146,8 +125,7 @@ if $DO_PARALLEL ;then
 	   $ENABLE_PUMI $PUMI_PREFIX                    \
 	   $DRY_RUN	   
 fi
-#export CC=${MPICC}
-#export CXX=${MPICXX}
+
 if $DO_DEFAULT ;then
     python setup.py install                             \
            --mfem-prefix-no-swig                        \
@@ -159,7 +137,6 @@ if $DO_DEFAULT ;then
 	   --metis-prefix=${TwoPiRoot}                  \
 	   $ENABLE_PUMI $PUMI_PREFIX                    \
 	   $DRY_RUN	   	   
-    #$MAKE par
 fi
 
-#$MAKE pyinstall PREFIX=${TwoPiRoot}
+

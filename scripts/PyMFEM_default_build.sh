@@ -10,11 +10,8 @@ _usage() {
     echo '            --clean-swig'
     echo '            --run-swig'
     echo '            --with-pumi'
-    echo '            --pumi-include'
-    echo '            --pumi-lib'
-    echo '            --mpi-root'
-    echo '            --mpi-include'
-    echo '            --mpi-lib'    
+    echo '            --pumi-prefix'
+    echo '            --dry-run'        
     
 }
 
@@ -24,14 +21,19 @@ DO_PARALLEL=false
 DO_DEFAULT=true
 DO_SWIG=false
 DO_CLEAN_SWIG=false
+DRY_RUN=''
 
-PUMI_INC="$TwoPiRoot"/include
-PUMI_LIB="$TwoPiRoot"/lib
+PUMI_PREFIX=""
+ENBLE_PUMI=""
 
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
+    --dry-run)
+    DRY_RUN="--dry-run"
+    shift # past argument    	
+    ;;
     --clean-swig)
     DO_CLEAN_SWIG=true
     shift # past argument    
@@ -51,34 +53,13 @@ case $key in
     shift # past argument
     ;;
     --with-pumi)
-    ENABLE_PUMI=yes	
+    ENABLE_PUMI="--with-pumi"
     shift # past argument
     ;;
-    --pumi-include)
+    --pumi-prefix)
     ENABLE_PUMI=yes
-    PUMI_INC=$2
+    PUMI_PREFIX="--pumi-prefix="$2
     shift # past argument    
-    shift # past param
-    ;;
-    --pumi-lib)
-    ENABLE_PUMI=yes
-    PUMI_LIB=$2
-    shift # past argument    
-    shift # past param
-    ;;
-    --mpi-root)
-    MPI_ROOT=$2
-    shift # past argument
-    shift # past param
-    ;;
-    --mpi-lib)
-    MPI_LIB=$2
-    shift # past argument
-    shift # past param
-    ;;
-    --mpi-include)
-    MPI_INC=$2
-    shift # past argument
     shift # past param
     ;;
     --help)
@@ -95,72 +76,67 @@ done
 ### 
 # set MPI and Booost related variable (This should happen before cd below)
 #source $(dirname $BASH_SOURCE)/subs/find_boost.sh
-source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
+#source $(dirname $BASH_SOURCE)/subs/find_mpi.sh
 ###
 
 SRCDIR=${TwoPiRoot}/src
 REPO=${SRCDIR}/PyMFEM
-
-TWOPILIB=${TwoPiRoot}/lib
-TWOPIINC=${TwoPiRoot}/include
-
-MAKE=$(command -v make)
 cd $REPO
-touch Makefile.local
-
-export MFEM=${TwoPiRoot}/mfem/par
-export MFEMBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_par
-export MFEMSER=${TwoPiRoot}/mfem/ser
-export MFEMSERBUILDDIR=${TwoPiRoot}/src/mfem/cmbuild_ser
-export HYPREINC=$TWOPIINC
-export HYPRELIB=$TWOPILIB
-export METIS5INC=$TWOPIINC
-export METIS5LIB=$TWOPILIB
-export ENABLE_PUMI="${ENABLE_PUMI}"
-export PUMIINC="${PUMI_INC}"
-export PUMILIB="${PUMI_LIB}"
-
-#MPI
-if [ -z ${MPI_INC+x} ];then
-    if [ -z ${MPI_ROOT+x} ];then
-	export MPICHINC=${MPI_INCLUDE_PATH}
-    else
-	export MPICHINC=${MPI_ROOT}/include
-    fi
-else
-   export MPICHINC=${MPI_INC}
-fi
-if [ -z ${MPI_LIB+x} ];then
-   if [ -z ${MPI_ROOT+x} ];then
-       export MPICHLNK=${MPI_LIBRARY_PATH}
-   else
-       export MPICHLNK=${MPI_ROOT}/lib
-   fi
-else
-   export MPICHLNK=${MPI_LIB}
-fi
 
 export CC=${CC}
 export CXX=${CXX}
 export CXX11FLAG=$CXX11FLAG
 
 if $DO_CLEAN_SWIG ;then
-    $MAKE cleancxx
+    python setup.py clean --swig $DRY_RUN
     exit 0
 fi
+
 if $DO_SWIG ;then
-    $MAKE sercxx
-    $MAKE parcxx   
+    python setup.py install --swig               \
+	   --with-parallel                       \
+           --mfem-prefix=${TwoPiRoot}/mfem       \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par  \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser  \
+           $DRY_RUN
+    
     exit 0
-fi   
-if $DO_SERIAL || $DO_DEFAULT ;then
-    $MAKE ser
 fi
 
-export CC=${MPICC}
-export CXX=${MPICXX}
-if $DO_PARALLEL || $DO_DEFAULT ;then
-    $MAKE par
+if $DO_SERIAL;then
+    python setup.py install                      \
+	   --mfem-prefix-no-swig                 \
+           --mfem-prefix=${TwoPiRoot}/mfem       \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par  \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser  \
+	   $DRY_RUN
 fi
 
-$MAKE pyinstall PREFIX=${TwoPiRoot}
+if $DO_PARALLEL ;then
+    python setup.py install                             \
+           --mfem-prefix-no-swig                        \
+           --no-serial                                  \
+           --with-parallel                              \
+           --mfem-prefix=${TwoPiRoot}/mfem              \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par         \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser         \
+	   --hypre-prefix=${TwoPiRoot}                  \
+	   --metis-prefix=${TwoPiRoot}                  \
+	   $ENABLE_PUMI $PUMI_PREFIX                    \
+	   $DRY_RUN	   
+fi
+
+if $DO_DEFAULT ;then
+    python setup.py install                             \
+           --mfem-prefix-no-swig                        \
+           --with-parallel                              \
+           --mfem-prefix=${TwoPiRoot}/mfem              \
+           --mfemp-prefix=${TwoPiRoot}/mfem/par         \
+           --mfems-prefix=${TwoPiRoot}/mfem/ser         \
+	   --hypre-prefix=${TwoPiRoot}                  \
+	   --metis-prefix=${TwoPiRoot}                  \
+	   $ENABLE_PUMI $PUMI_PREFIX                    \
+	   $DRY_RUN	   	   
+fi
+
+

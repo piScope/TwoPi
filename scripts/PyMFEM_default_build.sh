@@ -85,6 +85,8 @@ cd $REPO
 
 export CC=${CC}
 export CXX=${CXX}
+export MPICC=${MPICC}
+export MPICXX=${MPICXX}
 export CXX11FLAG=$CXX11FLAG
 
 if $DO_CLEAN_SWIG ;then

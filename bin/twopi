@@ -47,9 +47,10 @@ fi
 
 if [ "$MODE" = "clone" ]; then
     EXTRA="${@:3}"
-    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
 
-    #echo "Executing: "$A
+    A=$BUILDCOMPONENT" "$COMPONENT" "$MODE" "$EXTRA
+    #echo "Executing: "$A    
+    
     eval $A
     
 elif [ "$MODE" = "build" ]; then

@@ -29,6 +29,8 @@ export FC=${MPIFC}
 
 cmake .. -DCMAKE_INSTALL_NAME_DIR=${TwoPiRoot}/lib  \
          -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}        \
+         -DUSE_SCOTCH=${USE_SCOTCH}                 \
+         -DUSE_METIS=${USE_METIS}                   \
          -DMETIS_LINK_DIR=${TwoPiRoot}/lib         \
          -DPARMETIS_LINK_DIR=${TwoPiRoot}/lib    \
          -DLAPACK_FLAGS="${MKL_SCALAPACK_LINK}"   \

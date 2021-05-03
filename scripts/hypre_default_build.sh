@@ -29,7 +29,10 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                                     \
 $MAKE verbose=1
 $MAKE install
 
-#if [ "${TwoPiDevice}" == "brew" ]; then
-#   install_name_tool -id ${TwoPiRoot}/lib/libHYPRE.dylib ${TwoPiRoot}/lib/libHYPRE.dylib
-#fi
+cd $TwoPiRoot/lib
+if [ -f $TwoPiRoot/lib64/libHYPRE.so ]; then
+   ln -snf $TwoPiRoot/lib64/libHYPRE.so libHYPRE.so
+fi
+
+
 

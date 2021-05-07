@@ -44,6 +44,7 @@ $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                           \
 	  -DHYPRE_INCLUDE_DIRS=$TWOPIINC                       \
           -DMETIS_DIR=$TWOPILIB                                \
 	  -DMETIS_INCLUDE_DIRS=$TWOPIINC                       \
+          -DMFEM_USE_ZLIB=1                                    \
           -DMFEM_USE_MPI=1                                     \
 	  -DMFEM_USE_METIS_5=1                                 \
 	  -DMFEM_ENABLE_EXAMPLES=1                             \

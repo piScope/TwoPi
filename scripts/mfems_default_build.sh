@@ -21,6 +21,7 @@ rm -rf $REPO/cmbuild_ser/*
 
 $CMAKE .. -DCMAKE_VERBOSE_MAKEFILE=1                         \
           -DBUILD_SHARED_LIBS=1                              \
+          -DMFEM_USE_ZLIB=1                                  \
           -DCMAKE_INSTALL_PREFIX=${TwoPiRoot}/mfem/ser       \
 	  -DMFEM_ENABLE_EXAMPLES=1                           \
           -DMFEM_USE_EXCEPTIONS=1                            \
